@@ -1,0 +1,422 @@
+/*====== Fade In ======*/
+
+@keyframes appFadeIn{
+
+from{
+
+opacity:0;
+
+}
+
+to{
+
+opacity:1;
+
+}
+
+}
+
+.app-fade{
+
+animation:appFadeIn .4s ease;
+
+}
+
+
+/*====== Slide Up======*/
+
+@keyframes appSlideUp{
+
+from{
+
+opacity:0;
+
+transform:translateY(30px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+.app-slide-up{
+
+animation:appSlideUp .45s ease;
+
+}
+
+
+/*====== Slide Down ======*/
+
+
+@keyframes appSlideDown{
+
+from{
+
+opacity:0;
+
+transform:translateY(-30px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+.app-slide-down{
+
+animation:appSlideDown .4s ease;
+
+}
+
+
+/*====== Slide Left ======*/
+
+@keyframes appSlideLeft{
+
+from{
+
+opacity:0;
+
+transform:translateX(40px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateX(0);
+
+}
+
+}
+
+.app-slide-left{
+
+animation:appSlideLeft .45s ease;
+
+}
+
+
+/*====== Slide Right ======*/
+
+@keyframes appSlideRight{
+
+from{
+
+opacity:0;
+
+transform:translateX(-40px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateX(0);
+
+}
+
+}
+
+.app-slide-right{
+
+animation:appSlideRight .45s ease;
+
+}
+
+/* ============== Zoom In =======*/
+
+@keyframes appZoom{
+
+from{
+
+opacity:0;
+
+transform:scale(.92);
+
+}
+
+to{
+
+opacity:1;
+
+transform:scale(1);
+
+}
+
+}
+
+.app-zoom{
+
+animation:appZoom .35s ease;
+
+}
+
+
+/* ============== Bounce =======*/
+@keyframes appBounce{
+
+0%{
+
+transform:scale(1);
+
+}
+
+50%{
+
+transform:scale(1.08);
+
+}
+
+100%{
+
+transform:scale(1);
+
+}
+
+}
+
+.app-bounce:hover{
+
+animation:appBounce .35s;
+
+}
+
+/* ============== Card Hover =======*/
+
+.app-hover{
+
+transition:.35s;
+
+}
+
+.app-hover:hover{
+
+transform:translateY(-6px);
+
+box-shadow:var(--shadow-lg);
+
+}
+
+
+/* ============== Button Ripple =======*/
+.btn{
+  position: relative;
+  overflow: hidden;
+}
+
+
+
+/* ==============  Ripple Effect  =======*/
+
+.btn::after{
+
+content:"";
+
+position:absolute;
+
+width:100px;
+
+height:100px;
+
+background:rgba(255,255,255,.25);
+
+border-radius:50%;
+
+transform:scale(0);
+
+opacity:0;
+
+transition:.45s;
+
+}
+
+.btn:active::after{
+
+transform:scale(4);
+
+opacity:1;
+
+transition:0s;
+
+}
+
+/* ==============  Loading Pulse  =======*/
+@keyframes appPulse{
+
+0%{
+
+opacity:1;
+
+}
+
+50%{
+
+opacity:.5;
+
+}
+
+100%{
+
+opacity:1;
+
+}
+
+}
+
+.app-loading{
+
+animation:appPulse 1s infinite;
+
+}
+
+/* ==============  Rotate  =======*/
+@keyframes appRotate{
+
+100%{
+
+transform:rotate(360deg);
+
+}
+
+}
+
+.app-rotate{
+
+animation:appRotate 1s linear infinite;
+
+}
+
+/* ============== Shake  =======*/
+@keyframes appShake{
+
+0%,100%{
+
+transform:translateX(0);
+
+}
+
+25%{
+
+transform:translateX(-5px);
+
+}
+
+75%{
+
+transform:translateX(5px);
+
+}
+
+}
+
+.app-shake{
+
+animation:appShake .35s;
+
+}
+
+/* ============== Glow  =======*/
+
+@keyframes appGlow{
+
+0%{
+
+box-shadow:0 0 0 rgba(37,99,235,.2);
+
+}
+
+50%{
+
+box-shadow:0 0 18px rgba(37,99,235,.4);
+
+}
+
+100%{
+
+box-shadow:0 0 0 rgba(37,99,235,.2);
+
+}
+
+}
+
+.app-glow{
+
+animation:appGlow 2s infinite;
+
+}
+
+/* ==============Page Transition  =======*/
+
+.app-page{
+  animation: appFadeIn .4s ease;
+}
+
+/* ============== Sidebar hover =======*/
+
+.app-menu-item{
+  transition: .3s;
+
+}
+.app-menu-item:hover{
+  padding-left: 24px;
+}
+
+
+
+/* ============== Icon Spin =======*/
+.app-spin:hover i{
+  transform: rotate(360deg);
+  transition: 5s;
+}
+
+/* ============== Modal pop =======*/
+
+.app-modal-content{
+  animation: appZoom .3s ease;
+}
+
+
+/* ============== Table Row =======*/
+
+.app-table tbody tr{
+
+transition:.3s;
+
+}
+
+.app-table tbody tr:hover{
+
+transform:scale(1.01);
+
+}
+
+/* ============== Dashboard Card =======*/
+
+.app-stat-card{
+
+transition:.35s;
+
+}
+
+.app-stat-card:hover{
+
+transform:translateY(-8px);
+
+}
+

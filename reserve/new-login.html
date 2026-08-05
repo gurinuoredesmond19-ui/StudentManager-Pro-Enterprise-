@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>StudentManager Pro Enterprise</title>
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- Login CSS -->
+
+    <link rel="stylesheet"
+          href="assets/css/new-login.css">
+
+</head>
+
+<body>
+
+<div class="login-container">
+
+    <!-- =========================
+         LEFT SIDE
+    ========================== -->
+
+    <section class="login-left">
+     <div class="login-wrapper">
+
+    <!-- LEFT PANEL -->
+<div class="login-left">
+    
+  
+    <div class="overlay">
+
+        <img src="assets/images/logo.png"
+             class="school-logo">
+
+        <h1>StudentManager Pro</h1>
+
+        <h2>Enterprise Edition</h2>
+
+        <p class="school-motto">
+
+            Smart School Management System
+
+        </p>
+
+        <p class="school-tagline">
+
+            Empowering Schools Through Technology
+
+        </p>
+
+    </div>
+
+    <div class="stats-bar">
+
+        <div class="stat">
+
+            <i class="fa-solid fa-user-graduate"></i>
+
+            <h3>1,254</h3>
+
+            <span>Students</span>
+
+        </div>
+
+        <div class="stat">
+
+            <i class="fa-solid fa-chalkboard-user"></i>
+
+            <h3>86</h3>
+
+            <span>Teachers</span>
+
+        </div>
+
+        <div class="stat">
+
+            <i class="fa-solid fa-users"></i>
+
+            <h3>42</h3>
+
+            <span>Staff</span>
+
+        </div>
+
+        <div class="stat">
+
+            <i class="fa-solid fa-school"></i>
+
+            <h3>32</h3>
+
+            <span>Classes</span>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+         
+    </section>
+
+    <!-- =========================
+         RIGHT SIDE
+    ========================== -->
+
+    <section class="login-right">
+        <!-- RIGHT PANEL -->
+
+    <div class="login-right">
+
+   
+
+      <div class="login-card">
+
+    <h1 class="login-title">Welcome Back!</h1>
+
+    <p class="login-subtitle">
+        Sign in to continue to your account
+    </p>
+
+    <!-- Username -->
+
+    <div class="app-form-group">
+
+        <label>Username / Student ID</label>
+
+        <div class="input-box">
+
+            <i class="fa-solid fa-user"></i>
+
+            <input
+                type="text"
+                id="username"
+                class="app-input"
+                placeholder="Enter username or Student ID">
+
+        </div>
+
+    </div>
+
+    <!-- Password -->
+
+    <div class="app-form-group">
+
+        <label>Password</label>
+
+        <div class="input-box">
+
+            <i class="fa-solid fa-lock"></i>
+
+            <input
+                type="password"
+                id="password"
+                class="app-input"
+                placeholder="Enter password">
+
+            <i class="fa-solid fa-eye toggle-password"></i>
+
+        </div>
+
+    </div>
+
+    <div class="login-options">
+
+        <label>
+
+            <input type="checkbox">
+
+            Remember Me
+
+        </label>
+
+        <a href="#">
+
+            Forgot Password?
+
+        </a>
+
+    </div>
+
+    <h3 class="login-role-title">
+
+        Login As
+
+    </h3>
+
+    <div class="role-grid">
+
+        <div class="role-card active" data-role="admin">
+
+            <input type="radio" name="role" value="admin" checked > 
+
+            <i class="fa-solid fa-user-shield"></i>
+
+            <span>Admin</span>
+
+        </div>
+
+        <div class="role-card" data-role="teacher">
+
+            <input type="radio" name="role" value="teacher">
+
+            <i class="fa-solid fa-chalkboard-user"></i>
+
+            <span>Teacher</span>
+
+        </div>
+
+        <div class="role-card" data-role="student">
+
+            <input type="radio" name="role" student>
+
+            <i class="fa-solid fa-user-graduate"></i>
+
+            <span>Student</span>
+
+        </div>
+
+        <div class="role-card" data-role="staff">
+
+            <input type="radio" name="role" value="staff">
+
+            <i class="fa-solid fa-users-gear"></i>
+
+            <span>Staff</span>
+
+        </div>
+
+    </div>
+
+    <!-- Staff Department -->
+
+    <div id="staffDepartment" style="display:none; margin-top:20px;">
+
+        <label>Select Staff Department</label>
+
+        <select class="app-input">
+
+            <option>Choose Department</option>
+
+            <option>Accountant</option>
+
+            <option>Librarian</option>
+
+            <option>Store Keeper</option>
+
+            <option>Security Officer</option>
+
+            <option>Cook</option>
+
+            <option>Cleaner</option>
+
+            <option>School Nurse</option>
+
+            <option>ICT Officer</option>
+
+            <option>Transport Officer</option>
+
+            <option>Other</option>
+
+        </select>
+
+    </div>
+
+    <button
+        class="app-btn app-btn-primary app-btn-block"
+        type="submit">
+
+        <i class="fa-solid fa-right-to-bracket"></i>
+
+        Sign In
+
+    </button>
+
+    <div class="login-footer">
+
+        Secure • Reliable • Enterprise
+
+    </div>
+
+    </div>
+
+      </div>
+
+
+    </div>
+    </section>
+
+</div>
+
+
+     <!-- ===============================
+     STAFF DEPARTMENT MODAL
+================================ -->
+
+<div id="staffModal" class="staff-modal">
+
+    <div class="staff-modal-content">
+
+        <div class="staff-header">
+
+            <h2>Select Staff Department</h2>
+
+            <button id="closeStaffModal">&times;</button>
+
+        </div>
+
+        <div class="staff-grid">
+
+            <div class="staff-option" data-role="Accountant">
+                💰
+                <span>Accountant</span>
+            </div>
+
+            <div class="staff-option" data-role="Librarian">
+                📚
+                <span>Librarian</span>
+            </div>
+
+            <div class="staff-option" data-role="Store Keeper">
+                📦
+                <span>Store Keeper</span>
+            </div>
+
+            <div class="staff-option" data-role="ICT Officer">
+                🖥
+                <span>ICT Officer</span>
+            </div>
+
+            <div class="staff-option" data-role="Secretary">
+                📝
+                <span>Secretary</span>
+            </div>
+
+            <div class="staff-option" data-role="School Nurse">
+                🏥
+                <span>School Nurse</span>
+            </div>
+
+            <div class="staff-option" data-role="Security">
+                🛡
+                <span>Security</span>
+            </div>
+
+            <div class="staff-option" data-role="Kitchen Staff">
+                🍽
+                <span>Kitchen Staff</span>
+            </div>
+
+            <div class="staff-option" data-role="Cleaner">
+                🧹
+                <span>Cleaner</span>
+            </div>
+
+        </div>
+
+        <div class="staff-footer">
+
+            <button id="cancelStaff">
+                Cancel
+            </button>
+
+            <button id="continueStaff">
+                Continue
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script type="module" src="assets/js/modules/auth.js"></script>
+
+<script src="assets/js/core/app.js"></script>
+
+<script src="assets/js/engines/modal.js"></script>
+<script src="assets/js/engines/toast.js"></script>
+<script src="assets/js/engines/sidebar.js"></script>
+<script src="assets/js/engines/dropdown.js"></script>
+<script src="assets/js/engines/loading.js"></script>
+<script src="assets/js/engines/search.js"></script>
+<script src="assets/js/engines/table.js"></script>
+<script src="assets/js/engines/pagination.js"></script>
+<script src="assets/js/engines/print.js"></script>
+<script src="assets/js/engines/export.js"></script>
+<script src="assets/js/engines/password.js"></script>
+<script src="assets/js/engines/image.js"></script>
+<script src="assets/js/engines/confirm.js"></script>
+<script src="assets/js/engines/scroll.js"></script>
+<script src="assets/js/engines/shortcuts.js"></script>
+<script src="assets/js/engines/utils.js"></script>
+
+<script src="assets/js/core/ui.js"></script>
+<script src="assets/js/modules/login.js"></script>
+
+
+
+</body>
+
+</html>

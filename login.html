@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>StudentManager Pro Enterprise</title>
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- Login Styles -->
+
+    <link rel="stylesheet"
+          href="assets/css/login.css">
+
+</head>
+
+<body>
+
+<!-- ===========================================
+     LOGIN CONTAINER
+=========================================== -->
+
+<div class="login-container">
+
+    <!-- ===========================================
+     LEFT PANEL
+ =========================================== -->
+
+ <section class="login-left">
+
+    <div class="overlay">
+
+        <header class="branding">
+
+            <img
+                src="assets/images/logo.png"
+                class="logo"
+                alt="StudentManager Pro Logo">
+
+            <h1>
+
+                StudentManager Pro
+
+            </h1>
+
+            <h2>
+
+                Enterprise Edition
+
+            </h2>
+
+            <p class="motto">
+
+                Smart School Management System
+
+            </p>
+
+            <p class="tagline">
+
+                Empowering Schools Through Technology
+
+            </p>
+
+        </header>
+
+        <footer class="stats-bar">
+
+            <div class="stat">
+
+                <i class="fa-solid fa-user-graduate"></i>
+
+                <div>
+
+                    <h3>1,254</h3>
+
+                    <span>Students</span>
+
+                </div>
+
+            </div>
+
+            <div class="stat">
+
+                <i class="fa-solid fa-chalkboard-user"></i>
+
+                <div>
+
+                    <h3>86</h3>
+
+                    <span>Teachers</span>
+
+                </div>
+
+            </div>
+
+            <div class="stat">
+
+                <i class="fa-solid fa-users"></i>
+
+                <div>
+
+                    <h3>42</h3>
+
+                    <span>Staff</span>
+
+                </div>
+
+            </div>
+
+            <div class="stat">
+
+                <i class="fa-solid fa-school"></i>
+
+                <div>
+
+                    <h3>32</h3>
+
+                    <span>Classes</span>
+
+                </div>
+
+            </div>
+
+        </footer>
+
+    </div>
+
+ </section>
+
+
+ <!-- ===========================================
+     RIGHT PANEL
+ =========================================== -->
+
+ <section class="login-right">
+
+    <main class="login-card">
+
+        <!-- ==========================
+             LOGIN HEADER
+        ========================== -->
+
+        <header class="login-header">
+
+            <h1 class="login-title">
+
+                Welcome Back!
+
+            </h1>
+
+            <p class="login-subtitle">
+
+                Sign in to continue to StudentManager Pro Enterprise
+
+            </p>
+
+        </header>
+
+        <!-- ==========================
+             LOGIN FORM
+        ========================== -->
+
+        <form id="loginForm">
+
+            <!-- Username -->
+
+            <div class="form-group">
+
+                <label for="username">
+
+                    Username / Student ID
+
+                </label>
+
+                <div class="input-box">
+
+                    <i class="fa-solid fa-user"></i>
+
+                    <input
+                        type="text"
+                        id="username"
+                        class="app-input"
+                        placeholder="Enter username or Student ID"
+                        autocomplete="username"
+                        required>
+
+                </div>
+
+            </div>
+
+            <!-- Password -->
+
+            <div class="form-group">
+
+                <label for="password">
+
+                    Password
+
+                </label>
+
+                <div class="input-box">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    <input
+                        type="password"
+                        id="password"
+                        class="app-input"
+                        placeholder="Enter password"
+                        autocomplete="current-password"
+                        required>
+
+                    <i
+                        class="fa-solid fa-eye toggle-password"
+                        id="togglePassword">
+
+                    </i>
+
+                </div>
+
+            </div>
+
+            <!-- Remember Me -->
+
+            <div class="login-options">
+
+                <label class="remember-me">
+
+                    <input
+                        type="checkbox"
+                        id="rememberMe">
+
+                    <span>
+
+                        Remember Me
+
+                    </span>
+
+                </label>
+
+                <a href="#" id="forgot-password"
+                   class="forgot-password">
+
+                    Forgot Password?
+
+                </a>
+
+            </div>
+
+            <!-- Login Role -->
+
+            <h3 class="login-role-title">
+
+                Login As
+
+            </h3>
+
+            <div class="role-grid">
+
+                <!-- Admin -->
+
+                <div class="role-card active"
+                     data-role="admin">
+
+                    <input
+                        type="radio"
+                        name="role"
+                        value="admin"
+                        checked>
+
+                    <i class="fa-solid fa-user-shield"></i>
+
+                    <span>
+
+                        Admin
+
+                    </span>
+
+                </div>
+
+                <!-- Teacher -->
+
+                <div class="role-card"
+                     data-role="teacher">
+
+                    <input
+                        type="radio"
+                        name="role"
+                        value="teacher">
+
+                    <i class="fa-solid fa-chalkboard-user"></i>
+
+                    <span>
+
+                        Teacher
+
+                    </span>
+
+                </div>
+
+                <!-- Student -->
+
+                <div class="role-card"
+                     data-role="student">
+
+                    <input
+                        type="radio"
+                        name="role"
+                        value="student">
+
+                    <i class="fa-solid fa-user-graduate"></i>
+
+                    <span>
+
+                        Student
+
+                    </span>
+
+                </div>
+
+                <!-- Staff -->
+
+                <div class="role-card"
+                     id="staffCard"
+                     data-role="staff">
+
+                    <input
+                        type="radio"
+                        name="role"
+                        value="staff">
+
+                    <i class="fa-solid fa-users-gear"></i>
+
+                    <span>
+
+                        Staff
+
+                    </span>
+
+                    <small class="department-name">
+
+                    </small>
+
+                </div>
+
+            </div>
+
+            <!-- Login Button -->
+
+            <button
+                id="loginButton"
+                class="app-btn app-btn-primary app-btn-block"
+                type="submit">
+
+                <i class="fa-solid fa-right-to-bracket"></i>
+
+                <span>
+
+                    Sign In
+
+                </span>
+
+            </button>
+
+        </form>
+
+        <!-- Footer -->
+
+        <footer class="login-footer">
+
+            <i class="fa-solid fa-shield-halved"></i>
+
+            <span>
+
+                Secure • Reliable • Enterprise
+
+            </span>
+
+        </footer>
+
+    </main>
+
+ </section>
+
+ <!-- ===========================================
+     STAFF DEPARTMENT MODAL
+=========================================== -->
+
+<div id="staffModal" class="staff-modal">
+
+    <div class="staff-modal-content">
+
+        <!-- Modal Header -->
+
+        <header class="staff-header">
+
+            <h2>
+
+                <i class="fa-solid fa-users-gear"></i>
+
+                Staff Department
+
+            </h2>
+
+            <button
+                id="closeStaffModal"
+                type="button"
+                class="close-modal">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </header>
+
+        <!-- Modal Description -->
+
+        <p class="staff-subtitle">
+
+            Please select your department before signing in.
+
+        </p>
+
+        <!-- Department Grid -->
+
+        <div class="staff-grid">
+
+            <div class="staff-option" data-department="Accountant">
+
+                <i class="fa-solid fa-coins"></i>
+
+                <span>Accountant</span>
+
+            </div>
+
+            <div class="staff-option" data-department="Librarian">
+
+                <i class="fa-solid fa-book"></i>
+
+                <span>Librarian</span>
+
+            </div>
+
+            <div class="staff-option" data-department="Store Keeper">
+
+                <i class="fa-solid fa-boxes-stacked"></i>
+
+                <span>Store Keeper</span>
+
+            </div>
+
+            <div class="staff-option" data-department="ICT Officer">
+
+                <i class="fa-solid fa-desktop"></i>
+
+                <span>ICT Officer</span>
+
+            </div>
+
+            <div class="staff-option" data-department="Secretary">
+
+                <i class="fa-solid fa-file-signature"></i>
+
+                <span>Secretary</span>
+
+            </div>
+
+            <div class="staff-option" data-department="School Nurse">
+
+                <i class="fa-solid fa-user-nurse"></i>
+
+                <span>School Nurse</span>
+
+            </div>
+
+            <div class="staff-option" data-department="Security">
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+                <span>Security</span>
+
+            </div>
+
+            <div class="staff-option" data-department="Kitchen Staff">
+
+                <i class="fa-solid fa-utensils"></i>
+
+                <span>Kitchen Staff</span>
+
+            </div>
+
+            <div class="staff-option" data-department="Cleaner">
+
+                <i class="fa-solid fa-broom"></i>
+
+                <span>Cleaner</span>
+
+            </div>
+
+            <div class="staff-option" data-department="Other">
+
+                <i class="fa-solid fa-ellipsis"></i>
+
+                <span>Other Staff</span>
+
+            </div>
+
+        </div>
+
+        <!-- Modal Footer -->
+
+        <footer class="staff-footer">
+
+            <button
+                type="button"
+                id="cancelStaff"
+                class="btn-secondary">
+
+                <i class="fa-solid fa-ban"></i>
+
+                Cancel
+
+            </button>
+
+            <button
+                type="button"
+                id="continueStaff"
+                class="btn-primary">
+
+                <i class="fa-solid fa-check"></i>
+
+                Continue
+
+            </button>
+
+        </footer>
+
+    </div>
+
+</div>
+
+<!-- ===========================================
+     JAVASCRIPT
+=========================================== -->
+
+
+
+<script src="assets/js/core/app.js"></script>
+
+<script src="assets/js/core/ui.js"></script>
+
+<script type="module" src="assets/js/modules/login.js"></script>
+
+</body>
+
+</html>

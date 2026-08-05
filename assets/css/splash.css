@@ -1,0 +1,112 @@
+/*
+===========================================
+Splash Screen
+===========================================
+*/
+
+.app-splash{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #0B5ED7 , #0A2E73);
+  overflow: hidden;
+
+}
+
+.app-splash-card{
+  width: 420px;
+  max-width: 90%;
+  background: rgba(255, 255, 255, .08);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, .15);
+  border-radius: 24px;
+  padding: 50px 35px;
+  text-align: center;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, .30);
+  animation: fadeIn .9s ease;
+
+}
+
+
+.app-splash-logo{
+  width: 110px;
+  height: 110px;
+  object-fit: contain;
+  margin-bottom: 20px;
+
+}
+
+.app-splash-title{
+  color: #fff;
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 10px;
+
+}
+
+.app-splash-subtitle{
+  color: #dbe8ff;
+  font-size: 15px;
+  margin-bottom: 35px;
+}
+
+.app-loader{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+
+}
+.app-splash-circle{
+  width: 60px;
+  height: 60px;
+  border: 5px solid rgba(255, 255, 255, .25);
+  border-top: 5px solid #FFD54A;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+
+
+}
+
+.app-loading-text{
+  color: #fff;
+  font-size: 16px;
+  margin-bottom: 18px;
+
+}
+
+.app-version{
+  color: #cfdcff;
+  font-size: 13px;
+  margin-top: 25px;
+
+}
+.app-footer-text{
+  color: #dbe8ff;
+  font-size: 17px;
+margin-top: 38px;
+}
+
+@keyframes spin{
+  from{
+    transform: rotate(0deg);
+
+  }
+  to{
+    transform: rotate(360deg);
+  }
+}
+@keyframes fadeIn{
+  from{
+    opacity: 0;
+    transform: translateY(25px);
+
+  }
+  to{
+    opacity: 1;
+      transform: translateY(0);
+  
+  }
+}
+

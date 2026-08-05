@@ -1,0 +1,312 @@
+/*=========== Toast Container ==========*/
+
+.app-toast-container{
+
+position:fixed;
+
+top:20px;
+
+right:20px;
+
+z-index:99999;
+
+display:flex;
+
+flex-direction:column;
+
+gap:15px;
+
+width:360px;
+
+}
+
+/*=========== Toast Card ==========*/
+
+.app-toast{
+
+display:flex;
+
+align-items:flex-start;
+
+gap:15px;
+
+background:#fff;
+
+border-radius:15px;
+
+padding:18px;
+
+box-shadow:0 12px 30px rgba(0,0,0,.12);
+
+border-left:5px solid var(--primary);
+
+animation:toastIn .35s ease;
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+/*=========== Toast Icon ==========*/
+.app-toast-icon{
+
+width:45px;
+
+height:45px;
+
+border-radius:50%;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:20px;
+
+flex-shrink:0;
+
+}
+
+/*===== Success =====*/
+
+.app-toast-success{
+
+border-left-color:var(--success);
+
+}
+
+.app-toast-success .app-toast-icon{
+
+background:#DCFCE7;
+
+color:#16A34A;
+
+}
+
+
+/*===== Error =====*/
+
+.app-toast-error{
+
+border-left-color:var(--danger);
+
+}
+
+.app-toast-error .app-toast-icon{
+
+background:#FEE2E2;
+
+color:#DC2626;
+
+}
+
+/*===== Warning =====*/
+
+.app-toast-warning{
+
+border-left-color:var(--warning);
+
+}
+
+.app-toast-warning .app-toast-icon{
+
+background:#FEF3C7;
+
+color:#D97706;
+
+}
+
+
+/*===== Info =====*/
+
+.app-toast-info{
+
+border-left-color:var(--info);
+
+}
+
+.app-toast-info .app-toast-icon{
+
+background:#DBEAFE;
+
+color:#2563EB;
+
+}
+
+
+
+/* ===== Content =====*/
+.app-toast-content{
+  flex: 1;
+}
+
+
+
+/* ===== Title =====*/
+
+
+.app-toast-title{
+
+font-size:15px;
+
+font-weight:700;
+
+margin-bottom:5px;
+
+color:var(--text);
+
+}
+
+/*==== Message ==*/
+.app-toast-message{
+
+font-size:13px;
+
+line-height:1.6;
+
+color:var(--text-light);
+
+}
+
+
+/*==== Close Button ==*/
+
+.app-toast-close{
+
+width:30px;
+
+height:30px;
+
+border-radius:8px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+cursor:pointer;
+
+transition:.3s;
+
+color:var(--text-light);
+
+}
+
+.app-toast-close:hover{
+  background: #F1F5F9;
+  color: var(--danger);
+}
+
+
+/*========== Progress Bar ==========*/
+.app-toast-progress{
+
+position:absolute;
+
+left:0;
+
+bottom:0;
+
+height:4px;
+
+background:var(--primary);
+
+animation:toastProgress 5s linear forwards;
+
+}
+
+
+/*===== Success ======*/
+
+.app-toast-success .app-toast-progress{
+  background: var(--success);
+}
+
+
+/*===== Error ======*/
+
+.app-toast-error .app-toast-progress{
+  background: var(--danger);
+}
+
+
+/*===== Warning ======*/
+
+.app-toast-warning .app-toast-progress{
+  background: var(--warning);
+}
+
+
+/*===== Info ======*/
+
+.app-toast-info .app-toast-progress{
+  background: var(--info);
+}
+
+
+
+/*===== Animation ======*/
+@keyframes toastIn{
+
+from{
+
+transform:translateX(120%);
+
+opacity:0;
+
+}
+
+to{
+
+transform:translateX(0);
+
+opacity:1;
+
+}
+
+}
+
+
+
+/* ==== Hide ====*/
+@keyframes toastOut{
+  to{
+    transform: translateX(120%);
+    opacity: 0;
+  }
+}
+
+/* ==== Progress ====*/
+@keyframes toastProgress{
+  from{
+   width: 100%;
+  
+  }
+
+  to{
+    width: 0;
+  }
+}
+
+/* ==== Responsive ====*/
+
+@media(max-width:768px){
+
+.app-toast-container{
+
+width:95%;
+
+left:50%;
+
+transform:translateX(-50%);
+
+right:auto;
+
+top:15px;
+
+}
+
+}

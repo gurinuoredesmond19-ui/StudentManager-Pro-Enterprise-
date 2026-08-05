@@ -1,0 +1,104 @@
+.login-page{
+  display: flex;
+  min-height: 100hv;
+  background: var(--background);
+
+}
+
+.login-left{
+  flex: 1;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 60px;
+  text-align: center;
+}
+
+.login-logo{
+  width: 130px;
+  height: 130px;
+  object-fit: contain;
+  margin-bottom: 25px;
+
+}
+.login-left h1{
+  font-size: 38px;
+  margin-bottom: 15px;
+
+}
+
+.login-left p{
+  max-width: 420px;
+  line-height: 1.8px;
+  opacity: .9;
+}
+
+.login-right{
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  background: var(--background);
+
+}
+
+.login-card{
+  width: 100%;
+  max-width: 460px;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: var(--shadow-lg);
+  background: var(--white);
+}
+
+.login-card h2{
+  margin-bottom: 10px;
+  color: var(--text);
+
+}
+
+.login-card p{
+  color: var(--text-light);
+  margin-bottom:30px ;
+
+}
+
+.login-options{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0 30px;
+  font-size: 14px;
+}
+
+.login-options a{
+  text-decoration: none;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.login-options a:hover{
+  text-decoration: underline;
+
+}
+
+
+
+.app-btn{
+  background: blue;
+  color: azure;
+  height: 30px;
+  border-radius: 13px;
+
+}
+.app-btn:hover{
+  background: darkblue;
+  color: white;
+}
+.app-btn-block{
+  width: 100%;
+}

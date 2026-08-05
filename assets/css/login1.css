@@ -1,0 +1,806 @@
+/* ==========================================
+   LOGIN PAGE
+========================================== */
+
+body{
+
+    margin:0;
+
+    padding:0;
+
+    font-family:Segoe UI,sans-serif;
+
+    background:#f4f7fc;
+
+}
+
+.login-wrapper{
+
+    display:flex;
+
+    min-height:100vh;
+
+}
+
+/* ==========================================
+   LEFT PANEL
+========================================== */
+.login-left{
+
+    width:50%;
+
+    position:relative;
+
+    background:url("../images/school.png");
+
+    background-size:cover;
+
+    background-position:center;
+
+    overflow:hidden;
+   
+  
+
+
+
+}
+
+.overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    background:rgba(9,40,109,.72);
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    color:white;
+
+    padding:60px;
+
+}
+
+.brand-area{
+
+    text-align:center;
+
+}
+
+.school-logo{
+
+    width:120px;
+
+   
+
+    margin-bottom:25px;
+
+}
+
+.brand-area h1{
+
+    margin:0;
+
+    font-size:54px;
+
+    font-weight:800;
+
+}
+
+.brand-area h2{
+
+    margin:15px 0;
+
+    color:#FFD24C;
+
+    font-size:28px;
+
+}
+
+.school-motto{
+
+    opacity:.9;
+
+    margin-top:15px;
+
+    font-size:22px;
+
+}
+
+.illustration{
+
+    text-align:center;
+
+    margin:30px 0;
+
+}
+
+.illustration img{
+
+    width:90%;
+
+    max-width:420px;
+
+}
+
+/* ==========================================
+   LIVE STATISTICS
+========================================== */
+
+.stats-bar{
+
+    position:absolute;
+
+    bottom:40px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:90%;
+
+    display:flex;
+
+    justify-content:space-around;
+
+    backdrop-filter:blur(15px);
+
+    background:rgba(255,255,255,.12);
+
+    border-radius:20px;
+
+    padding:20px;
+
+}
+
+.stat{
+
+    text-align:center;
+
+    color:white;
+
+}
+
+.stat i{
+
+    font-size:34px;
+
+    color:#FFD24C;
+
+    margin-bottom:10px;
+
+}
+
+.stat h3{
+
+    font-size:30px;
+
+    margin:0;
+
+}
+
+.stat span{
+
+    font-size:15px;
+
+}
+
+
+/* ==========================================
+   LOGIN CARD
+========================================== */
+
+.login-card{
+
+    width:50%;
+    max-width:650px;
+
+    background:#ffffff;
+
+    border-radius:24px;
+
+    padding:45px;
+  
+
+    box-shadow:0 20px 50px rgba(0,0,0,.12);
+
+}
+
+.login-title{
+
+    margin:0;
+
+    font-size:42px;
+
+    color:#0b2e75;
+
+    font-weight:700;
+
+}
+
+.login-subtitle{
+
+    margin:10px 0 35px;
+
+    color:#666;
+
+    font-size:17px;
+
+}
+
+/* ==========================================
+   FORM
+========================================== */
+
+.app-form-group{
+
+    margin-bottom:22px;
+
+}
+
+.app-form-group label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    font-weight:600;
+
+    color:#1f2937;
+
+}
+
+/* ==========================================
+   INPUT BOX
+========================================== */
+
+.input-box{
+
+    display:flex;
+
+    align-items:center;
+
+    border:1px solid #d6d6d6;
+
+    border-radius:14px;
+
+    padding:0 16px;
+
+    height:58px;
+
+    transition:.30s;
+
+    background:#fff;
+
+}
+
+.input-box:focus-within{
+
+    border-color:#0B5ED7;
+
+    box-shadow:0 0 0 4px rgba(11,94,215,.15);
+
+}
+
+.input-box i{
+
+    color:#6b7280;
+
+    font-size:18px;
+
+}
+
+.app-input{
+
+    flex:1;
+
+    border:none;
+
+    outline:none;
+
+    background:none;
+
+    height:100%;
+
+    padding:0 15px;
+
+    font-size:16px;
+
+}
+
+.toggle-password{
+
+    cursor:pointer;
+
+}
+
+/* ==========================================
+   OPTIONS
+========================================== */
+
+.login-options{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+}
+
+.login-options a{
+
+    text-decoration:none;
+
+    color:#0B5ED7;
+
+    font-weight:600;
+
+}
+
+/* ==========================================
+   ROLE CARDS
+========================================== */
+
+.login-role-title{
+
+    margin-bottom:18px;
+
+    color:#0b2e75;
+
+}
+
+.role-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:18px;
+
+    margin-bottom:25px;
+
+}
+
+.role-card{
+    height: 50px;
+    position:relative;
+
+    border:2px solid #e5e7eb;
+
+    border-radius:18px;
+
+    padding:18px;
+
+    text-align:center;
+
+    cursor:pointer;
+
+    transition:.30s;
+
+    background:#fff;
+
+}
+
+.role-card:hover{
+
+    border-color:#0B5ED7;
+
+    transform:translateY(-3px);
+
+    box-shadow:0 8px 20px rgba(11,94,215,.12);
+
+}
+
+.role-card.active{
+
+    border-color:#0B5ED7;
+
+    background:#eef5ff;
+
+}
+
+.role-card input{
+
+    position:absolute;
+
+    top:12px;
+
+    left:12px;
+
+}
+
+.role-card i{
+
+    display:block;
+
+    font-size:15px;
+
+    color:#0B5ED7;
+
+    margin-bottom:12px;
+
+}
+
+.role-card span{
+
+    font-weight:600;
+
+}
+
+/* ==========================================
+   BUTTON
+========================================== */
+
+.app-btn{
+
+    width:100%;
+
+    height:58px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:linear-gradient(90deg,#0B5ED7,#1D4ED8);
+
+    color:#fff;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.30s;
+
+}
+
+.app-btn:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 10px 25px rgba(11,94,215,.25);
+
+}
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+.login-footer{
+
+    margin-top:25px;
+
+    text-align:center;
+
+    color:#777;
+
+    font-size:15px;
+
+
+
+
+
+}
+
+
+
+
+/* ==========================================
+   STAFF DEPARTMENT ANIMATION
+========================================== */
+
+#staffDepartment{
+
+    opacity:0;
+
+    transform:translateY(-15px);
+
+    transition:all .35s ease;
+
+}
+
+#staffDepartment.show-department{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}
+
+/* ==========================================
+   STAFF MODAL
+========================================== */
+
+.staff-modal{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.45);
+
+    backdrop-filter:blur(8px);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:.35s;
+
+}
+
+.staff-modal.show{
+
+    opacity:1;
+
+    visibility:visible;
+
+}
+
+.staff-modal-content{
+
+    width:650px;
+
+    max-width:92%;
+
+    background:#fff;
+
+    border-radius:20px;
+
+    padding:30px;
+
+    transform:translateY(40px) scale(.95);
+
+    transition:.35s;
+
+    box-shadow:0 25px 60px rgba(0,0,0,.25);
+
+}
+
+.staff-modal.show .staff-modal-content{
+
+    transform:translateY(0) scale(1);
+
+}
+
+.staff-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+}
+
+.staff-header h2{
+
+    color:#0B4DBB;
+
+}
+
+.staff-header button{
+
+    border:none;
+
+    background:none;
+
+    font-size:32px;
+
+    cursor:pointer;
+
+}
+
+.staff-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:18px;
+
+}
+
+.staff-option{
+
+    border:2px solid #E6EAF5;
+
+    border-radius:15px;
+
+    padding:20px;
+
+    text-align:center;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    font-size:28px;
+
+}
+
+.staff-option span{
+
+    display:block;
+
+    margin-top:10px;
+
+    font-size:15px;
+
+}
+
+.staff-option:hover{
+
+    transform:translateY(-5px);
+
+    border-color:#0B4DBB;
+
+    box-shadow:0 12px 25px rgba(11,77,187,.18);
+
+}
+
+.staff-option.active{
+
+    background:#0B4DBB;
+
+    color:#fff;
+
+    border-color:#0B4DBB;
+
+}
+
+.staff-footer{
+
+    margin-top:30px;
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:15px;
+
+}
+
+
+
+
+
+
+/* ==========================================
+   ANIMATIONS
+========================================== */
+
+.login-card{
+
+    animation:slideInRight .8s ease;
+
+}
+
+.login-left{
+
+    animation:slideInLeft .8s ease;
+
+}
+
+.role-card{
+
+    transition:all .35s ease;
+
+}
+
+.role-card:hover{
+
+    transform:translateY(-5px) scale(1.03);
+
+}
+
+.app-btn{
+
+    transition:all .35s ease;
+
+}
+
+.app-btn:hover{
+
+    transform:translateY(-3px);
+
+}
+
+.input-box{
+
+    transition:all .30s ease;
+
+}
+
+.school-logo{
+
+    animation:floatLogo 4s ease-in-out infinite;
+
+}
+
+/* ========================= */
+
+@keyframes slideInLeft{
+
+    from{
+
+        opacity:0;
+
+        transform:translateX(-80px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateX(0);
+
+    }
+
+}
+
+@keyframes slideInRight{
+
+    from{
+
+        opacity:0;
+
+        transform:translateX(80px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateX(0);
+
+    }
+
+}
+
+@keyframes floatLogo{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-8px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+

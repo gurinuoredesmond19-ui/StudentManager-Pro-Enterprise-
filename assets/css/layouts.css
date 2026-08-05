@@ -1,0 +1,488 @@
+/* ============ APP LAYOUT ========*/
+.app-layout{
+
+display:flex;
+
+min-height:100vh;
+
+background:var(--bg);
+
+}
+
+
+
+
+/* ============ SIDEBAR ========*/
+
+
+.app-sidebar{
+
+width:270px;
+
+background:var(--card);
+
+box-shadow:var(--shadow);
+
+display:flex;
+
+flex-direction:column;
+
+position:fixed;
+
+left:0;
+
+top:0;
+
+bottom:0;
+
+transition:.35s;
+
+z-index:999;
+
+}
+
+.app-sidebar.collapse{
+  width: 85px;
+}
+
+
+/* ======== LOGO AREA ========*/
+
+.app-sidebar{
+
+width:270px;
+
+background:var(--card);
+
+box-shadow:var(--shadow);
+
+display:flex;
+
+flex-direction:column;
+
+position:fixed;
+
+left:0;
+
+top:0;
+
+bottom:0;
+
+transition:.35s;
+
+z-index:999;
+
+}
+
+
+
+.app-logo-img{
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+}
+
+
+/*===== System Name =====*/
+
+.app-logo-h2{
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--primary);
+
+}
+
+
+
+/* =========== MENU  ===========*/
+
+.app-menu{
+  padding: 20px 12px;
+  flex: 1;
+  overflow-y:auto ;
+
+}
+
+
+/*======== Menu Item ========*/
+
+.app-menu-item{
+
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+padding:14px 16px;
+
+margin-bottom:8px;
+
+border-radius:12px;
+
+cursor:pointer;
+
+transition:.30s;
+
+font-weight:500;
+
+color:var(--text);
+
+text-decoration:none;
+
+}
+
+.app-menu-item:hover{
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+/*=== Active Menu ===*/
+
+.app-menu-item.active{
+  background: var(--primary);
+  color: white;
+
+}
+
+
+
+.app-menu-item i{
+
+font-size:18px;
+
+width:22px;
+
+text-align:center;
+
+}
+
+
+
+
+/*============================== MAIN CONTENT ======================*/
+
+.app-main{
+
+margin-left:270px;
+
+flex:1;
+
+display:flex;
+
+flex-direction:column;
+
+transition:.35s;
+
+}
+
+/*=== Collapse ===*/
+
+.app-main.expanded{
+  margin-left:85px ;
+
+}
+
+
+/*============ TOP BAR NAVIGATION ========*/
+
+.app-navbar{
+
+height:75px;
+
+background:var(--navbar);
+
+box-shadow:var(--shadow-sm);
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+padding:0 25px;
+
+position:sticky;
+
+top:0;
+
+z-index:100;
+
+}
+
+
+/*=====  Left Scetion =======*/
+
+
+.app-navbar-left{
+
+display:flex;
+
+align-items:center;
+
+gap:18px;
+
+}
+
+
+/*=====  Right Scetion =======*/
+
+
+.app-navbar-right{
+
+display:flex;
+
+align-items:center;
+
+gap:18px;
+
+}
+
+/*============= Menu Button =========*/
+
+.app-menu-toggle{
+
+width:42px;
+
+height:42px;
+
+border-radius:10px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+
+.app-manu-toggle:hover{
+  background: var(--primary-light);
+}
+
+
+/* =========== Search Bar ========*/
+
+.app-search{
+
+width:380px;
+
+height:45px;
+
+background:white;
+
+border:1px solid var(--border);
+
+border-radius:12px;
+
+display:flex;
+
+align-items:center;
+
+padding:0 18px;
+
+}
+
+
+/* ===== Input ======*/
+
+.app-search input{
+
+width:100%;
+
+border:none;
+
+outline:none;
+
+font-size:14px;
+
+margin-left:12px;
+
+background:none;
+
+}
+
+
+.app-search i{
+  color: var(--text-light);
+}
+
+
+/*========= Nav Icons =======*/
+
+.app-nav-icon{
+
+width:44px;
+
+height:44px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+border-radius:12px;
+
+cursor:pointer;
+
+transition:.30s;
+
+position:relative;
+
+}
+
+.app-nav-icon:hover{
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+
+
+/*=========== NOTIFICATION BADGE ========*/
+
+.app-nav-badge{
+
+position:absolute;
+
+top:8px;
+
+right:8px;
+
+width:18px;
+
+height:18px;
+
+border-radius:50%;
+
+background:var(--danger);
+
+color:white;
+
+font-size:11px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-weight:600;
+
+}
+
+/*================= USER PROFILE ============*/
+
+.app-user{
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+cursor:pointer;
+
+padding:6px;
+
+border-radius:12px;
+
+transition:.30s;
+
+}
+
+.app-user:hover{
+  background: var(--primary-light);
+}
+
+/*====== AVATAR ==========*/
+
+.app-user img{
+
+width:46px;
+
+height:46px;
+
+border-radius:50%;
+
+object-fit:cover;
+
+}
+
+
+
+/*====== Information ==========*/
+.app-user-info h4{
+  font-size: 15px;
+  margin-bottom: 2px;
+
+}
+
+.app-user-info span{
+  font-size: 12px;
+  color: var(--text-light);
+}
+
+
+
+/*====== IPage Content ==========*/
+
+.app-content{
+  padding: 25px;
+  flex: 1;
+}
+
+
+/*====== Footer ==========*/
+
+.app-footer{
+
+padding:18px 25px;
+
+text-align:center;
+
+font-size:13px;
+
+color:var(--text-light);
+
+border-top:1px solid var(--border);
+
+background:white;
+
+}
+
+
+/*====== Responsiveness ==========*/
+
+@media(max-width:992px){
+
+.app-sidebar{
+
+left:-270px;
+
+}
+
+.app-sidebar.show{
+
+left:0;
+
+}
+
+.app-main{
+
+margin-left:0;
+
+}
+
+.app-search{
+
+width:250px;
+
+}
+
+}

@@ -1,0 +1,1172 @@
+/* =========================================
+   StudentManager Pro Enterprise
+   Dashboard Layout
+========================================= */
+
+/* ==========================================
+   TOPBAR
+========================================== */
+
+.app-topbar{
+
+    height:75px;
+
+    background:#ffffff;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:0 30px;
+
+    border-bottom:1px solid var(--border);
+
+    box-shadow:0 2px 12px rgba(0,0,0,.05);
+
+    position:sticky;
+
+    top:0;
+
+    z-index:999;
+
+}
+
+.app-topbar h2{
+
+    margin:0;
+
+    font-size:24px;
+
+    color:var(--text-dark);
+
+}
+
+.topbar-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+.topbar-right .app-input{
+
+    width:260px;
+
+}
+
+.topbar-right .app-btn{
+
+    width:45px;
+
+    height:45px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:0;
+
+    font-size:18px;
+
+}
+
+/* ==========================================
+   TOPBAR PROFILE
+========================================== */
+
+.topbar-left{
+
+    display:flex;
+
+    align-items:center;
+
+}
+
+.topbar-title p{
+
+    margin-top:5px;
+
+    color:#777;
+
+    font-size:14px;
+
+}
+
+.topbar-profile{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-left:15px;
+
+}
+
+.profile-image{
+
+    width:48px;
+
+    height:48px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:2px solid var(--primary);
+
+}
+
+.topbar-profile strong{
+
+    display:block;
+
+    color:var(--text-dark);
+
+}
+
+.topbar-profile small{
+
+    color:#777;
+
+}
+
+/* ==========================================================
+   StudentManager Pro Enterprise
+   Professional Sidebar System
+========================================================== */
+
+
+/* ==========================================================
+   SIDEBAR
+========================================================== */
+
+.app-sidebar {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 270px;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    background: var(--primary);
+    color: #fff;
+
+    z-index: 1000;
+
+    overflow: hidden;
+
+    box-shadow:
+        8px 0 30px rgba(0, 0, 0, .12);
+
+    transition:
+        width .3s ease,
+        transform .3s ease;
+
+}
+
+
+/* ==========================================================
+   LOGO AREA
+========================================================== */
+
+.app-logo {
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 22px 20px;
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, .10);
+
+}
+
+
+.app-logo-image {
+
+    width: 52px;
+    height: 52px;
+
+    flex-shrink: 0;
+
+    display: block;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    background: #fff;
+
+}
+
+
+.app-logo-text {
+
+    min-width: 0;
+
+    overflow: hidden;
+
+}
+
+
+.app-logo-text h2 {
+
+    margin: 0;
+
+    color: #fff;
+
+    font-size: 19px;
+
+    font-weight: 700;
+
+    line-height: 1.2;
+
+    white-space: nowrap;
+
+}
+
+
+.app-logo-text small {
+
+    display: block;
+
+    margin-top: 3px;
+
+    color:
+        rgba(255, 255, 255, .70);
+
+    font-size: 12px;
+
+    white-space: nowrap;
+
+}
+
+
+/* ==========================================================
+   NAVIGATION AREA
+========================================================== */
+
+.app-sidebar-menu {
+
+    flex: 1;
+
+    min-height: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+
+    padding: 14px 10px;
+
+    overflow-y: auto;
+
+    overflow-x: hidden;
+
+    scrollbar-width: thin;
+
+    scrollbar-color:
+        rgba(255, 255, 255, .25)
+        transparent;
+
+}
+
+
+/* ==========================================================
+   SCROLLBAR
+========================================================== */
+
+.app-sidebar-menu::-webkit-scrollbar {
+
+    width: 5px;
+
+}
+
+
+.app-sidebar-menu::-webkit-scrollbar-track {
+
+    background: transparent;
+
+}
+
+
+.app-sidebar-menu::-webkit-scrollbar-thumb {
+
+    background:
+        rgba(255, 255, 255, .22);
+
+    border-radius: 10px;
+
+}
+
+
+.app-sidebar-menu::-webkit-scrollbar-thumb:hover {
+
+    background:
+        rgba(255, 255, 255, .38);
+
+}
+
+
+/* ==========================================================
+   MENU ITEM
+========================================================== */
+
+.app-menu-item {
+
+    position: relative;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    width: 100%;
+
+    min-height: 48px;
+
+    padding: 12px 15px;
+
+    box-sizing: border-box;
+
+    border-left:
+        4px solid transparent;
+
+    border-radius: 8px;
+
+    color: #fff;
+
+    background: transparent;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+    line-height: 1.2;
+
+    transition:
+        background .2s ease,
+        color .2s ease,
+        border-color .2s ease,
+        transform .2s ease;
+
+}
+
+
+/* ==========================================================
+   ICON
+========================================================== */
+
+.app-menu-icon {
+
+    flex: 0 0 24px;
+
+    width: 24px;
+    height: 24px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: currentColor;
+
+    font-size: 17px;
+
+    line-height: 1;
+
+}
+
+
+.app-menu-icon i {
+
+    display: inline-block;
+
+    width: 100%;
+
+    text-align: center;
+
+    font-size: inherit;
+
+    line-height: 1;
+
+}
+
+
+/* ==========================================================
+   LABEL
+========================================================== */
+
+.app-menu-label {
+
+    flex: 1;
+
+    min-width: 0;
+
+    overflow: hidden;
+
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+
+}
+
+
+/* ==========================================================
+   HOVER
+========================================================== */
+
+.app-menu-item:hover {
+
+    color: #fff;
+
+    background:
+        rgba(255, 255, 255, .10);
+
+}
+
+
+/* ==========================================================
+   ACTIVE
+========================================================== */
+
+.app-menu-item.active {
+
+    color: var(--primary);
+
+    background: #fff;
+
+    border-left-color: var(--accent);
+
+    font-weight: 600;
+
+}
+
+
+.app-menu-item.active .app-menu-icon {
+
+    color: var(--primary);
+
+}
+
+
+/* ==========================================================
+   SIDEBAR FOOTER
+========================================================== */
+
+.app-sidebar-footer {
+
+    flex-shrink: 0;
+
+    padding: 12px 10px;
+
+    background: var(--primary);
+
+    border-top:
+        1px solid rgba(255, 255, 255, .10);
+
+}
+
+
+.app-sidebar-footer .app-menu-item {
+
+    margin: 0;
+
+}
+
+
+.logout {
+
+    color:
+        rgba(255, 190, 190, .95);
+
+}
+
+
+.logout:hover {
+
+    color: #fff;
+
+    background:
+        rgba(255, 70, 70, .15);
+
+}
+
+
+/* ==========================================================
+   MAIN CONTENT
+========================================================== */
+
+.app-main {
+
+    min-height: 100vh;
+
+    margin-left: 270px;
+
+    background: #f5f7fb;
+
+    transition:
+        margin-left .3s ease;
+
+}
+
+
+/* ==========================================================
+   SIDEBAR TOGGLE BUTTON
+========================================================== */
+
+.sidebar-toggle {
+
+    width: 45px;
+    height: 45px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-right: 20px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: var(--primary);
+
+    color: #fff;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    transition:
+        transform .2s ease,
+        background .2s ease;
+
+}
+
+
+.sidebar-toggle:hover {
+
+    transform: scale(1.05);
+
+}
+
+
+/* ==========================================================
+   COLLAPSED SIDEBAR
+========================================================== */
+
+.app-sidebar.collapsed {
+
+    width: 80px;
+
+}
+
+
+.app-sidebar.collapsed .app-logo {
+
+    justify-content: center;
+
+    padding-left: 10px;
+    padding-right: 10px;
+
+}
+
+
+.app-sidebar.collapsed .app-logo-text {
+
+    display: none;
+
+}
+
+
+.app-sidebar.collapsed .app-menu-item {
+
+    justify-content: center;
+
+    gap: 0;
+
+    padding-left: 10px;
+    padding-right: 10px;
+
+}
+
+
+.app-sidebar.collapsed .app-menu-label {
+
+    display: none;
+
+}
+
+
+.app-sidebar.collapsed .app-menu-icon {
+
+    flex-basis: 28px;
+
+    width: 28px;
+
+    font-size: 20px;
+
+}
+
+
+.app-sidebar.collapsed .app-sidebar-footer {
+
+    padding-left: 10px;
+    padding-right: 10px;
+
+}
+
+
+.app-main.expanded {
+
+    margin-left: 80px;
+
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width: 992px) {
+
+    .app-sidebar {
+
+        width: 270px;
+
+        transform:
+            translateX(-100%);
+
+    }
+
+
+    .app-sidebar.show {
+
+        transform:
+            translateX(0);
+
+    }
+
+
+    .app-main {
+
+        margin-left: 0;
+
+    }
+
+
+    .app-sidebar.collapsed {
+
+        width: 270px;
+
+    }
+
+
+    .app-sidebar.collapsed .app-logo {
+
+        justify-content: flex-start;
+
+        padding-left: 20px;
+        padding-right: 20px;
+
+    }
+
+
+    .app-sidebar.collapsed .app-logo-text {
+
+        display: block;
+
+    }
+
+
+    .app-sidebar.collapsed .app-menu-item {
+
+        justify-content: flex-start;
+
+        gap: 14px;
+
+        padding-left: 15px;
+        padding-right: 15px;
+
+    }
+
+
+    .app-sidebar.collapsed .app-menu-label {
+
+        display: block;
+
+    }
+
+
+    .app-sidebar.collapsed .app-menu-icon {
+
+        flex-basis: 24px;
+
+        width: 24px;
+
+        font-size: 17px;
+
+    }
+
+}
+
+
+/* ==========================================
+   DASHBOARD KPI CARDS
+========================================== */
+
+.dashboard-container{
+
+    padding:30px;
+
+}
+
+.dashboard-cards{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+    gap:20px;
+
+}
+
+.dashboard-card{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+
+    transition:.30s;
+
+    border-left:6px solid var(--primary);
+
+}
+
+.dashboard-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.dashboard-card h3{
+
+    margin:0;
+
+    color:#666;
+
+    font-size:15px;
+
+}
+
+.dashboard-card h1{
+
+    margin:15px 0;
+
+    font-size:38px;
+
+    color:var(--primary);
+
+}
+
+.dashboard-card p{
+
+    margin:0;
+
+    color:#888;
+
+}
+
+
+/* ==========================================
+   DASHBOARD OVERVIEW
+========================================== */
+
+
+
+.dashboard-overview{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:25px;
+
+    margin-top:30px;
+
+    align-items:start;
+
+}
+
+.overview-card{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+
+    min-height:420px;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.chart-container{
+
+    flex:1;
+
+    position:relative;
+
+    min-height:300px;
+
+}
+
+.overview-card{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+
+}
+
+.card-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+}
+
+.chart-container{
+
+   position:relative ;
+   width: 100%;
+   height: 320px;
+
+}
+
+.health-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:14px 0;
+
+    border-bottom:1px solid var(--border);
+
+}
+
+.health-item:last-child{
+
+    border-bottom:none;
+
+}
+
+
+
+/* ==========================================
+   QUICK ACTIONS
+========================================== */
+
+.quick-actions{
+
+    margin-top:30px;
+
+}
+
+.section-title{
+
+    margin-bottom:20px;
+
+}
+
+.section-title h3{
+
+    margin:0;
+
+}
+
+.section-title p{
+
+    margin-top:5px;
+
+    color:#777;
+
+}
+
+.quick-actions-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+
+    gap:20px;
+
+}
+
+.quick-action-btn{
+
+    background:#fff;
+
+    border:none;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+
+    cursor:pointer;
+
+    transition:.30s;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.quick-action-btn:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.quick-action-btn span{
+
+    font-size:32px;
+
+}
+
+.quick-action-btn strong{
+
+    color:var(--text-dark);
+
+}
+
+/* ==========================================
+   RECENT ACTIVITIES
+========================================== */
+
+.recent-activities{
+
+    margin-top:30px;
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+
+}
+
+.activity-list{
+
+    margin-top:20px;
+
+}
+
+.activity-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    padding:18px 0;
+
+    border-bottom:1px solid var(--border);
+
+}
+
+.activity-item:last-child{
+
+    border-bottom:none;
+
+}
+
+.activity-icon{
+
+    width:55px;
+
+    height:55px;
+
+    border-radius:50%;
+
+    background:var(--primary);
+
+    color:#fff;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:24px;
+
+}
+
+.activity-content{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.activity-content strong{
+
+    color:var(--text-dark);
+
+}
+
+.activity-content small{
+
+    margin-top:5px;
+
+    color:#777;
+
+}
+
+
+
+
+/* ==========================================
+   NOTIFICATIONS
+========================================== */
+
+.notifications-panel{
+
+    margin-top:30px;
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+
+}
+
+.notification-list{
+
+    margin-top:20px;
+
+}
+
+.notification-item{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:15px;
+
+    padding:18px;
+
+    border-radius:12px;
+
+    margin-bottom:15px;
+
+}
+
+.notification-icon{
+
+    font-size:24px;
+
+}
+
+.notification-item.danger{
+
+    background:#ffeaea;
+
+}
+
+.notification-item.warning{
+
+    background:#fff6df;
+
+}
+
+.notification-item.info{
+
+    background:#eaf4ff;
+
+}
+
+.notification-item.success{
+
+    background:#e8fff1;
+
+}
+
+.notification-item strong{
+
+    display:block;
+
+    margin-bottom:5px;
+
+}
+
+.notification-item small{
+
+    color:#666;
+
+}

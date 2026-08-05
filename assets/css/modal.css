@@ -1,0 +1,217 @@
+/*=========== MODAL OVERLAY =======*/
+.app-modal{
+
+position:fixed;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+height:100%;
+
+background:rgba(15,23,42,.55);
+
+backdrop-filter:blur(8px);
+
+display:none;
+
+align-items:center;
+
+justify-content:center;
+
+padding:20px;
+
+z-index:9999;
+
+animation:fadeIn .25s ease;
+
+}
+
+.app-modal.show{
+  display: flex;
+}
+
+
+/*=========== MODAL CONTAINER =======*/
+
+.app-modal-content{
+
+width:100%;
+
+max-width:950px;
+
+background:#fff;
+
+border-radius:18px;
+
+box-shadow:0 25px 60px rgba(0,0,0,.25);
+
+overflow:hidden;
+
+animation:modalZoom .30s ease;
+
+display:flex;
+
+flex-direction:column;
+
+max-height:92vh;
+
+}
+
+/*==== Large Modal ====*/
+.app-modal-lg{
+  max-width: 1200px;
+}
+
+/*==== Small Modal ====*/
+.app-modal-sm{
+  max-width:500px;
+}
+
+/*====  Modal   Header ====*/
+
+
+.app-modal-header{
+
+background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+
+color:white;
+
+padding:20px 30px;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+}
+
+/*=== Title ===*/
+
+.app-modal-title{
+
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+font-size:22px;
+
+font-weight:700;
+
+}
+
+.app-modal-title i{
+  font-size: 24px;
+}
+
+
+/*====  CLOSE BUTTON ====*/
+
+.app-modal-close{
+
+width:42px;
+
+height:42px;
+
+border-radius:10px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+cursor:pointer;
+
+transition:.3s;
+
+font-size:18px;
+
+}
+
+.app-modal-close:hover{
+  background: rgba(255,255,255,.15);
+}
+
+
+
+/*==== Modal Body ====*/
+.app-modal-body{
+
+padding:30px;
+
+overflow:auto;
+
+background:#FAFBFD;
+
+}
+
+
+/*====== Two Column Grid ======*/
+.app-form-grid{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:20px;
+
+}
+
+/*==== Full Width ====*/
+.app-full{
+  grid-column: 1/-1;
+}
+
+/*==== FROM GROUP ====*/
+.app-form-group{
+  display: flex;
+  flex-direction: column;
+
+}
+
+
+/*==== Label ====*/
+.app-form-group label{
+
+margin-bottom:8px;
+
+font-weight:600;
+
+color:var(--text);
+
+font-size:14px;
+
+}
+
+
+
+
+/* ======== Input =======*/
+.app-input{
+
+height:48px;
+
+border:1px solid var(--border);
+
+border-radius:12px;
+
+padding:0 15px;
+
+font-size:14px;
+
+transition:.30s;
+
+background:white;
+
+outline:none;
+
+}
+
+
+

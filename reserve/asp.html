@@ -1,0 +1,556 @@
+<div class="login-card">
+
+            <div class="card-header">
+
+                <h1>
+
+                    Welcome Back
+
+                </h1>
+
+                <p>
+
+                    Sign in to continue
+
+                </p>
+
+            </div>
+
+            <form id="loginForm">
+
+                <div class="form-group">
+
+                    <label>
+
+                        Username / Student ID
+
+                    </label>
+
+                    <div class="input-group">
+
+                        <i class="fa-solid fa-user"></i>
+
+                        <input
+                            type="text"
+                            id="username"
+                            placeholder="Enter Username">
+
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+
+                        Password
+
+                    </label>
+
+                    <div class="input-group">
+
+                        <i class="fa-solid fa-lock"></i>
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Enter Password">
+
+                        <i class="fa-solid fa-eye toggle-password"></i>
+
+                    </div>
+
+                </div>
+
+                <div class="login-options">
+
+                    <label>
+
+                        <input type="checkbox">
+
+                        Remember Me
+
+                    </label>
+
+                    <a href="#">
+
+                        Forgot Password?
+
+                    </a>
+
+                </div>
+
+                <h3>
+
+                    Login As
+
+                </h3>
+
+                <div class="role-grid">
+
+                    <div class="role-card active"
+                         data-role="admin">
+
+                        <i class="fa-solid fa-user-shield"></i>
+
+                        <span>
+
+                            Admin
+
+                        </span>
+
+                    </div>
+
+                    <div class="role-card"
+                         data-role="teacher">
+
+                        <i class="fa-solid fa-chalkboard-user"></i>
+
+                        <span>
+
+                            Teacher
+
+                        </span>
+
+                    </div>
+
+                    <div class="role-card"
+                         data-role="student">
+
+                        <i class="fa-solid fa-user-graduate"></i>
+
+                        <span>
+
+                            Student
+
+                        </span>
+
+                    </div>
+
+                    <div class="role-card"
+                         data-role="staff">
+
+                        <i class="fa-solid fa-users"></i>
+
+                        <span>
+
+                            Staff
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <button
+                    type="submit"
+                    id="loginButton">
+
+                    Sign In
+
+                </button>
+
+            </form>
+
+        </div>
+
+
+
+
+
+
+
+
+        
+/* ===========================
+   LOGIN CARD
+=========================== */
+
+.login-card{
+
+    width:100%;
+
+    max-width:520px;
+
+    background:#ffffff;
+
+    border-radius:28px;
+
+    padding:50px 55px;
+
+    box-shadow:
+
+        0 25px 70px rgba(0,0,0,.12);
+
+    animation:slideIn .8s ease;
+
+}
+
+
+/* Card Animation */
+
+@keyframes slideIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateX(40px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateX(0);
+
+    }
+
+}
+
+
+/* ===========================
+   HEADER
+=========================== */
+
+
+.card-header h1{
+
+    font-size:42px;
+
+    color:var(--primary-dark);
+
+    font-weight:800;
+
+}
+
+
+.card-header p{
+
+    margin-top:10px;
+
+    color:#718096;
+
+    font-size:17px;
+
+}
+
+
+/* ===========================
+   FORM
+=========================== */
+
+
+.form-group{
+
+    margin-top:28px;
+
+}
+
+
+.form-group label{
+
+    display:block;
+
+    margin-bottom:10px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    color:#374151;
+
+}
+
+
+
+.input-group{
+
+    position:relative;
+
+    display:flex;
+
+    align-items:center;
+
+}
+
+
+
+.input-group i:first-child{
+
+    position:absolute;
+
+    left:18px;
+
+    color:#718096;
+
+}
+
+
+
+.input-group input{
+
+    width:100%;
+
+    height:55px;
+
+    border-radius:14px;
+
+    border:1px solid #d9e2f2;
+
+    padding:0 50px;
+
+    font-size:16px;
+
+    outline:none;
+
+    transition:.3s;
+
+}
+
+
+
+.input-group input:focus{
+
+    border-color:var(--primary);
+
+    box-shadow:
+
+    0 0 0 4px rgba(11,94,215,.12);
+
+}
+
+
+/* Password Eye */
+
+
+.toggle-password{
+
+    position:absolute;
+
+    right:18px;
+
+    cursor:pointer;
+
+    color:#718096;
+
+    transition:.3s;
+
+}
+
+
+.toggle-password:hover{
+
+    color:var(--primary);
+
+}
+
+
+
+/* ===========================
+   REMEMBER / FORGOT
+=========================== */
+
+
+.login-options{
+
+    margin-top:20px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    font-size:14px;
+
+    
+ 
+}
+
+
+.login-options label{
+
+    color:#4a5568;
+
+}
+
+
+.login-options a{
+
+    color:var(--primary);
+
+    text-decoration:none;
+
+    font-weight:600;
+
+}
+
+
+/* ===========================
+   LOGIN ROLES
+=========================== */
+
+
+.login-card h3{
+
+    margin-top:35px;
+
+    margin-bottom:18px;
+
+    color:#1a365d;
+
+}
+
+
+
+.role-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:20px;
+
+}
+
+
+
+.role-card{
+
+    height: 120px;
+
+    border-radius:18px;
+
+    border:2px solid #e5e7eb;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:12px;
+
+    cursor:pointer;
+
+    transition:.35s;
+
+    position:relative;
+
+}
+
+
+
+.role-card i{
+
+    font-size:32px;
+
+    color:#64748b;
+
+}
+
+
+
+.role-card span{
+
+    font-weight:600;
+
+    color:#475569;
+
+}
+
+
+
+/* Selected Role */
+
+
+.role-card.active{
+
+    border-color:var(--primary);
+
+    background:
+
+    rgba(11,94,215,.08);
+
+}
+
+
+
+.role-card.active i{
+
+    color:var(--primary);
+
+}
+
+
+
+.role-card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+
+    0 12px 30px rgba(0,0,0,.08);
+
+}
+
+
+
+/* ===========================
+   SIGN IN BUTTON
+=========================== */
+
+
+#loginButton{
+
+    width:100%;
+
+    height:58px;
+
+    margin-top:35px;
+
+    border:none;
+
+    border-radius:16px;
+
+    background:
+
+    linear-gradient(
+
+        135deg,
+
+        var(--primary),
+
+        #083C94
+
+    );
+
+    color:white;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.35s;
+
+}
+
+
+
+#loginButton:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+
+    0 15px 35px rgba(11,94,215,.35);
+
+}
+
+
