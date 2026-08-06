@@ -1,410 +1,829 @@
-/* ==========================================
-   RESPONSIVE BREAKPOINTS
-========================================== */
-
 /*
-Desktop : 1200px+
-Laptop  : 992px - 1199px
-Tablet  : 768px - 991px
-Mobile  : Below 768px
+==========================================================
+    STUDENTMANAGER PRO ENTERPRISE
+    RESPONSIVE ENGINE
+==========================================================
+
+    Desktop : 1200px+
+    Laptop  : 992px - 1199px
+    Tablet  : 768px - 991px
+    Mobile  : Below 768px
+==========================================================
 */
 
 
-/* ==========================================
+/* ======================================================
    LARGE DESKTOP
-========================================== */
+====================================================== */
 
-@media (min-width:1400px){
+@media (min-width: 1400px) {
 
-.container{
+    .container {
 
-max-width:1400px;
+        max-width: 1400px;
 
-margin:auto;
+        margin-left: auto;
+        margin-right: auto;
+
+    }
 
 }
 
-}
 
-
-/* ==========================================
+/* ======================================================
    LAPTOP
-========================================== */
+====================================================== */
 
-@media (max-width:1200px){
+@media (max-width: 1200px) {
 
-.app-sidebar{
+    .app-sidebar {
 
-width:240px;
+        width: 240px;
+
+    }
+
+
+    .app-main {
+
+        margin-left: 240px;
+
+    }
+
+
+    .app-card-grid {
+
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+
+    }
+
+
+    .app-search {
+
+        width: 280px;
+
+    }
 
 }
 
-.app-main{
 
-margin-left:240px;
-
-}
-
-.app-card-grid{
-
-grid-template-columns:repeat(3,1fr);
-
-}
-
-.app-search{
-
-width:280px;
-
-}
-
-}
-
-
-/* ==========================================
+/* ======================================================
    TABLET
-========================================== */
+====================================================== */
 
-@media (max-width:992px){
+@media (max-width: 992px) {
 
-.app-sidebar{
+    /*
+    ==================================================
+       SIDEBAR
+    ==================================================
+    */
 
-left:-270px;
+    .app-sidebar {
 
-position:fixed;
+        position: fixed;
 
-height:100%;
+        top: 0;
+        left: 0;
 
-z-index:9999;
+        width: 270px;
+        max-width: 85vw;
+
+        height: 100vh;
+        height: 100dvh;
+
+        margin: 0;
+
+        z-index: 9999;
+
+        /*
+        Hidden by default.
+        JavaScript adds .show when hamburger is clicked.
+        */
+
+        transform: translateX(-110%);
+
+        transition:
+            transform 0.3s ease;
+
+        overflow-y: auto;
+
+        overflow-x: hidden;
+
+        visibility: hidden;
+
+    }
+
+
+    /*
+    ==================================================
+       SIDEBAR OPEN
+    ==================================================
+    */
+
+    .app-sidebar.show {
+
+        transform: translateX(0);
+
+        visibility: visible;
+
+    }
+
+
+    /*
+    ==================================================
+       SIDEBAR OVERLAY
+    ==================================================
+    */
+
+    .app-sidebar-overlay {
+
+        position: fixed;
+
+        inset: 0;
+
+        width: 100%;
+        height: 100%;
+
+        background: rgba(0, 0, 0, 0.45);
+
+        z-index: 9998;
+
+        opacity: 0;
+
+        visibility: hidden;
+
+        pointer-events: none;
+
+        transition:
+            opacity 0.3s ease,
+            visibility 0.3s ease;
+
+    }
+
+
+    .app-sidebar-overlay.show {
+
+        opacity: 1;
+
+        visibility: visible;
+
+        pointer-events: auto;
+
+    }
+
+
+    /*
+    ==================================================
+       MAIN CONTENT
+    ==================================================
+    */
+
+    .app-main {
+
+        margin-left: 0 !important;
+
+        width: 100%;
+
+        max-width: 100%;
+
+    }
+
+
+    .app-main.expanded {
+
+        margin-left: 0 !important;
+
+    }
+
+
+    /*
+    ==================================================
+       NAVBAR
+    ==================================================
+    */
+
+    .app-navbar {
+
+        padding: 15px;
+
+    }
+
+
+    .app-search {
+
+        width: 220px;
+
+        max-width: 100%;
+
+    }
+
+
+    /*
+    ==================================================
+       CARDS
+    ==================================================
+    */
+
+    .app-card-grid {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+    }
+
+
+    /*
+    ==================================================
+       TOOLBAR
+    ==================================================
+    */
+
+    .app-toolbar {
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+    }
+
+
+    .app-toolbar-left,
+    .app-toolbar-right {
+
+        width: 100%;
+
+        justify-content: space-between;
+
+    }
+
+
+    /*
+    ==================================================
+       FORMS
+    ==================================================
+    */
+
+    .app-form-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    /*
+    ==================================================
+       MODAL
+    ==================================================
+    */
+
+    .app-modal-content {
+
+        width: 95%;
+
+        max-width: 95%;
+
+    }
 
 }
 
-.app-sidebar.show{
 
-left:0;
-
-}
-
-.app-main{
-
-margin-left:0;
-
-width:100%;
-
-}
-
-.app-navbar{
-
-padding:15px;
-
-}
-
-.app-search{
-
-width:220px;
-
-}
-
-.app-card-grid{
-
-grid-template-columns:repeat(2,1fr);
-
-}
-
-.app-toolbar{
-
-flex-direction:column;
-
-align-items:stretch;
-
-}
-
-.app-toolbar-left,
-
-.app-toolbar-right{
-
-width:100%;
-
-justify-content:space-between;
-
-}
-
-.app-form-grid{
-
-grid-template-columns:1fr;
-
-}
-
-.app-modal-content{
-
-width:95%;
-
-}
-
-}
-
-
-/* ==========================================
+/* ======================================================
    MOBILE
-========================================== */
+====================================================== */
 
-@media (max-width:768px){
+@media (max-width: 768px) {
 
-.app-navbar{
+    /*
+    ==================================================
+       SIDEBAR
+    ==================================================
+    */
 
-height:auto;
+    .app-sidebar {
 
-padding:15px;
+        width: 280px;
 
-flex-wrap:wrap;
+        max-width: 88vw;
 
-gap:15px;
+    }
+
+
+    /*
+    ==================================================
+       NAVBAR
+    ==================================================
+    */
+
+    .app-navbar {
+
+        min-height: 60px;
+
+        height: auto;
+
+        padding: 10px 12px;
+
+        display: flex;
+
+        flex-wrap: wrap;
+
+        gap: 10px;
+
+    }
+
+
+    .app-navbar-left {
+
+        width: auto;
+
+        flex: 1;
+
+        min-width: 0;
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 8px;
+
+    }
+
+
+    .app-navbar-right {
+
+        width: auto;
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 6px;
+
+    }
+
+
+    /*
+    ==================================================
+       SEARCH
+    ==================================================
+    */
+
+    .app-search {
+
+        width: 100%;
+
+        max-width: 100%;
+
+    }
+
+
+    /*
+    ==================================================
+       CARD GRID
+    ==================================================
+    */
+
+    .app-card-grid {
+
+        grid-template-columns: 1fr;
+
+        width: 100%;
+
+    }
+
+
+    .app-stat-card {
+
+        width: 100%;
+
+        padding: 18px;
+
+    }
+
+
+    /*
+    ==================================================
+       PAGE HEADER
+    ==================================================
+    */
+
+    .app-page-header {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 10px;
+
+    }
+
+
+    /*
+    ==================================================
+       TABLE TOOLBAR
+    ==================================================
+    */
+
+    .app-table-toolbar {
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 10px;
+
+    }
+
+
+    .app-table-toolbar-left,
+    .app-table-toolbar-right {
+
+        width: 100%;
+
+        flex-wrap: wrap;
+
+    }
+
+
+    .app-table-search {
+
+        width: 100%;
+
+        max-width: 100%;
+
+    }
+
+
+    /*
+    ==================================================
+       TABLE
+    ==================================================
+    */
+
+    .app-table {
+
+        display: block;
+
+        width: 100%;
+
+        overflow-x: auto;
+
+        white-space: nowrap;
+
+        -webkit-overflow-scrolling: touch;
+
+    }
+
+
+    /*
+    ==================================================
+       PAGINATION
+    ==================================================
+    */
+
+    .app-pagination {
+
+        flex-direction: column;
+
+        gap: 12px;
+
+    }
+
+
+    /*
+    ==================================================
+       FORMS
+    ==================================================
+    */
+
+    .app-form-actions {
+
+        justify-content: center;
+
+        flex-wrap: wrap;
+
+    }
+
+
+    /*
+    ==================================================
+       MODALS
+    ==================================================
+    */
+
+    .app-modal-content {
+
+        width: 94vw;
+
+        max-width: 94vw;
+
+        max-height: 90vh;
+
+        max-height: 90dvh;
+
+        overflow-y: auto;
+
+    }
+
+
+    .app-modal-header {
+
+        padding: 18px;
+
+    }
+
+
+    .app-modal-body {
+
+        padding: 18px;
+
+        overflow-y: auto;
+
+    }
+
+
+    .app-modal-footer {
+
+        padding: 18px;
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+
+    }
+
+
+    /*
+    ==================================================
+       TOAST
+    ==================================================
+    */
+
+    .app-toast-container {
+
+        width: 95%;
+
+        left: 50%;
+
+        right: auto;
+
+        transform: translateX(-50%);
+
+    }
 
 }
 
-.app-navbar-left,
 
-.app-navbar-right{
-
-width:100%;
-
-justify-content:space-between;
-
-}
-
-.app-search{
-
-width:100%;
-
-}
-
-.app-card-grid{
-
-grid-template-columns:1fr;
-
-}
-
-.app-stat-card{
-
-padding:18px;
-
-}
-
-.app-page-header{
-
-flex-direction:column;
-
-align-items:flex-start;
-
-gap:10px;
-
-}
-
-.app-table-toolbar{
-
-flex-direction:column;
-
-align-items:stretch;
-
-}
-
-.app-table-toolbar-left,
-
-.app-table-toolbar-right{
-
-width:100%;
-
-flex-wrap:wrap;
-
-}
-
-.app-table-search{
-
-width:100%;
-
-}
-
-.app-pagination{
-
-flex-direction:column;
-
-gap:12px;
-
-}
-
-.app-form-actions{
-
-justify-content:center;
-
-flex-wrap:wrap;
-
-}
-
-.app-modal-header{
-
-padding:18px;
-
-}
-
-.app-modal-body{
-
-padding:18px;
-
-}
-
-.app-modal-footer{
-
-padding:18px;
-
-flex-wrap:wrap;
-
-justify-content:center;
-
-}
-
-.app-toast-container{
-
-width:95%;
-
-left:50%;
-
-transform:translateX(-50%);
-
-right:auto;
-
-}
-
-}
-
-
-/* ==========================================
+/* ======================================================
    SMALL MOBILE
-========================================== */
+====================================================== */
 
-@media (max-width:576px){
+@media (max-width: 576px) {
 
-.app-page-title{
+    /*
+    ==================================================
+       SIDEBAR
+    ==================================================
+    */
 
-font-size:22px;
+    .app-sidebar {
+
+        width: 280px;
+
+        max-width: 88vw;
+
+    }
+
+
+    /*
+    ==================================================
+       PAGE TITLE
+    ==================================================
+    */
+
+    .app-page-title {
+
+        font-size: 22px;
+
+        line-height: 1.2;
+
+    }
+
+
+    .app-page-subtitle {
+
+        font-size: 13px;
+
+        line-height: 1.4;
+
+    }
+
+
+    /*
+    ==================================================
+       STATISTICS
+    ==================================================
+    */
+
+    .app-stat-number {
+
+        font-size: 24px;
+
+    }
+
+
+    .app-stat-icon {
+
+        width: 55px;
+
+        height: 55px;
+
+        font-size: 22px;
+
+    }
+
+
+    /*
+    ==================================================
+       USER INFO
+    ==================================================
+    */
+
+    .app-user-info {
+
+        display: none;
+
+    }
+
+
+    /*
+    ==================================================
+       ACTIONS
+    ==================================================
+    */
+
+    .app-action-group {
+
+        flex-wrap: wrap;
+
+    }
+
+
+    .app-action-btn {
+
+        width: 34px;
+
+        height: 34px;
+
+    }
+
+
+    /*
+    ==================================================
+       BUTTONS
+    ==================================================
+    */
+
+    .app-btn {
+
+        max-width: 100%;
+
+    }
+
+
+    /*
+    ==================================================
+       PREVENT INPUT OVERFLOW
+    ==================================================
+    */
+
+    input,
+    select,
+    textarea {
+
+        max-width: 100%;
+
+        box-sizing: border-box;
+
+    }
 
 }
 
-.app-page-subtitle{
 
-font-size:13px;
+/* ======================================================
+   VERY SMALL PHONES
+====================================================== */
 
-}
+@media (max-width: 400px) {
 
-.app-stat-number{
+    .app-sidebar {
 
-font-size:24px;
+        width: 270px;
 
-}
+        max-width: 86vw;
 
-.app-stat-icon{
-
-width:55px;
-
-height:55px;
-
-font-size:22px;
-
-}
-
-.app-user-info{
-
-display:none;
-
-}
-
-.app-action-group{
-
-flex-wrap:wrap;
-
-}
-
-.app-action-btn{
-
-width:34px;
-
-height:34px;
-
-}
-
-.app-btn{
-
-width:100%;
-
-}
-
-}
+    }
 
 
-/* ==========================================
-   RESPONSIVE TABLE
-========================================== */
+    .app-navbar {
 
-@media (max-width:768px){
+        padding: 8px 10px;
 
-.app-table{
+        gap: 8px;
 
-display:block;
+    }
 
-overflow-x:auto;
 
-white-space:nowrap;
+    .app-page-title {
 
-}
+        font-size: 20px;
+
+    }
+
+
+    .app-stat-card {
+
+        padding: 14px;
+
+    }
+
+
+    .app-modal-content {
+
+        width: 96vw;
+
+        max-width: 96vw;
+
+    }
 
 }
 
 
-/* ==========================================
-   RESPONSIVE IMAGE
-========================================== */
+/* ======================================================
+   RESPONSIVE IMAGES
+====================================================== */
 
-img{
+img {
 
-max-width:100%;
+    max-width: 100%;
 
-height:auto;
+    height: auto;
 
 }
 
 
-/* ==========================================
+/* ======================================================
    RESPONSIVE VIDEO
-========================================== */
+====================================================== */
 
-video{
+video {
 
-max-width:100%;
+    max-width: 100%;
 
-}
-
-
-/* ==========================================
-   RESPONSIVE IFRAME
-========================================== */
-
-iframe{
-
-max-width:100%;
+    height: auto;
 
 }
 
 
-/* ==========================================
-   SCROLLBAR MOBILE
-========================================== */
+/* ======================================================
+   RESPONSIVE IFRAMES
+====================================================== */
 
-@media(max-width:768px){
+iframe {
 
-::-webkit-scrollbar{
-
-height:5px;
-
-width:5px;
+    max-width: 100%;
 
 }
+
+
+/* ======================================================
+   MOBILE SCROLLBAR
+====================================================== */
+
+@media (max-width: 768px) {
+
+    ::-webkit-scrollbar {
+
+        width: 5px;
+
+        height: 5px;
+
+    }
+
+}
+
+
+/* ======================================================
+   ACCESSIBILITY / REDUCED MOTION
+====================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .app-sidebar,
+    .app-sidebar-overlay {
+
+        transition: none;
+
+    }
 
 }

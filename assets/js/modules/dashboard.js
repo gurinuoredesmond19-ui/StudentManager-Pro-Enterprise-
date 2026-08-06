@@ -1,54 +1,91 @@
 /*
-=========================================
-StudentManager Pro Enterprise
-Dashboard Module
-=========================================
+==========================================================
+    STUDENTMANAGER PRO ENTERPRISE
+    DASHBOARD MODULE
+    Version 2.0
+==========================================================
 */
 
 
+/*==========================================================
+    APPLICATION START
+==========================================================*/
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener(
+    "DOMContentLoaded",
+    async () => {
 
-    loadSidebar();
+        /*
+        ==================================================
+        SIDEBAR
+        ==================================================
 
-    loadTopbar();
+        Sidebar is loaded and initialized ONLY through
+        the Sidebar Engine.
 
-    loadDashboardOverview();
+        Do NOT add another sidebar event listener here.
+        */
 
-    loadQuickActions();
-    
-    loadRecentActivities();
+        if (
+            typeof App !== "undefined" &&
+            App.UI &&
+            App.UI.Sidebar
+        ) {
+             await loadTopbar();
 
-    loadNotifications();
+            await App.UI.Sidebar.load();
 
-   
+        }
 
+        else {
 
-});
+            console.error(
+                "StudentManager Pro: Sidebar engine is not available."
+            );
 
-
-
-/* ==================================================
-   SIDEBAR LOADER
-================================================== */
-
-async function loadSidebar() {
-
-    const sidebar =
-        document.getElementById("sidebar");
+        }
 
 
-    /*
-    ==============================================
-    SIDEBAR CONTAINER NOT FOUND
-    ==============================================
-    */
+        /*
+        ==================================================
+        TOPBAR
+        ==================================================
+        */
 
-    if (!sidebar) {
+       
 
-        console.warn(
-            "Sidebar container #sidebar was not found."
+
+        /*
+        ==================================================
+        DASHBOARD CONTENT
+        ==================================================
+        */
+
+        await loadDashboardOverview();
+
+        await loadQuickActions();
+
+        await loadRecentActivities();
+
+        await loadNotifications();
+
+    }
+);
+
+
+/*==========================================================
+    TOPBAR
+==========================================================*/
+
+async function loadTopbar() {
+
+    const topbar =
+        document.getElementById(
+            "topbar"
         );
+
+
+    if (!topbar) {
 
         return;
 
@@ -57,402 +94,572 @@ async function loadSidebar() {
 
     try {
 
-        /*
-        ==========================================
-        LOAD SHARED SIDEBAR COMPONENT
-        ==========================================
-        */
-
         const response =
             await fetch(
-                "assets/components/sidebar.html"
+                "assets/components/topbar.html"
             );
 
-
-        /*
-        ==========================================
-        CHECK SERVER RESPONSE
-        ==========================================
-        */
 
         if (!response.ok) {
 
             throw new Error(
-                `Sidebar failed to load: ${response.status}`
+                `Topbar failed to load: ${response.status}`
             );
 
         }
 
 
-        /*
-        ==========================================
-        INSERT SIDEBAR HTML
-        ==========================================
-        */
-
-        sidebar.innerHTML =
+        topbar.innerHTML =
             await response.text();
 
-
-        /*
-        ==========================================
-        INITIALIZE SIDEBAR ENGINE
-        IMPORTANT:
-        This happens AFTER sidebar.html exists.
-        ==========================================
-        */
-
-        if (
-            typeof App !== "undefined"
-            &&
-            App.UI
-            &&
-            App.UI.Sidebar
-        ) {
-
-            App.UI.Sidebar.init();
-
-        }
-
-        else {
-
-            /*
-            Fallback for your existing system
-            */
-
-            if (
-                typeof initializeSidebarToggle ===
-                "function"
-            ) {
-
-                initializeSidebarToggle();
-
-            }
-
-        }
-
-
-        console.log(
-            "Sidebar loaded successfully."
-        );
-
     }
-
 
     catch (error) {
 
         console.error(
-            "Sidebar loading error:",
+            "Topbar loading error:",
             error
         );
-
-
-        /*
-        ==========================================
-        OPTIONAL ERROR MESSAGE
-        ==========================================
-        */
-
-        sidebar.innerHTML = `
-
-            <div class="sidebar-error">
-
-                <span>⚠️</span>
-
-                <p>
-                    Unable to load navigation.
-                </p>
-
-            </div>
-
-        `;
 
     }
 
 }
 
 
-/* ========== topbar  ============*/
-async function loadTopbar(){
+/*==========================================================
+    DASHBOARD OVERVIEW
+==========================================================*/
 
-    const topbar = document.getElementById("topbar");
+async function loadDashboardOverview() {
 
-    if(!topbar) return;
+    const overview =
+        document.getElementById(
+            "dashboardOverview"
+        );
 
-    const response = await fetch("assets/components/topbar.html");
 
-    topbar.innerHTML = await response.text();
+    if (!overview) {
 
-}
+        return;
 
+    }
 
-/* ========== dashboard-ovrview ============*/
 
+    try {
 
-async function loadDashboardOverview(){
+        const response =
+            await fetch(
+                "assets/components/dashboard-overview.html"
+            );
 
-    const overview = document.getElementById("dashboardOverview");
 
-    if(!overview) return;
+        if (!response.ok) {
 
-    const response = await fetch("assets/components/dashboard-overview.html");
-
-    overview.innerHTML = await response.text();
-
-    initializeStudentChart();
-
-    initializeGenderChart();
-
-    initializeFeesChart();
-
-    initializeAttendance();
-
-}
-
-
-
-
-
-
-function initializeSidebarToggle(){
-
-    const toggle = document.getElementById("sidebarToggle");
-
-    const sidebar = document.querySelector(".app-sidebar");
-
-    const main = document.querySelector(".app-main");
-
-    if(!toggle || !sidebar || !main) return;
-
-    toggle.addEventListener("click",()=>{
-
-        sidebar.classList.toggle("collapsed");
-
-        main.classList.toggle("expanded");
-
-    });
-
-}
-
-
-/* ========== quick actions ============*/
-
-async function loadQuickActions(){
-
-    const container = document.getElementById("quickActions");
-
-    if(!container) return;
-
-    const response = await fetch("assets/components/quick-actions.html");
-
-    container.innerHTML = await response.text();
-
-}
-
-
-/* ========== recent activities ============*/
-
-async function loadRecentActivities(){
-
-    const container = document.getElementById("recentActivities");
-
-    if(!container) return;
-
-    const response = await fetch("assets/components/recent-activities.html");
-
-    container.innerHTML = await response.text();
-
-}
-
-
-/* ========== Notification ============*/
-
-async function loadNotifications(){
-
-    const container = document.getElementById("notificationsPanel");
-
-    if(!container) return;
-
-    const response = await fetch("assets/components/notifications.html");
-
-    container.innerHTML = await response.text();
-
-}
-
-
-/* ============== Chart(Stats) script ============*/
-
-function initializeStudentChart(){
-
-    const canvas = document.getElementById("studentChart");
-
-    if(!canvas) return;
-
-    new Chart(canvas,{
-
-        type:"bar",
-
-        data:{
-
-            labels:[
-                "SHS 1",
-                "SHS 2",
-                "SHS 3"
-            ],
-
-            datasets:[{
-
-                label:"Students",
-
-                data:[420,398,436],
-
-                borderWidth:1
-
-            }]
-
-        },
-
-        options:{
-
-            responsive:true,
-
-            maintainAspectRatio:false
+            throw new Error(
+                `Dashboard overview failed: ${response.status}`
+            );
 
         }
 
-    });
+
+        overview.innerHTML =
+            await response.text();
+
+
+        /*
+        Initialize charts AFTER HTML exists.
+        */
+
+        initializeStudentChart();
+
+        initializeGenderChart();
+
+        initializeFeesChart();
+
+        initializeAttendance();
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Dashboard overview loading error:",
+            error
+        );
+
+    }
 
 }
 
 
-/*=================== Gender Chart ==============*/
+/*==========================================================
+    QUICK ACTIONS
+==========================================================*/
+
+async function loadQuickActions() {
+
+    const container =
+        document.getElementById(
+            "quickActions"
+        );
 
 
-function initializeGenderChart(){
+    if (!container) {
 
-    const canvas = document.getElementById("genderChart");
+        return;
 
-    if(!canvas) return;
+    }
 
-    new Chart(canvas,{
 
-        type:"pie",
+    try {
 
-        data:{
+        const response =
+            await fetch(
+                "assets/components/quick-actions.html"
+            );
 
-            labels:["Boys","Girls"],
 
-            datasets:[{
+        if (!response.ok) {
 
-                data:[620,634]
-
-            }]
-
-        },
-
-        options:{
-
-            responsive:true,
-
-            maintainAspectRatio:false
+            throw new Error(
+                `Quick actions failed: ${response.status}`
+            );
 
         }
 
-    });
+
+        container.innerHTML =
+            await response.text();
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Quick actions loading error:",
+            error
+        );
+
+    }
 
 }
 
 
+/*==========================================================
+    RECENT ACTIVITIES
+==========================================================*/
 
-function initializeFeesChart(){
+async function loadRecentActivities() {
 
-    const canvas = document.getElementById("feesChart");
+    const container =
+        document.getElementById(
+            "recentActivities"
+        );
 
-    if(!canvas) return;
 
-    new Chart(canvas,{
-        type: "line" ,
-        data: {
-            labels:["Jan",
+    if (!container) {
+
+        return;
+
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+                "assets/components/recent-activities.html"
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                `Recent activities failed: ${response.status}`
+            );
+
+        }
+
+
+        container.innerHTML =
+            await response.text();
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Recent activities loading error:",
+            error
+        );
+
+    }
+
+}
+
+
+/*==========================================================
+    NOTIFICATIONS
+==========================================================*/
+
+async function loadNotifications() {
+
+    const container =
+        document.getElementById(
+            "notificationsPanel"
+        );
+
+
+    if (!container) {
+
+        return;
+
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+                "assets/components/notifications.html"
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                `Notifications failed: ${response.status}`
+            );
+
+        }
+
+
+        container.innerHTML =
+            await response.text();
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Notifications loading error:",
+            error
+        );
+
+    }
+
+}
+
+
+/*==========================================================
+    STUDENT CHART
+==========================================================*/
+
+function initializeStudentChart() {
+
+    const canvas =
+        document.getElementById(
+            "studentChart"
+        );
+
+
+    if (
+        !canvas ||
+        typeof Chart === "undefined"
+    ) {
+
+        return;
+
+    }
+
+
+    new Chart(
+        canvas,
+        {
+
+            type: "bar",
+
+            data: {
+
+                labels: [
+
+                    "SHS 1",
+                    "SHS 2",
+                    "SHS 3"
+
+                ],
+
+                datasets: [
+
+                    {
+
+                        label: "Students",
+
+                        data: [
+                            420,
+                            398,
+                            436
+                        ],
+
+                        borderWidth: 1
+
+                    }
+
+                ]
+
+            },
+
+            options: {
+
+                responsive: true,
+
+                maintainAspectRatio: false
+
+            }
+
+        }
+    );
+
+}
+
+
+/*==========================================================
+    GENDER CHART
+==========================================================*/
+
+function initializeGenderChart() {
+
+    const canvas =
+        document.getElementById(
+            "genderChart"
+        );
+
+
+    if (
+        !canvas ||
+        typeof Chart === "undefined"
+    ) {
+
+        return;
+
+    }
+
+
+    new Chart(
+        canvas,
+        {
+
+            type: "pie",
+
+            data: {
+
+                labels: [
+
+                    "Boys",
+                    "Girls"
+
+                ],
+
+                datasets: [
+
+                    {
+
+                        data: [
+                            620,
+                            634
+                        ]
+
+                    }
+
+                ]
+
+            },
+
+            options: {
+
+                responsive: true,
+
+                maintainAspectRatio: false
+
+            }
+
+        }
+    );
+
+}
+
+
+/*==========================================================
+    FEES CHART
+==========================================================*/
+
+function initializeFeesChart() {
+
+    const canvas =
+        document.getElementById(
+            "feesChart"
+        );
+
+
+    if (
+        !canvas ||
+        typeof Chart === "undefined"
+    ) {
+
+        return;
+
+    }
+
+
+    new Chart(
+        canvas,
+        {
+
+            type: "line",
+
+            data: {
+
+                labels: [
+
+                    "Jan",
                     "Feb",
                     "Mar",
                     "Apr",
                     "May",
-                    "Jun",
+                    "Jun"
 
-
-            ],
-            datasets:[{
-                label: "Fees Collected (GH$)",
-
-                data: [
-                    18000,
-                    24000,
-                    20000,
-                    30000,
-                    34000,
-                    10050
                 ],
-                fill: false,
-                tension: .4
-            }]
-        },
 
-        options: {
-            responsive: true,
-            maintainAspectRatio: false
+                datasets: [
+
+                    {
+
+                        label:
+                            "Fees Collected (GH$)",
+
+                        data: [
+
+                            18000,
+                            24000,
+                            20000,
+                            30000,
+                            34000,
+                            10050
+
+                        ],
+
+                        fill: false,
+
+                        tension: 0.4
+
+                    }
+
+                ]
+
+            },
+
+            options: {
+
+                responsive: true,
+
+                maintainAspectRatio: false
+
+            }
+
         }
-    });
+    );
+
 }
 
 
+/*==========================================================
+    ATTENDANCE CHART
+==========================================================*/
+
+function initializeAttendance() {
+
+    const canvas =
+        document.getElementById(
+            "attendanceChart"
+        );
 
 
-function initializeAttendance(){
+    if (
+        !canvas ||
+        typeof Chart === "undefined"
+    ) {
 
-    const canvas = document.getElementById("attendanceChart");
+        return;
 
-    if(!canvas) return;
+    }
 
-    new Chart(canvas,{
 
-        type: "line",
-        data: {
-            
-            labels :[
-                "Mon",
-                "Tue",
-                "Wed",
-                "Thu",
-                "Fri"
-            ],
+    new Chart(
+        canvas,
+        {
 
-            datasets:[{
+            type: "line",
 
-                label : "Attendance %" ,
-                data :[
-                    95,
-                    92,
-                    88,
-                    74,
-                    93
+            data: {
+
+                labels: [
+
+                    "Mon",
+                    "Tue",
+                    "Wed",
+                    "Thu",
+                    "Fri"
 
                 ],
-                Transition : .4,
-                fill: false
-            }]
-        },
-        options:{
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                y: {
-                    min: 0,
-                    max: 100
+
+                datasets: [
+
+                    {
+
+                        label:
+                            "Attendance %",
+
+                        data: [
+
+                            95,
+                            92,
+                            88,
+                            74,
+                            93
+
+                        ],
+
+                        fill: false,
+
+                        tension: 0.4
+
+                    }
+
+                ]
+
+            },
+
+            options: {
+
+                responsive: true,
+
+                maintainAspectRatio: false,
+
+                scales: {
+
+                    y: {
+
+                        min: 0,
+
+                        max: 100
+
+                    }
+
                 }
+
             }
+
         }
+    );
 
-
-    });
 }

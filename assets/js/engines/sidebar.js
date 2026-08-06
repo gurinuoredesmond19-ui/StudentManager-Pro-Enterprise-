@@ -2,15 +2,51 @@
 ==========================================================
     STUDENTMANAGER PRO ENTERPRISE
     SIDEBAR ENGINE
+    Version 2.0
+==========================================================
+
+    RESPONSIBILITIES:
+
+    1. Load sidebar HTML
+    2. Initialize hamburger
+    3. Open / close sidebar
+    4. Handle mobile overlay
+    5. Remember desktop collapsed state
+    6. Highlight active page
+    7. Handle admin navigation
+
+    IMPORTANT:
+
+    sidebar.js owns the SIDEBAR ENGINE.
+
+    ui.js does NOT initialize the sidebar.
+
+    dashboard.js should call:
+
+        App.UI.Sidebar.load();
+
 ==========================================================
 */
 
+
 import {
     monitorAuth,
-    getUserRole,
-    logout
+    getUserRole
 } from "../core/auth.js";
 
+
+/*==========================================================
+    APP SAFETY
+==========================================================*/
+
+window.App = window.App || {};
+
+App.UI = App.UI || {};
+
+
+/*==========================================================
+    SIDEBAR ENGINE
+==========================================================*/
 
 App.UI.Sidebar = {
 
@@ -20,87 +56,305 @@ App.UI.Sidebar = {
 
     toggleButton: null,
 
+    initialized: false,
 
-    /*==================================================
-        INITIALIZE
-    ==================================================*/
+    authMonitoringStarted: false,
+
+
+    /*======================================================
+        LOAD SIDEBAR HTML
+    ======================================================*/
+
+    async load() {
+
+        const container =
+            document.getElementById("sidebar");
+
+
+        if (!container) {
+
+            console.warn(
+                "Sidebar container #sidebar not found."
+            );
+
+            return false;
+
+        }
+
+
+        try {
+
+            const response =
+                await fetch(
+                    "assets/components/sidebar.html"
+                );
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    `Sidebar failed to load: ${response.status}`
+                );
+
+            }
+
+
+            const html =
+                await response.text();
+
+
+            /*
+            Insert sidebar HTML.
+            */
+
+            container.innerHTML =
+                html;
+
+
+            /*
+            Now the sidebar exists.
+            Initialize it.
+            */
+
+            const initialized =
+                this.init();
+
+
+            if (!initialized) {
+
+                throw new Error(
+                    "Sidebar HTML loaded, but initialization failed."
+                );
+
+            }
+
+
+            console.log(
+                "✓ Sidebar loaded and initialized."
+            );
+
+
+            return true;
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Sidebar loading error:",
+                error
+            );
+
+
+            container.innerHTML = `
+
+                <div class="sidebar-error">
+
+                    <span>⚠️</span>
+
+                    <p>
+                        Unable to load navigation.
+                    </p>
+
+                </div>
+
+            `;
+
+
+            return false;
+
+        }
+
+    },
+
+
+    /*======================================================
+        INITIALIZE SIDEBAR
+    ======================================================*/
 
     init() {
 
+        /*
+        --------------------------------------------------
+        IMPORTANT
+
+        Do NOT use initialized as the first check.
+
+        The sidebar can be dynamically replaced.
+        Therefore we always rediscover the current
+        DOM elements.
+        --------------------------------------------------
+        */
+
+
         this.sidebar =
-            document.querySelector(".app-sidebar");
+            document.querySelector(
+                ".app-sidebar"
+            );
+
 
         this.overlay =
-            document.querySelector(".app-sidebar-overlay");
+            document.querySelector(
+                ".app-sidebar-overlay"
+            );
+
 
         this.toggleButton =
-            document.getElementById("sidebarToggle");
+            document.getElementById(
+                "sidebarToggle"
+            );
 
+
+        /*
+        --------------------------------------------------
+        SIDEBAR NOT READY
+        --------------------------------------------------
+        */
 
         if (!this.sidebar) {
 
             console.warn(
-                "Sidebar not found. Waiting for sidebar component..."
+                "Sidebar HTML is not available yet."
             );
+
+            return false;
+
+        }
+
+
+        /*
+        --------------------------------------------------
+        REMOVE PREVIOUS HANDLERS
+        --------------------------------------------------
+        */
+
+        if (this.toggleButton) {
+
+            this.toggleButton.onclick = null;
+
+        }
+
+
+        if (this.overlay) {
+
+            this.overlay.onclick = null;
+
+        }
+
+
+        /*
+        ==================================================
+        HAMBURGER
+        ==================================================
+        */
+
+        if (this.toggleButton) {
+
+            this.toggleButton.onclick =
+                (event) => {
+
+                    event.preventDefault();
+
+                    event.stopPropagation();
+
+                    this.toggle();
+
+                };
+
+        }
+
+        else {
+
+            console.warn(
+                "Sidebar hamburger #sidebarToggle was not found."
+            );
+
+        }
+
+
+        /*
+        ==================================================
+        MOBILE OVERLAY
+        ==================================================
+        */
+
+        if (this.overlay) {
+
+            this.overlay.onclick =
+                (event) => {
+
+                    event.preventDefault();
+
+                    this.close();
+
+                };
+
+        }
+
+
+        /*
+        ==================================================
+        RESTORE SIDEBAR STATE
+        ==================================================
+        */
+
+        this.restoreState();
+
+
+        /*
+        ==================================================
+        ACTIVE PAGE
+        ==================================================
+        */
+
+        this.highlightCurrentPage();
+
+
+        /*
+        ==================================================
+        AUTHENTICATION MONITOR
+
+        Start this ONLY ONCE.
+        ==================================================
+        */
+
+        this.startAuthMonitoring();
+
+
+        this.initialized = true;
+
+
+        console.log(
+            "✓ Sidebar engine initialized."
+        );
+
+
+        return true;
+
+    },
+
+
+    /*======================================================
+        AUTH MONITORING
+    ======================================================*/
+
+    startAuthMonitoring() {
+
+        /*
+        Prevent duplicate Firebase listeners.
+        */
+
+        if (
+            this.authMonitoringStarted
+        ) {
 
             return;
 
         }
 
 
-        /*==================================================
-            TOGGLE BUTTON
-        ==================================================*/
+        this.authMonitoringStarted = true;
 
-        if (this.toggleButton) {
-
-            this.toggleButton.addEventListener(
-                "click",
-                () => {
-
-                    this.toggle();
-
-                }
-            );
-
-        }
-
-
-        /*==================================================
-            MOBILE OVERLAY
-        ==================================================*/
-
-        if (this.overlay) {
-
-            this.overlay.addEventListener(
-                "click",
-                () => {
-
-                    this.close();
-
-                }
-            );
-
-        }
-
-
-        /*==================================================
-            RESTORE STATE
-        ==================================================*/
-
-        this.restoreState();
-
-
-        /*==================================================
-            ACTIVE PAGE
-        ==================================================*/
-
-        this.highlightCurrentPage();
-
-
-        /*==================================================
-            AUTHENTICATION / ROLE
-        ==================================================*/
 
         monitorAuth(
             async (state) => {
@@ -111,6 +365,7 @@ App.UI.Sidebar = {
 
                 }
 
+
                 this.setupRoleNavigation();
 
             }
@@ -119,47 +374,11 @@ App.UI.Sidebar = {
     },
 
 
-    /*==================================================
-        ROLE-BASED NAVIGATION
-    ==================================================*/
+    /*======================================================
+        ROLE NAVIGATION
+    ======================================================*/
 
     setupRoleNavigation() {
-
-        const role =
-            getUserRole();
-
-
-        /*
-        ==============================================
-        REMOVE EXISTING ADMIN SETUP
-        ==============================================
-        */
-
-        const existing =
-            document.querySelector(
-                '[data-admin-setup="true"]'
-            );
-
-
-        if (existing) {
-
-            existing.remove();
-
-        }
-
-
-        /*
-        ==============================================
-        ONLY ADMIN CAN SEE ADMIN SETUP
-        ==============================================
-        */
-
-        if (role !== "admin") {
-
-            return;
-
-        }
-
 
         const navigation =
             document.querySelector(
@@ -175,13 +394,59 @@ App.UI.Sidebar = {
 
 
         /*
-        ==============================================
+        --------------------------------------------------
+        Remove existing Admin Setup link.
+        --------------------------------------------------
+        */
+
+        const existing =
+            navigation.querySelector(
+                '[data-admin-setup="true"]'
+            );
+
+
+        if (existing) {
+
+            existing.remove();
+
+        }
+
+
+        /*
+        --------------------------------------------------
+        Get current role.
+        --------------------------------------------------
+        */
+
+        const role =
+            getUserRole();
+
+
+        /*
+        Only admin gets Admin Setup.
+        */
+
+        if (
+            role !== "admin"
+        ) {
+
+            this.highlightCurrentPage();
+
+            return;
+
+        }
+
+
+        /*
+        --------------------------------------------------
         CREATE ADMIN SETUP LINK
-        ==============================================
+        --------------------------------------------------
         */
 
         const adminSetup =
-            document.createElement("a");
+            document.createElement(
+                "a"
+            );
 
 
         adminSetup.href =
@@ -214,9 +479,9 @@ App.UI.Sidebar = {
 
 
         /*
-        ==============================================
-        INSERT BEFORE SETTINGS
-        ==============================================
+        --------------------------------------------------
+        FIND SETTINGS
+        --------------------------------------------------
         */
 
         const settings =
@@ -229,9 +494,17 @@ App.UI.Sidebar = {
                     item.textContent
                         .trim()
                         .toLowerCase()
-                        .includes("settings")
+                        .includes(
+                            "settings"
+                        )
             );
 
+
+        /*
+        --------------------------------------------------
+        INSERT ADMIN SETUP
+        --------------------------------------------------
+        */
 
         if (settings) {
 
@@ -251,71 +524,139 @@ App.UI.Sidebar = {
         }
 
 
-        /*
-        ==============================================
-        REFRESH ACTIVE PAGE
-        ==============================================
-        */
-
         this.highlightCurrentPage();
 
     },
 
 
-    /*==================================================
+    /*======================================================
         TOGGLE SIDEBAR
-    ==================================================*/
+    ======================================================*/
 
     toggle() {
 
+        /*
+        Refresh DOM references in case the sidebar
+        was dynamically replaced.
+        */
+
+        this.sidebar =
+            document.querySelector(
+                ".app-sidebar"
+            );
+
+
+        this.overlay =
+            document.querySelector(
+                ".app-sidebar-overlay"
+            );
+
+
         if (!this.sidebar) {
+
+            console.warn(
+                "Cannot toggle sidebar: sidebar not found."
+            );
 
             return;
 
         }
 
 
-        if (window.innerWidth <= 992) {
+        /*
+        ==================================================
+        MOBILE
+        ==================================================
+        */
+
+        if (
+            window.innerWidth <= 992
+        ) {
+
+            const opening =
+                !this.sidebar.classList.contains(
+                    "show"
+                );
+
 
             this.sidebar.classList.toggle(
-                "show"
+                "show",
+                opening
             );
 
 
             if (this.overlay) {
 
                 this.overlay.classList.toggle(
-                    "show"
+                    "show",
+                    opening
                 );
 
             }
+
 
             return;
 
         }
 
 
+        /*
+        ==================================================
+        DESKTOP
+        ==================================================
+        */
+
+        const collapsing =
+            !this.sidebar.classList.contains(
+                "collapsed"
+            );
+
+
         this.sidebar.classList.toggle(
-            "collapsed"
+            "collapsed",
+            collapsing
         );
 
 
+        /*
+        --------------------------------------------------
+        Main content
+        --------------------------------------------------
+        */
+
+        const main =
+            document.querySelector(
+                ".app-main"
+            );
+
+
+        if (main) {
+
+            main.classList.toggle(
+                "expanded",
+                collapsing
+            );
+
+        }
+
+
+        /*
+        --------------------------------------------------
+        Save desktop preference
+        --------------------------------------------------
+        */
+
         localStorage.setItem(
-
             "sidebarCollapsed",
-
-            this.sidebar.classList.contains(
-                "collapsed"
-            )
-
+            String(collapsing)
         );
 
     },
 
 
-    /*==================================================
+    /*======================================================
         CLOSE MOBILE SIDEBAR
-    ==================================================*/
+    ======================================================*/
 
     close() {
 
@@ -339,9 +680,9 @@ App.UI.Sidebar = {
     },
 
 
-    /*==================================================
-        RESTORE SIDEBAR STATE
-    ==================================================*/
+    /*======================================================
+        RESTORE STATE
+    ======================================================*/
 
     restoreState() {
 
@@ -352,20 +693,67 @@ App.UI.Sidebar = {
         }
 
 
-        const collapsed =
-            localStorage.getItem(
-                "sidebarCollapsed"
+        /*
+        --------------------------------------------------
+        MOBILE
+        --------------------------------------------------
+
+        Always start closed on mobile.
+        --------------------------------------------------
+        */
+
+        if (
+            window.innerWidth <= 992
+        ) {
+
+            this.sidebar.classList.remove(
+                "show"
             );
 
 
-        if (
-            collapsed === "true"
-            &&
-            window.innerWidth > 992
-        ) {
+            if (this.overlay) {
 
-            this.sidebar.classList.add(
-                "collapsed"
+                this.overlay.classList.remove(
+                    "show"
+                );
+
+            }
+
+
+            return;
+
+        }
+
+
+        /*
+        --------------------------------------------------
+        DESKTOP
+        --------------------------------------------------
+        */
+
+        const collapsed =
+            localStorage.getItem(
+                "sidebarCollapsed"
+            ) === "true";
+
+
+        this.sidebar.classList.toggle(
+            "collapsed",
+            collapsed
+        );
+
+
+        const main =
+            document.querySelector(
+                ".app-main"
+            );
+
+
+        if (main) {
+
+            main.classList.toggle(
+                "expanded",
+                collapsed
             );
 
         }
@@ -373,9 +761,9 @@ App.UI.Sidebar = {
     },
 
 
-    /*==================================================
-        ACTIVE PAGE HIGHLIGHT
-    ==================================================*/
+    /*======================================================
+        ACTIVE PAGE
+    ======================================================*/
 
     highlightCurrentPage() {
 
@@ -406,6 +794,12 @@ App.UI.Sidebar = {
         }
 
 
+        /*
+        --------------------------------------------------
+        Remove active states.
+        --------------------------------------------------
+        */
+
         menuItems.forEach(
             item => {
 
@@ -416,6 +810,12 @@ App.UI.Sidebar = {
             }
         );
 
+
+        /*
+        --------------------------------------------------
+        Highlight current page.
+        --------------------------------------------------
+        */
 
         menuItems.forEach(
             item => {
@@ -434,8 +834,7 @@ App.UI.Sidebar = {
 
 
                 if (
-                    href === "#"
-                    ||
+                    href === "#" ||
                     href.startsWith(
                         "javascript:"
                     )
@@ -449,7 +848,9 @@ App.UI.Sidebar = {
                 const linkPage =
                     href
                         .split("/")
-                        .pop();
+                        .pop()
+                        .split("?")[0]
+                        .split("#")[0];
 
 
                 if (
@@ -469,38 +870,40 @@ App.UI.Sidebar = {
     },
 
 
-    /*==================================================
+    /*======================================================
         REFRESH
-    ==================================================*/
+    ======================================================*/
 
     refresh() {
 
-        this.highlightCurrentPage();
+        /*
+        Re-discover current sidebar elements.
+        */
 
-        this.setupRoleNavigation();
+        this.sidebar =
+            document.querySelector(
+                ".app-sidebar"
+            );
+
+
+        this.overlay =
+            document.querySelector(
+                ".app-sidebar-overlay"
+            );
+
+
+        this.toggleButton =
+            document.getElementById(
+                "sidebarToggle"
+            );
+
+
+        /*
+        Reconnect events.
+        */
+
+        this.init();
 
     }
 
 };
-
-
-/*==================================================
-    APPLICATION START
-==================================================*/
-
-document.addEventListener(
-    "DOMContentLoaded",
-    () => {
-
-        if (
-            typeof App !== "undefined"
-            &&
-            App.UI
-        ) {
-
-            App.UI.Sidebar.init();
-
-        }
-
-    }
-);
