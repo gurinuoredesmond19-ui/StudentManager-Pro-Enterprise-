@@ -288,550 +288,6 @@
 }
 
 
-/* ======================================================
-   MOBILE
-====================================================== */
-
-@media (max-width: 768px) {
-
-    /*
-    ==================================================
-       SIDEBAR
-    ==================================================
-    */
-
-    .app-sidebar {
-
-        width: 280px;
-
-        max-width: 88vw;
-
-    }
-
-
-    /*
-    ==================================================
-       NAVBAR
-    ==================================================
-    */
-
-    .app-navbar {
-
-        min-height: 60px;
-
-        height: auto;
-
-        padding: 10px 12px;
-
-        display: flex;
-
-        flex-wrap: wrap;
-
-        gap: 10px;
-
-    }
-
-
-    .app-navbar-left {
-
-        width: auto;
-
-        flex: 1;
-
-        min-width: 0;
-
-        display: flex;
-
-        align-items: center;
-
-        gap: 8px;
-
-    }
-
-
-    .app-navbar-right {
-
-        width: auto;
-
-        display: flex;
-
-        align-items: center;
-
-        gap: 6px;
-
-    }
-
-
-    /*
-    ==================================================
-       SEARCH
-    ==================================================
-    */
-
-    .app-search {
-
-        width: 100%;
-
-        max-width: 100%;
-
-    }
-
-
-    /*
-    ==================================================
-       CARD GRID
-    ==================================================
-    */
-
-    .app-card-grid {
-
-        grid-template-columns: 1fr;
-
-        width: 100%;
-
-    }
-
-
-    .app-stat-card {
-
-        width: 100%;
-
-        padding: 18px;
-
-    }
-
-
-    /*
-    ==================================================
-       PAGE HEADER
-    ==================================================
-    */
-
-    .app-page-header {
-
-        flex-direction: column;
-
-        align-items: flex-start;
-
-        gap: 10px;
-
-    }
-
-
-    /*
-    ==================================================
-       TABLE TOOLBAR
-    ==================================================
-    */
-
-    .app-table-toolbar {
-
-        flex-direction: column;
-
-        align-items: stretch;
-
-        gap: 10px;
-
-    }
-
-
-    .app-table-toolbar-left,
-    .app-table-toolbar-right {
-
-        width: 100%;
-
-        flex-wrap: wrap;
-
-    }
-
-
-    .app-table-search {
-
-        width: 100%;
-
-        max-width: 100%;
-
-    }
-
-
-    /*
-    ==================================================
-       TABLE
-    ==================================================
-    */
-
-    .app-table {
-
-        display: block;
-
-        width: 100%;
-
-        overflow-x: auto;
-
-        white-space: nowrap;
-
-        -webkit-overflow-scrolling: touch;
-
-    }
-
-
-    /*
-    ==================================================
-       PAGINATION
-    ==================================================
-    */
-
-    .app-pagination {
-
-        flex-direction: column;
-
-        gap: 12px;
-
-    }
-
-
-    /*
-    ==================================================
-       FORMS
-    ==================================================
-    */
-
-    .app-form-actions {
-
-        justify-content: center;
-
-        flex-wrap: wrap;
-
-    }
-
-
-    /*
-    ==================================================
-       MODALS
-    ==================================================
-    */
-
-    .app-modal-content {
-
-        width: 94vw;
-
-        max-width: 94vw;
-
-        max-height: 90vh;
-
-        max-height: 90dvh;
-
-        overflow-y: auto;
-
-    }
-
-
-    .app-modal-header {
-
-        padding: 18px;
-
-    }
-
-
-    .app-modal-body {
-
-        padding: 18px;
-
-        overflow-y: auto;
-
-    }
-
-
-    .app-modal-footer {
-
-        padding: 18px;
-
-        flex-wrap: wrap;
-
-        justify-content: center;
-
-    }
-
-
-    /*
-    ==================================================
-       TOAST
-    ==================================================
-    */
-
-    .app-toast-container {
-
-        width: 95%;
-
-        left: 50%;
-
-        right: auto;
-
-        transform: translateX(-50%);
-
-    }
-
-}
-
-
-/* ======================================================
-   SMALL MOBILE
-====================================================== */
-
-@media (max-width: 576px) {
-
-    /*
-    ==================================================
-       SIDEBAR
-    ==================================================
-    */
-
-    .app-sidebar {
-
-        width: 280px;
-
-        max-width: 88vw;
-
-    }
-
-
-    /*
-    ==================================================
-       PAGE TITLE
-    ==================================================
-    */
-
-    .app-page-title {
-
-        font-size: 22px;
-
-        line-height: 1.2;
-
-    }
-
-
-    .app-page-subtitle {
-
-        font-size: 13px;
-
-        line-height: 1.4;
-
-    }
-
-
-    /*
-    ==================================================
-       STATISTICS
-    ==================================================
-    */
-
-    .app-stat-number {
-
-        font-size: 24px;
-
-    }
-
-
-    .app-stat-icon {
-
-        width: 55px;
-
-        height: 55px;
-
-        font-size: 22px;
-
-    }
-
-
-    /*
-    ==================================================
-       USER INFO
-    ==================================================
-    */
-
-    .app-user-info {
-
-        display: none;
-
-    }
-
-
-    /*
-    ==================================================
-       ACTIONS
-    ==================================================
-    */
-
-    .app-action-group {
-
-        flex-wrap: wrap;
-
-    }
-
-
-    .app-action-btn {
-
-        width: 34px;
-
-        height: 34px;
-
-    }
-
-
-    /*
-    ==================================================
-       BUTTONS
-    ==================================================
-    */
-
-    .app-btn {
-
-        max-width: 100%;
-
-    }
-
-
-    /*
-    ==================================================
-       PREVENT INPUT OVERFLOW
-    ==================================================
-    */
-
-    input,
-    select,
-    textarea {
-
-        max-width: 100%;
-
-        box-sizing: border-box;
-
-    }
-
-}
-
-
-/* ======================================================
-   VERY SMALL PHONES
-====================================================== */
-
-@media (max-width: 400px) {
-
-    .app-sidebar {
-
-        width: 270px;
-
-        max-width: 86vw;
-
-    }
-
-
-    .app-navbar {
-
-        padding: 8px 10px;
-
-        gap: 8px;
-
-    }
-
-
-    .app-page-title {
-
-        font-size: 20px;
-
-    }
-
-
-    .app-stat-card {
-
-        padding: 14px;
-
-    }
-
-
-    .app-modal-content {
-
-        width: 96vw;
-
-        max-width: 96vw;
-
-    }
-
-}
-
-
-/* ======================================================
-   RESPONSIVE IMAGES
-====================================================== */
-
-img {
-
-    max-width: 100%;
-
-    height: auto;
-
-}
-
-
-/* ======================================================
-   RESPONSIVE VIDEO
-====================================================== */
-
-video {
-
-    max-width: 100%;
-
-    height: auto;
-
-}
-
-
-/* ======================================================
-   RESPONSIVE IFRAMES
-====================================================== */
-
-iframe {
-
-    max-width: 100%;
-
-}
-
-
-/* ======================================================
-   MOBILE SCROLLBAR
-====================================================== */
-
-@media (max-width: 768px) {
-
-    ::-webkit-scrollbar {
-
-        width: 5px;
-
-        height: 5px;
-
-    }
-
-}
-
-
-/* ======================================================
-   ACCESSIBILITY / REDUCED MOTION
-====================================================== */
-
-@media (prefers-reduced-motion: reduce) {
-
-    .app-sidebar,
-    .app-sidebar-overlay {
-
-        transition: none;
-
-    }
-
-}
-
-
-
-
-
 
 /* ======================================================
    MOBILE TOPBAR
@@ -1169,4 +625,264 @@ iframe {
 
     }
 
+} 
+
+
+/* ======================================================
+   SMALL MOBILE
+====================================================== */
+
+@media (max-width: 576px) {
+
+    /*
+    ==================================================
+       SIDEBAR
+    ==================================================
+    */
+
+    .app-sidebar {
+
+        width: 280px;
+
+        max-width: 88vw;
+
+    }
+
+
+    /*
+    ==================================================
+       PAGE TITLE
+    ==================================================
+    */
+
+    .app-page-title {
+
+        font-size: 22px;
+
+        line-height: 1.2;
+
+    }
+
+
+    .app-page-subtitle {
+
+        font-size: 13px;
+
+        line-height: 1.4;
+
+    }
+
+
+    /*
+    ==================================================
+       STATISTICS
+    ==================================================
+    */
+
+    .app-stat-number {
+
+        font-size: 24px;
+
+    }
+
+
+    .app-stat-icon {
+
+        width: 55px;
+
+        height: 55px;
+
+        font-size: 22px;
+
+    }
+
+
+    /*
+    ==================================================
+       USER INFO
+    ==================================================
+    */
+
+    .app-user-info {
+
+        display: none;
+
+    }
+
+
+    /*
+    ==================================================
+       ACTIONS
+    ==================================================
+    */
+
+    .app-action-group {
+
+        flex-wrap: wrap;
+
+    }
+
+
+    .app-action-btn {
+
+        width: 34px;
+
+        height: 34px;
+
+    }
+
+
+    /*
+    ==================================================
+       BUTTONS
+    ==================================================
+    */
+
+    .app-btn {
+
+        max-width: 100%;
+
+    }
+
+
+    /*
+    ==================================================
+       PREVENT INPUT OVERFLOW
+    ==================================================
+    */
+
+    input,
+    select,
+    textarea {
+
+        max-width: 100%;
+
+        box-sizing: border-box;
+
+    }
+
 }
+
+
+/* ======================================================
+   VERY SMALL PHONES
+====================================================== */
+
+@media (max-width: 400px) {
+
+    .app-sidebar {
+
+        width: 270px;
+
+        max-width: 86vw;
+
+    }
+
+
+    .app-navbar {
+
+        padding: 8px 10px;
+
+        gap: 8px;
+
+    }
+
+
+    .app-page-title {
+
+        font-size: 20px;
+
+    }
+
+
+    .app-stat-card {
+
+        padding: 14px;
+
+    }
+
+
+    .app-modal-content {
+
+        width: 96vw;
+
+        max-width: 96vw;
+
+    }
+
+}
+
+
+/* ======================================================
+   RESPONSIVE IMAGES
+====================================================== */
+
+img {
+
+    max-width: 100%;
+
+    height: auto;
+
+}
+
+
+/* ======================================================
+   RESPONSIVE VIDEO
+====================================================== */
+
+video {
+
+    max-width: 100%;
+
+    height: auto;
+
+}
+
+
+/* ======================================================
+   RESPONSIVE IFRAMES
+====================================================== */
+
+iframe {
+
+    max-width: 100%;
+
+}
+
+
+/* ======================================================
+   MOBILE SCROLLBAR
+====================================================== */
+
+@media (max-width: 768px) {
+
+    ::-webkit-scrollbar {
+
+        width: 5px;
+
+        height: 5px;
+
+    }
+
+}
+
+
+/* ======================================================
+   ACCESSIBILITY / REDUCED MOTION
+====================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .app-sidebar,
+    .app-sidebar-overlay {
+
+        transition: none;
+
+    }
+
+}
+
+
+
+
+
