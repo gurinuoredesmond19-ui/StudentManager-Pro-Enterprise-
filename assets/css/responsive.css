@@ -827,3 +827,346 @@ iframe {
     }
 
 }
+
+
+
+
+
+
+/* ======================================================
+   MOBILE TOPBAR
+====================================================== */
+
+@media (max-width: 768px) {
+
+    .app-topbar {
+
+        width: 100%;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 10px;
+
+        padding: 10px 12px;
+
+        box-sizing: border-box;
+
+    }
+
+
+    /* ==============================================
+       TOPBAR LEFT
+    ============================================== */
+
+    .topbar-left {
+
+        width: 100%;
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 10px;
+
+        min-width: 0;
+
+    }
+
+
+    /* ==============================================
+       HAMBURGER
+    ============================================== */
+
+    .sidebar-toggle {
+
+        flex: 0 0 auto;
+
+        width: 42px;
+
+        height: 42px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        padding: 0;
+
+        font-size: 22px;
+
+    }
+
+
+    /* ==============================================
+       GREETING
+    ============================================== */
+
+    .topbar-title {
+
+        flex: 1;
+
+        min-width: 0;
+
+    }
+
+
+    .topbar-title h2 {
+
+        margin: 0;
+
+        font-size: 17px;
+
+        line-height: 1.25;
+
+        white-space: nowrap;
+
+        overflow: hidden;
+
+        text-overflow: ellipsis;
+
+    }
+
+
+    .topbar-title p {
+
+        margin: 3px 0 0;
+
+        font-size: 12px;
+
+        line-height: 1.3;
+
+        white-space: nowrap;
+
+        overflow: hidden;
+
+        text-overflow: ellipsis;
+
+    }
+
+
+    /* ==============================================
+       TOPBAR RIGHT
+    ============================================== */
+
+    .topbar-right {
+
+        width: 100%;
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 7px;
+
+        min-width: 0;
+
+    }
+
+
+    /* ==============================================
+       SEARCH
+    ============================================== */
+
+    .topbar-right > input[type="search"] {
+
+        flex: 1 1 auto;
+
+        min-width: 0;
+
+        width: auto;
+
+        height: 40px;
+
+        box-sizing: border-box;
+
+    }
+
+
+    /* ==============================================
+       ICON BUTTONS
+    ============================================== */
+
+    .topbar-right > .app-btn {
+
+        flex: 0 0 40px;
+
+        width: 40px;
+
+        height: 40px;
+
+        padding: 0;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+    }
+
+
+    /* ==============================================
+       PROFILE
+    ============================================== */
+
+    .topbar-profile {
+
+        flex: 0 0 auto;
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 6px;
+
+        min-width: 0;
+
+    }
+
+
+    .profile-image {
+
+        width: 38px;
+
+        height: 38px;
+
+        flex: 0 0 38px;
+
+    }
+
+
+    .topbar-profile > div {
+
+        display: none;
+
+    }
+
+}
+
+
+/* ======================================================
+   SMALL PHONE
+====================================================== */
+
+@media (max-width: 576px) {
+
+    .app-topbar {
+
+        padding: 8px 10px;
+
+        gap: 8px;
+
+    }
+
+
+    .sidebar-toggle {
+
+        width: 38px;
+
+        height: 38px;
+
+        font-size: 20px;
+
+    }
+
+
+    .topbar-title h2 {
+
+        font-size: 15px;
+
+    }
+
+
+    .topbar-title p {
+
+        font-size: 11px;
+
+    }
+
+
+    .topbar-right {
+
+        gap: 5px;
+
+    }
+
+
+    .topbar-right > input[type="search"] {
+
+        height: 38px;
+
+        font-size: 13px;
+
+    }
+
+
+    .topbar-right > .app-btn {
+
+        flex-basis: 36px;
+
+        width: 36px;
+
+        height: 36px;
+
+        font-size: 14px;
+
+    }
+
+
+    .profile-image {
+
+        width: 34px;
+
+        height: 34px;
+
+        flex-basis: 34px;
+
+    }
+
+}
+
+
+/* ======================================================
+   VERY SMALL PHONE
+====================================================== */
+
+@media (max-width: 400px) {
+
+    .topbar-title h2 {
+
+        font-size: 14px;
+
+    }
+
+
+    .topbar-title p {
+
+        display: none;
+
+    }
+
+
+    /*
+    Hide the search on extremely narrow screens
+    so the action buttons don't get crushed.
+    */
+
+    .topbar-right > input[type="search"] {
+
+        display: none;
+
+    }
+
+
+    .topbar-right {
+
+        justify-content: flex-end;
+
+    }
+
+}
