@@ -23,55 +23,37 @@
 *,
 *::before,
 *::after {
-
     box-sizing: border-box;
-
 }
-
 
 html,
 body {
-
     max-width: 100%;
-
     overflow-x: hidden;
-
 }
-
 
 img,
 video,
 iframe {
-
     max-width: 100%;
-
 }
 
-
 img {
-
     height: auto;
-
 }
 
 
 /* ======================================================
    LARGE DESKTOP
-   1400px+
 ====================================================== */
 
 @media (min-width: 1400px) {
 
     .container {
-
         width: 100%;
-
         max-width: 1400px;
-
         margin-left: auto;
-
         margin-right: auto;
-
     }
 
 }
@@ -85,68 +67,41 @@ img {
 @media (max-width: 1199px) {
 
     .app-sidebar {
-
         width: 240px;
-
     }
-
 
     .app-main {
-
         margin-left: 240px;
-
         width: calc(100% - 240px);
-
     }
-
 
     .app-card-grid {
-
         grid-template-columns:
             repeat(3, minmax(0, 1fr));
-
     }
-
 
     .app-search {
-
         width: 260px;
-
         max-width: 100%;
-
     }
-
 
     .app-topbar {
-
         gap: 12px;
-
     }
-
 
     .topbar-left,
     .topbar-right {
-
         min-width: 0;
-
     }
-
 
     .topbar-title {
-
         min-width: 0;
-
     }
 
-
     .topbar-title h2 {
-
         white-space: nowrap;
-
         overflow: hidden;
-
         text-overflow: ellipsis;
-
     }
 
 }
@@ -159,218 +114,164 @@ img {
 
 @media (max-width: 992px) {
 
-    /* ==============================================
-       SIDEBAR
-    ============================================== */
+    /* ================= SIDEBAR ================= */
 
     .app-sidebar {
-
         position: fixed;
-
         top: 0;
-
         left: -270px;
-
         width: 260px;
-
         height: 100vh;
-
         height: 100dvh;
-
         z-index: 9999;
 
         transition:
             left 0.25s ease,
             transform 0.25s ease;
-
     }
-
 
     .app-sidebar.show {
-
         left: 0;
-
         transform: translateX(0);
-
     }
 
 
-    /* ==============================================
-       SIDEBAR OVERLAY
-    ============================================== */
+    /* ================= SIDEBAR OVERLAY ================= */
 
     .app-sidebar-overlay {
-
         position: fixed;
-
         inset: 0;
-
         z-index: 9998;
 
         display: none;
 
         background: rgba(0, 0, 0, 0.45);
-
     }
-
 
     .app-sidebar-overlay.show {
-
         display: block;
-
     }
 
 
-    /* ==============================================
-       MAIN CONTENT
-    ============================================== */
+    /* ================= MAIN ================= */
 
     .app-main {
-
         width: 100%;
-
         margin-left: 0;
-
     }
-
 
     .app-main.expanded {
-
         margin-left: 0;
-
         width: 100%;
-
     }
 
 
-    /* ==============================================
-       TOPBAR
-    ============================================== */
+    /* ================= TOPBAR ================= */
 
     .app-topbar {
-
         width: 100%;
-
         min-width: 0;
-
     }
-
 
     .topbar-left,
     .topbar-right {
-
         min-width: 0;
-
     }
 
 
-    /* ==============================================
-       DASHBOARD CARDS
-    ============================================== */
+    /* ================= CARDS ================= */
 
     .app-card-grid {
-
         grid-template-columns:
             repeat(2, minmax(0, 1fr));
-
     }
 
 
-    /* ==============================================
-       SEARCH
-    ============================================== */
+    /* ================= SEARCH ================= */
 
     .app-search {
-
         width: 220px;
-
         max-width: 100%;
-
     }
 
 
-    /* ==============================================
-       TOOLBAR
-    ============================================== */
+    /* ================= TOOLBAR ================= */
 
     .app-toolbar {
-
         flex-wrap: wrap;
-
         gap: 12px;
-
     }
-
 
     .app-toolbar-left,
     .app-toolbar-right {
-
         width: 100%;
-
         justify-content: space-between;
-
     }
 
 
-    /* ==============================================
-       FORMS
-    ============================================== */
+    /* ================= FORMS ================= */
 
     .app-form-grid {
-
         grid-template-columns: 1fr;
-
     }
 
 
-    /* ==============================================
-       MODALS
-    ============================================== */
+    /* ================= MODALS ================= */
 
     .app-modal-content {
-
         width: 95%;
-
         max-width: 95%;
-
     }
 
 }
 
 
 /* ======================================================
-   MOBILE
-   577px - 768px
+   TOPBAR — MOBILE / TABLET MASTER DESIGN
+   768px and below
 ====================================================== */
 
 @media (max-width: 768px) {
 
-    /* ==============================================
-       TOPBAR MASTER MOBILE LAYOUT
-    ============================================== */
+    /*
+    ------------------------------------------------------
+    BLUE TOPBAR
+    ------------------------------------------------------
+    */
 
     .app-topbar {
 
         width: 100%;
 
         display: flex;
-
         flex-direction: column;
 
         align-items: stretch;
 
         gap: 8px;
 
-        padding: 10px 12px;
+        padding: 9px 10px;
 
-        overflow: hidden;
+        background: #2563eb;
+
+        color: #ffffff;
+
+        border: none;
+
+        box-shadow:
+            0 3px 12px rgba(0, 0, 0, 0.18);
+
+        overflow: visible;
 
     }
 
 
-    /* ==============================================
-       TOPBAR LEFT
-    ============================================== */
+    /*
+    ------------------------------------------------------
+    TOPBAR LEFT
+    Hamburger + title
+    ------------------------------------------------------
+    */
 
     .topbar-left {
 
@@ -387,38 +288,60 @@ img {
     }
 
 
-    /* ==============================================
-       HAMBURGER
-    ============================================== */
+    /*
+    ------------------------------------------------------
+    HAMBURGER
+    ------------------------------------------------------
+    */
 
     .sidebar-toggle {
 
         flex: 0 0 42px;
 
         width: 42px;
+        min-width: 42px;
 
         height: 42px;
-
-        min-width: 42px;
 
         padding: 0;
 
         display: flex;
 
         align-items: center;
-
         justify-content: center;
 
-        font-size: 22px;
+        border: 1px solid rgba(255,255,255,0.35);
+
+        border-radius: 10px;
+
+        background: rgba(255,255,255,0.16);
+
+        color: #ffffff;
+
+        font-size: 23px;
+
+        line-height: 1;
 
         cursor: pointer;
+
+        box-shadow:
+            inset 0 1px 0 rgba(255,255,255,0.15);
 
     }
 
 
-    /* ==============================================
-       TOPBAR TITLE
-    ============================================== */
+    .sidebar-toggle:hover {
+
+        background: rgba(255,255,255,0.25);
+
+    }
+
+
+    /*
+    ------------------------------------------------------
+    TOPBAR TITLE
+    ------------------------------------------------------
+    */
 
     .topbar-title {
 
@@ -439,7 +362,11 @@ img {
 
         max-width: 100%;
 
+        color: #ffffff;
+
         font-size: 18px;
+
+        font-weight: 700;
 
         line-height: 1.2;
 
@@ -458,7 +385,9 @@ img {
 
         max-width: 100%;
 
-        font-size: 12px;
+        color: rgba(255,255,255,0.82);
+
+        font-size: 11px;
 
         line-height: 1.2;
 
@@ -471,10 +400,13 @@ img {
     }
 
 
-    /* ==============================================
-       TOPBAR RIGHT
-       Second row
-    ============================================== */
+    /*
+    ------------------------------------------------------
+    TOPBAR RIGHT
+    Search + notification + messages + dark mode
+    + profile
+    ------------------------------------------------------
+    */
 
     .topbar-right {
 
@@ -488,12 +420,20 @@ img {
 
         min-width: 0;
 
+        padding: 0;
+
     }
 
 
-    /* ==============================================
-       SEARCH
-    ============================================== */
+    /*
+    ------------------------------------------------------
+    SEARCH BAR
+    IMPORTANT:
+    Supports your actual HTML:
+
+    <input type="search" class="app-input">
+    ------------------------------------------------------
+    */
 
     .topbar-right > input[type="search"],
     .topbar-right .app-input {
@@ -508,41 +448,105 @@ img {
 
         margin: 0;
 
+        padding:
+            0 12px;
+
+        border: 1px solid
+            rgba(255,255,255,0.35);
+
+        border-radius: 10px;
+
+        outline: none;
+
+        background: #ffffff;
+
+        color: #1f2937;
+
         font-size: 13px;
+
+        box-shadow:
+            0 2px 6px rgba(0,0,0,0.10);
 
     }
 
 
-    /* ==============================================
-       ACTION BUTTONS
-    ============================================== */
+    .topbar-right > input[type="search"]::placeholder,
+    .topbar-right .app-input::placeholder {
+
+        color: #6b7280;
+
+        opacity: 1;
+
+    }
+
+
+    .topbar-right > input[type="search"]:focus,
+    .topbar-right .app-input:focus {
+
+        border-color: #ffffff;
+
+        box-shadow:
+            0 0 0 3px rgba(255,255,255,0.22);
+
+    }
+
+
+    /*
+    ------------------------------------------------------
+    TOPBAR ICON BUTTONS
+    ------------------------------------------------------
+    */
 
     .topbar-right > .app-btn {
 
-        flex: 0 0 38px;
+        flex: 0 0 40px;
 
-        width: 38px;
+        width: 40px;
+        min-width: 40px;
 
-        min-width: 38px;
-
-        height: 38px;
+        height: 40px;
 
         padding: 0;
 
         display: flex;
 
         align-items: center;
-
         justify-content: center;
 
-        font-size: 16px;
+        border: 1px solid
+            rgba(255,255,255,0.35);
+
+        border-radius: 10px;
+
+        background: rgba(255,255,255,0.16);
+
+        color: #ffffff;
+
+        font-size: 17px;
+
+        line-height: 1;
+
+        cursor: pointer;
+
+        box-shadow:
+            inset 0 1px 0 rgba(255,255,255,0.12);
 
     }
 
 
-    /* ==============================================
-       PROFILE
-    ============================================== */
+    .topbar-right > .app-btn:hover {
+
+        background:
+            rgba(255,255,255,0.27);
+
+    }
+
+
+    /*
+    ------------------------------------------------------
+    PROFILE
+    ------------------------------------------------------
+    */
 
     .topbar-profile {
 
@@ -552,29 +556,39 @@ img {
 
         align-items: center;
 
-        gap: 5px;
+        gap: 6px;
 
         min-width: 0;
+
+        padding-left: 2px;
 
     }
 
 
     .profile-image {
 
-        width: 38px;
+        width: 40px;
 
-        height: 38px;
+        height: 40px;
 
-        min-width: 38px;
+        min-width: 40px;
 
         object-fit: cover;
 
         border-radius: 50%;
 
+        border: 2px solid
+            rgba(255,255,255,0.85);
+
+        background: #ffffff;
+
     }
 
 
-    /* Hide profile text on mobile */
+    /*
+    Hide Administrator / Super Admin text
+    on smaller screens.
+    */
 
     .topbar-profile > div {
 
@@ -583,9 +597,11 @@ img {
     }
 
 
-    /* ==============================================
-       DASHBOARD CARDS
-    ============================================== */
+    /*
+    ------------------------------------------------------
+    DASHBOARD CARDS
+    ------------------------------------------------------
+    */
 
     .app-card-grid {
 
@@ -605,9 +621,11 @@ img {
     }
 
 
-    /* ==============================================
-       PAGE HEADER
-    ============================================== */
+    /*
+    ------------------------------------------------------
+    PAGE HEADER
+    ------------------------------------------------------
+    */
 
     .app-page-header {
 
@@ -622,9 +640,11 @@ img {
     }
 
 
-    /* ==============================================
-       TABLE TOOLBAR
-    ============================================== */
+    /*
+    ------------------------------------------------------
+    TABLE TOOLBAR
+    ------------------------------------------------------
+    */
 
     .app-table-toolbar {
 
@@ -662,9 +682,11 @@ img {
     }
 
 
-    /* ==============================================
-       TABLE
-    ============================================== */
+    /*
+    ------------------------------------------------------
+    TABLE
+    ------------------------------------------------------
+    */
 
     .app-table {
 
@@ -681,9 +703,11 @@ img {
     }
 
 
-    /* ==============================================
-       PAGINATION
-    ============================================== */
+    /*
+    ------------------------------------------------------
+    PAGINATION
+    ------------------------------------------------------
+    */
 
     .app-pagination {
 
@@ -698,9 +722,11 @@ img {
     }
 
 
-    /* ==============================================
-       FORM ACTIONS
-    ============================================== */
+    /*
+    ------------------------------------------------------
+    FORM ACTIONS
+    ------------------------------------------------------
+    */
 
     .app-form-actions {
 
@@ -715,9 +741,11 @@ img {
     }
 
 
-    /* ==============================================
-       MODAL
-    ============================================== */
+    /*
+    ------------------------------------------------------
+    MODAL
+    ------------------------------------------------------
+    */
 
     .app-modal-content {
 
@@ -735,16 +763,12 @@ img {
 
 
     .app-modal-header {
-
         padding: 18px;
-
     }
 
 
     .app-modal-body {
-
         padding: 18px;
-
     }
 
 
@@ -763,9 +787,11 @@ img {
     }
 
 
-    /* ==============================================
-       TOAST
-    ============================================== */
+    /*
+    ------------------------------------------------------
+    TOAST
+    ------------------------------------------------------
+    */
 
     .app-toast-container {
 
@@ -780,9 +806,11 @@ img {
     }
 
 
-    /* ==============================================
-       MOBILE SCROLLBAR
-    ============================================== */
+    /*
+    ------------------------------------------------------
+    MOBILE SCROLLBAR
+    ------------------------------------------------------
+    */
 
     ::-webkit-scrollbar {
 
@@ -802,13 +830,9 @@ img {
 
 @media (max-width: 576px) {
 
-    /* ==============================================
-       TOPBAR
-    ============================================== */
-
     .app-topbar {
 
-        padding: 8px 10px;
+        padding: 8px 9px;
 
         gap: 7px;
 
@@ -825,6 +849,8 @@ img {
 
         height: 38px;
 
+        border-radius: 9px;
+
         font-size: 20px;
 
     }
@@ -839,7 +865,7 @@ img {
 
     .topbar-title p {
 
-        font-size: 11px;
+        font-size: 10px;
 
     }
 
@@ -856,6 +882,10 @@ img {
 
         height: 36px;
 
+        padding-left: 9px;
+
+        padding-right: 9px;
+
         font-size: 12px;
 
     }
@@ -863,33 +893,31 @@ img {
 
     .topbar-right > .app-btn {
 
-        flex-basis: 34px;
+        flex-basis: 35px;
 
-        width: 34px;
+        width: 35px;
 
-        min-width: 34px;
+        min-width: 35px;
 
-        height: 34px;
+        height: 35px;
 
-        font-size: 14px;
+        border-radius: 9px;
+
+        font-size: 15px;
 
     }
 
 
     .profile-image {
 
-        width: 34px;
+        width: 35px;
 
-        height: 34px;
+        height: 35px;
 
-        min-width: 34px;
+        min-width: 35px;
 
     }
 
-
-    /* ==============================================
-       PAGE TYPOGRAPHY
-    ============================================== */
 
     .app-page-title {
 
@@ -923,20 +951,12 @@ img {
     }
 
 
-    /* ==============================================
-       HIDE USER TEXT
-    ============================================== */
-
     .app-user-info {
 
         display: none;
 
     }
 
-
-    /* ==============================================
-       ACTIONS
-    ============================================== */
 
     .app-action-group {
 
@@ -958,10 +978,6 @@ img {
     }
 
 
-    /* ==============================================
-       BUTTONS
-    ============================================== */
-
     .app-btn {
 
         max-width: 100%;
@@ -982,12 +998,25 @@ img {
 
         padding: 7px 8px;
 
+        gap: 6px;
+
     }
 
 
-    /* ==============================================
-       TITLE
-    ============================================== */
+    .sidebar-toggle {
+
+        flex-basis: 36px;
+
+        width: 36px;
+
+        min-width: 36px;
+
+        height: 36px;
+
+        font-size: 19px;
+
+    }
+
 
     .topbar-title h2 {
 
@@ -998,15 +1027,15 @@ img {
 
     .topbar-title p {
 
-        font-size: 10px;
+        font-size: 9px;
 
     }
 
 
-    /* ==============================================
-       SEARCH
-       KEEP IT VISIBLE BUT SMALL
-    ============================================== */
+    /*
+    Keep search visible.
+    It gets smaller rather than disappearing.
+    */
 
     .topbar-right > input[type="search"],
     .topbar-right .app-input {
@@ -1024,10 +1053,6 @@ img {
     }
 
 
-    /* ==============================================
-       ICON BUTTONS
-    ============================================== */
-
     .topbar-right > .app-btn {
 
         flex-basis: 32px;
@@ -1038,14 +1063,12 @@ img {
 
         height: 32px;
 
+        border-radius: 8px;
+
         font-size: 13px;
 
     }
 
-
-    /* ==============================================
-       PROFILE
-    ============================================== */
 
     .profile-image {
 
@@ -1054,25 +1077,6 @@ img {
         height: 32px;
 
         min-width: 32px;
-
-    }
-
-
-    /* ==============================================
-       HAMBURGER
-    ============================================== */
-
-    .sidebar-toggle {
-
-        flex-basis: 36px;
-
-        width: 36px;
-
-        min-width: 36px;
-
-        height: 36px;
-
-        font-size: 19px;
 
     }
 
