@@ -1160,3 +1160,740 @@ iframe {
     }
 
 }
+
+
+
+
+/* ==========================================================
+   STUDENTMANAGER PRO ENTERPRISE
+   FINAL TOPBAR MASTER OVERRIDE
+   Blue Enterprise Navigation
+========================================================== */
+
+
+/* ==========================================================
+   TOPBAR BASE
+========================================================== */
+
+.app-topbar {
+
+    width: 100%;
+
+    min-height: 76px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 12px 22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0B5ED7 0%,
+            #0849A8 55%,
+            #07377D 100%
+        );
+
+    color: #FFFFFF;
+
+    border-bottom: 1px solid rgba(255,255,255,.15);
+
+    box-shadow:
+        0 4px 18px rgba(0,0,0,.15);
+
+    position: relative;
+
+    z-index: 1000;
+
+}
+
+
+/* ==========================================================
+   LEFT SIDE
+========================================================== */
+
+.topbar-left {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    min-width: 0;
+
+    flex: 1 1 auto;
+
+}
+
+
+/* ==========================================================
+   HAMBURGER
+========================================================== */
+
+.sidebar-toggle {
+
+    width: 46px;
+
+    height: 46px;
+
+    min-width: 46px;
+
+    border: 1px solid rgba(255,255,255,.25);
+
+    border-radius: 12px;
+
+    background: rgba(255,255,255,.12);
+
+    color: #FFFFFF;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 25px;
+
+    cursor: pointer;
+
+    transition:
+        background .25s ease,
+        transform .2s ease,
+        box-shadow .25s ease;
+
+}
+
+
+.sidebar-toggle:hover {
+
+    background: rgba(255,255,255,.22);
+
+    box-shadow:
+        0 5px 15px rgba(0,0,0,.18);
+
+}
+
+
+.sidebar-toggle:active {
+
+    transform: scale(.94);
+
+}
+
+
+/* ==========================================================
+   TITLE
+========================================================== */
+
+.topbar-title {
+
+    min-width: 0;
+
+    overflow: hidden;
+
+}
+
+
+.topbar-title h2 {
+
+    margin: 0;
+
+    color: #FFFFFF;
+
+    font-size: 20px;
+
+    font-weight: 700;
+
+    line-height: 1.2;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+}
+
+
+.topbar-title p {
+
+    margin: 4px 0 0;
+
+    color: rgba(255,255,255,.75);
+
+    font-size: 12px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+}
+
+
+/* ==========================================================
+   RIGHT SIDE
+========================================================== */
+
+.topbar-right {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    min-width: 0;
+
+    flex: 0 1 auto;
+
+}
+
+
+/* ==========================================================
+   SEARCH BAR
+========================================================== */
+
+.topbar-right input[type="search"],
+.topbar-right .app-input {
+
+    width: 280px;
+
+    height: 42px;
+
+    padding: 0 16px;
+
+    border: 1px solid rgba(255,255,255,.22);
+
+    border-radius: 22px;
+
+    outline: none;
+
+    background: rgba(255,255,255,.14);
+
+    color: #FFFFFF;
+
+    font-size: 14px;
+
+    transition:
+        background .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease;
+
+}
+
+
+.topbar-right input[type="search"]::placeholder,
+.topbar-right .app-input::placeholder {
+
+    color: rgba(255,255,255,.75);
+
+}
+
+
+.topbar-right input[type="search"]:focus,
+.topbar-right .app-input:focus {
+
+    background: rgba(255,255,255,.22);
+
+    border-color: rgba(255,255,255,.55);
+
+    box-shadow:
+        0 0 0 3px rgba(255,255,255,.10);
+
+}
+
+
+/* ==========================================================
+   TOPBAR ACTION ICONS
+========================================================== */
+
+.topbar-right > .app-btn {
+
+    width: 42px;
+
+    height: 42px;
+
+    min-width: 42px;
+
+    padding: 0;
+
+    border: 1px solid rgba(255,255,255,.22);
+
+    border-radius: 12px;
+
+    background: rgba(255,255,255,.12);
+
+    color: #FFFFFF;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    box-shadow: none;
+
+    transition:
+        background .25s ease,
+        transform .2s ease;
+
+}
+
+
+.topbar-right > .app-btn:hover {
+
+    background: rgba(255,255,255,.22);
+
+    transform: translateY(-2px);
+
+    box-shadow: none;
+
+}
+
+
+/* ==========================================================
+   PROFILE
+========================================================== */
+
+.topbar-profile {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 5px 10px 5px 5px;
+
+    border: 1px solid rgba(255,255,255,.18);
+
+    border-radius: 28px;
+
+    background: rgba(255,255,255,.10);
+
+    min-width: 0;
+
+}
+
+
+.topbar-profile .profile-image {
+
+    width: 40px;
+
+    height: 40px;
+
+    min-width: 40px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    border: 2px solid rgba(255,255,255,.8);
+
+}
+
+
+.topbar-profile strong {
+
+    display: block;
+
+    color: #FFFFFF;
+
+    font-size: 13px;
+
+    white-space: nowrap;
+
+}
+
+
+.topbar-profile small {
+
+    display: block;
+
+    margin-top: 2px;
+
+    color: rgba(255,255,255,.7);
+
+    font-size: 10px;
+
+    white-space: nowrap;
+
+}
+
+
+/* ==========================================================
+   TABLET
+========================================================== */
+
+@media (max-width: 992px) {
+
+    .app-topbar {
+
+        min-height: 70px;
+
+        padding: 10px 15px;
+
+        gap: 12px;
+
+    }
+
+
+    .topbar-right input[type="search"],
+    .topbar-right .app-input {
+
+        width: 210px;
+
+    }
+
+
+    .topbar-title h2 {
+
+        font-size: 18px;
+
+    }
+
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width: 768px) {
+
+    .app-topbar {
+
+        min-height: auto;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 9px;
+
+        padding: 10px 12px 12px;
+
+        background:
+            linear-gradient(
+                135deg,
+                #0B5ED7,
+                #0849A8
+            );
+
+    }
+
+
+    /* ------------------------------------------
+       FIRST ROW
+    ------------------------------------------ */
+
+    .topbar-left {
+
+        width: 100%;
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 10px;
+
+    }
+
+
+    .sidebar-toggle {
+
+        width: 44px;
+
+        height: 44px;
+
+        min-width: 44px;
+
+        border-radius: 11px;
+
+        background: rgba(255,255,255,.14);
+
+    }
+
+
+    .topbar-title {
+
+        flex: 1;
+
+    }
+
+
+    .topbar-title h2 {
+
+        font-size: 17px;
+
+    }
+
+
+    .topbar-title p {
+
+        font-size: 11px;
+
+    }
+
+
+    /* ------------------------------------------
+       SECOND ROW
+    ------------------------------------------ */
+
+    .topbar-right {
+
+        width: 100%;
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 7px;
+
+    }
+
+
+    /* SEARCH GETS THE AVAILABLE SPACE */
+
+    .topbar-right input[type="search"],
+    .topbar-right .app-input {
+
+        flex: 1 1 auto;
+
+        width: auto;
+
+        min-width: 0;
+
+        height: 40px;
+
+        border-radius: 20px;
+
+        font-size: 13px;
+
+    }
+
+
+    /* ICON BUTTONS */
+
+    .topbar-right > .app-btn {
+
+        flex: 0 0 38px;
+
+        width: 38px;
+
+        min-width: 38px;
+
+        height: 38px;
+
+        border-radius: 10px;
+
+        font-size: 16px;
+
+    }
+
+
+    /* PROFILE */
+
+    .topbar-profile {
+
+        flex: 0 0 auto;
+
+        padding: 2px;
+
+        border: none;
+
+        background: transparent;
+
+    }
+
+
+    .topbar-profile .profile-image {
+
+        width: 38px;
+
+        height: 38px;
+
+        min-width: 38px;
+
+    }
+
+
+    .topbar-profile > div {
+
+        display: none;
+
+    }
+
+}
+
+
+/* ==========================================================
+   SMALL MOBILE
+========================================================== */
+
+@media (max-width: 576px) {
+
+    .app-topbar {
+
+        padding: 8px 9px 10px;
+
+        gap: 7px;
+
+    }
+
+
+    .sidebar-toggle {
+
+        width: 40px;
+
+        height: 40px;
+
+        min-width: 40px;
+
+        font-size: 21px;
+
+    }
+
+
+    .topbar-title h2 {
+
+        font-size: 15px;
+
+    }
+
+
+    .topbar-title p {
+
+        font-size: 10px;
+
+    }
+
+
+    .topbar-right {
+
+        gap: 5px;
+
+    }
+
+
+    .topbar-right input[type="search"],
+    .topbar-right .app-input {
+
+        height: 36px;
+
+        font-size: 12px;
+
+        padding-left: 13px;
+
+        padding-right: 13px;
+
+    }
+
+
+    .topbar-right > .app-btn {
+
+        width: 34px;
+
+        min-width: 34px;
+
+        height: 34px;
+
+        font-size: 14px;
+
+        border-radius: 9px;
+
+    }
+
+
+    .topbar-profile .profile-image {
+
+        width: 34px;
+
+        height: 34px;
+
+        min-width: 34px;
+
+    }
+
+}
+
+
+/* ==========================================================
+   VERY SMALL PHONES
+========================================================== */
+
+@media (max-width: 400px) {
+
+    .app-topbar {
+
+        padding: 7px 8px 9px;
+
+    }
+
+
+    .topbar-title h2 {
+
+        font-size: 14px;
+
+    }
+
+
+    .topbar-title p {
+
+        display: none;
+
+    }
+
+
+    .topbar-right input[type="search"],
+    .topbar-right .app-input {
+
+        height: 34px;
+
+        font-size: 11px;
+
+        padding: 0 10px;
+
+    }
+
+
+    .topbar-right > .app-btn {
+
+        width: 32px;
+
+        min-width: 32px;
+
+        height: 32px;
+
+        font-size: 13px;
+
+    }
+
+
+    .topbar-profile .profile-image {
+
+        width: 32px;
+
+        height: 32px;
+
+        min-width: 32px;
+
+    }
+
+}
