@@ -1685,3 +1685,29 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
+
+
+
+/* ==========================================================
+   RESET LOGIN BUTTON WHEN RETURNING TO LOGIN PAGE
+========================================================== */
+
+window.addEventListener("pageshow", () => {
+
+    const loginButton =
+        document.querySelector(
+            'button[type="submit"], #loginButton'
+        );
+
+    if (!loginButton) {
+        return;
+    }
+
+    loginButton.disabled = false;
+
+    loginButton.innerHTML = `
+        <i class="fa-solid fa-right-to-bracket"></i>
+        Sign In
+    `;
+
+});

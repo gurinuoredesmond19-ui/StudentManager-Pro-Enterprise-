@@ -2100,3 +2100,107 @@ input[type="password"]::-webkit-credentials-auto-fill-button{
     }
 
 }
+
+
+/* ==========================================================
+   SCHOOL BRANDING ON LOGIN FORM
+========================================================== */
+
+.login-school-brand {
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 14px;
+
+    margin-bottom: 18px;
+
+    text-align: left;
+
+}
+
+
+.login-school-logo {
+
+    width: 58px;
+
+    height: 58px;
+
+    object-fit: contain;
+
+    flex-shrink: 0;
+
+}
+
+
+.login-school-name h3 {
+
+    margin: 0;
+
+    color: var(--primary-dark);
+
+    font-size: 20px;
+
+    font-weight: 800;
+
+    line-height: 1.2;
+
+}
+
+
+.login-school-name p {
+
+    margin: 4px 0 0;
+
+    color: var(--text-light);
+
+    font-size: 12px;
+
+    font-weight: 500;
+
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width: 768px) {
+
+    .login-school-brand {
+
+        gap: 10px;
+
+        margin-bottom: 12px;
+
+    }
+
+
+    .login-school-logo {
+
+        width: 46px;
+
+        height: 46px;
+
+    }
+
+
+    .login-school-name h3 {
+
+        font-size: 16px;
+
+    }
+
+
+    .login-school-name p {
+
+        font-size: 10px;
+
+    }
+
+}
