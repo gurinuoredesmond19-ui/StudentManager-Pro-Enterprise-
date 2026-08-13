@@ -1613,3 +1613,75 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
 });
+
+
+
+/* ==========================================================
+   MOBILE LOGIN FOCUS EXPANSION
+========================================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const loginContainer =
+        document.querySelector(".login-container");
+
+    const loginRight =
+        document.querySelector(".login-right");
+
+    if (!loginContainer || !loginRight) {
+        return;
+    }
+
+
+    /* Expand login area when user taps it */
+
+    loginRight.addEventListener("click", () => {
+
+        if (window.innerWidth <= 768) {
+
+            loginContainer.classList.add(
+                "login-focused"
+            );
+
+        }
+
+    });
+
+
+    /* Restore split view when tapping the branding */
+
+    const loginLeft =
+        document.querySelector(".login-left");
+
+    if (loginLeft) {
+
+        loginLeft.addEventListener("click", () => {
+
+            if (window.innerWidth <= 768) {
+
+                loginContainer.classList.remove(
+                    "login-focused"
+                );
+
+            }
+
+        });
+
+    }
+
+
+    /* Restore normal layout when screen becomes larger */
+
+    window.addEventListener("resize", () => {
+
+        if (window.innerWidth > 768) {
+
+            loginContainer.classList.remove(
+                "login-focused"
+            );
+
+        }
+
+    });
+
+});

@@ -2045,3 +2045,68 @@ input[type="password"]::-webkit-credentials-auto-fill-button{
     pointer-events:none;
 
 }
+
+
+
+/* ==========================================================
+   MOBILE SPLIT LOGIN — FOCUS EXPANSION
+========================================================== */
+
+@media (max-width: 768px) {
+
+    .login-container {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        min-height: 100dvh;
+        overflow: hidden;
+    }
+
+    .login-left {
+        width: 34%;
+        min-width: 34%;
+        min-height: 100dvh;
+        transition: width .35s ease, min-width .35s ease;
+    }
+
+    .login-right {
+        width: 66%;
+        min-width: 66%;
+        min-height: 100dvh;
+        padding: 18px 12px;
+        transition: width .35s ease, min-width .35s ease;
+    }
+
+    .login-card {
+        width: 100%;
+        max-width: none;
+        padding: 22px 16px;
+    }
+
+    /* When the login form is focused */
+
+    .login-container.login-focused .login-left {
+        width: 8%;
+        min-width: 8%;
+    }
+
+    .login-container.login-focused .login-right {
+        width: 92%;
+        min-width: 92%;
+    }
+
+    /* Keep branding from overflowing */
+
+    .login-left .branding {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .login-left .branding h1,
+    .login-left .branding h2,
+    .login-left .branding .motto,
+    .login-left .branding .tagline {
+        white-space: nowrap;
+    }
+
+}
