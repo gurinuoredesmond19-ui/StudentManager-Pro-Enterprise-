@@ -1,24 +1,26 @@
 /*
 ==========================================================
     STUDENTMANAGER PRO ENTERPRISE
-    RESPONSIVE CSS
-    MASTER RESPONSIVE SYSTEM
+    RESPONSIVE.CSS
+    CLEAN MASTER RESPONSIVE SYSTEM
 ==========================================================
 
-    Desktop   : 1200px+
-    Laptop    : 993px - 1199px
-    Tablet    : 769px - 992px
-    Mobile    : 577px - 768px
-    Small     : 401px - 576px
-    Tiny      : 400px and below
+    Desktop : 1200px+
+    Laptop  : 993px - 1199px
+    Tablet  : 769px - 992px
+    Mobile  : 768px and below
+    Small   : 576px and below
+    Tiny    : 400px and below
 
+    IMPORTANT:
+    This file intentionally contains ONE topbar system.
 ==========================================================
 */
 
 
-/* ======================================================
-   GLOBAL RESPONSIVE SAFETY
-====================================================== */
+/* ==========================================================
+   1. GLOBAL SAFETY
+========================================================== */
 
 *,
 *::before,
@@ -28,8 +30,13 @@
 
 html,
 body {
+    width: 100%;
     max-width: 100%;
     overflow-x: hidden;
+}
+
+body {
+    margin: 0;
 }
 
 img,
@@ -42,10 +49,17 @@ img {
     height: auto;
 }
 
+button,
+input,
+select,
+textarea {
+    max-width: 100%;
+}
 
-/* ======================================================
-   LARGE DESKTOP
-====================================================== */
+
+/* ==========================================================
+   2. LARGE DESKTOP
+========================================================== */
 
 @media (min-width: 1400px) {
 
@@ -59,10 +73,10 @@ img {
 }
 
 
-/* ======================================================
-   LAPTOP
+/* ==========================================================
+   3. LAPTOP
    993px - 1199px
-====================================================== */
+========================================================== */
 
 @media (max-width: 1199px) {
 
@@ -86,7 +100,7 @@ img {
     }
 
     .app-topbar {
-        gap: 12px;
+        gap: 14px;
     }
 
     .topbar-left,
@@ -107,27 +121,29 @@ img {
 }
 
 
-/* ======================================================
-   TABLET
+/* ==========================================================
+   4. TABLET
    769px - 992px
-====================================================== */
+========================================================== */
 
 @media (max-width: 992px) {
 
-    /* ================= SIDEBAR ================= */
+    /* ---------- SIDEBAR ---------- */
 
     .app-sidebar {
         position: fixed;
         top: 0;
         left: -270px;
+
         width: 260px;
         height: 100vh;
         height: 100dvh;
+
         z-index: 9999;
 
         transition:
-            left 0.25s ease,
-            transform 0.25s ease;
+            left .25s ease,
+            transform .25s ease;
     }
 
     .app-sidebar.show {
@@ -136,16 +152,17 @@ img {
     }
 
 
-    /* ================= SIDEBAR OVERLAY ================= */
+    /* ---------- SIDEBAR OVERLAY ---------- */
 
     .app-sidebar-overlay {
         position: fixed;
         inset: 0;
+
         z-index: 9998;
 
         display: none;
 
-        background: rgba(0, 0, 0, 0.45);
+        background: rgba(0, 0, 0, .45);
     }
 
     .app-sidebar-overlay.show {
@@ -153,33 +170,16 @@ img {
     }
 
 
-    /* ================= MAIN ================= */
+    /* ---------- MAIN ---------- */
 
-    .app-main {
-        width: 100%;
-        margin-left: 0;
-    }
-
+    .app-main,
     .app-main.expanded {
+        width: 100%;
         margin-left: 0;
-        width: 100%;
     }
 
 
-    /* ================= TOPBAR ================= */
-
-    .app-topbar {
-        width: 100%;
-        min-width: 0;
-    }
-
-    .topbar-left,
-    .topbar-right {
-        min-width: 0;
-    }
-
-
-    /* ================= CARDS ================= */
+    /* ---------- CARDS ---------- */
 
     .app-card-grid {
         grid-template-columns:
@@ -187,7 +187,7 @@ img {
     }
 
 
-    /* ================= SEARCH ================= */
+    /* ---------- SEARCH ---------- */
 
     .app-search {
         width: 220px;
@@ -195,7 +195,7 @@ img {
     }
 
 
-    /* ================= TOOLBAR ================= */
+    /* ---------- TOOLBAR ---------- */
 
     .app-toolbar {
         flex-wrap: wrap;
@@ -209,14 +209,14 @@ img {
     }
 
 
-    /* ================= FORMS ================= */
+    /* ---------- FORMS ---------- */
 
     .app-form-grid {
         grid-template-columns: 1fr;
     }
 
 
-    /* ================= MODALS ================= */
+    /* ---------- MODALS ---------- */
 
     .app-modal-content {
         width: 95%;
@@ -226,950 +226,9 @@ img {
 }
 
 
-/* ======================================================
-   TOPBAR — MOBILE / TABLET MASTER DESIGN
-   768px and below
-====================================================== */
-
-@media (max-width: 768px) {
-
-    /*
-    ------------------------------------------------------
-    BLUE TOPBAR
-    ------------------------------------------------------
-    */
-
-    .app-topbar {
-
-        width: 100%;
-
-        display: flex;
-        flex-direction: column;
-
-        align-items: stretch;
-
-        gap: 8px;
-
-        padding: 9px 10px;
-
-        background: #2563eb;
-
-        color: #ffffff;
-
-        border: none;
-
-        box-shadow:
-            0 3px 12px rgba(0, 0, 0, 0.18);
-
-        overflow: visible;
-
-    }
-
-
-    /*
-    ------------------------------------------------------
-    TOPBAR LEFT
-    Hamburger + title
-    ------------------------------------------------------
-    */
-
-    .topbar-left {
-
-        width: 100%;
-
-        display: flex;
-
-        align-items: center;
-
-        gap: 9px;
-
-        min-width: 0;
-
-    }
-
-
-    /*
-    ------------------------------------------------------
-    HAMBURGER
-    ------------------------------------------------------
-    */
-
-    .sidebar-toggle {
-
-        flex: 0 0 42px;
-
-        width: 42px;
-        min-width: 42px;
-
-        height: 42px;
-
-        padding: 0;
-
-        display: flex;
-
-        align-items: center;
-        justify-content: center;
-
-        border: 1px solid rgba(255,255,255,0.35);
-
-        border-radius: 10px;
-
-        background: rgba(255,255,255,0.16);
-
-        color: #ffffff;
-
-        font-size: 23px;
-
-        line-height: 1;
-
-        cursor: pointer;
-
-        box-shadow:
-            inset 0 1px 0 rgba(255,255,255,0.15);
-
-    }
-
-
-    .sidebar-toggle:hover {
-
-        background: rgba(255,255,255,0.25);
-
-    }
-
-
-    /*
-    ------------------------------------------------------
-    TOPBAR TITLE
-    ------------------------------------------------------
-    */
-
-    .topbar-title {
-
-        flex: 1 1 auto;
-
-        width: auto;
-
-        min-width: 0;
-
-        overflow: hidden;
-
-    }
-
-
-    .topbar-title h2 {
-
-        margin: 0;
-
-        max-width: 100%;
-
-        color: #ffffff;
-
-        font-size: 18px;
-
-        font-weight: 700;
-
-        line-height: 1.2;
-
-        white-space: nowrap;
-
-        overflow: hidden;
-
-        text-overflow: ellipsis;
-
-    }
-
-
-    .topbar-title p {
-
-        margin: 3px 0 0;
-
-        max-width: 100%;
-
-        color: rgba(255,255,255,0.82);
-
-        font-size: 11px;
-
-        line-height: 1.2;
-
-        white-space: nowrap;
-
-        overflow: hidden;
-
-        text-overflow: ellipsis;
-
-    }
-
-
-    /*
-    ------------------------------------------------------
-    TOPBAR RIGHT
-    Search + notification + messages + dark mode
-    + profile
-    ------------------------------------------------------
-    */
-
-    .topbar-right {
-
-        width: 100%;
-
-        display: flex;
-
-        align-items: center;
-
-        gap: 6px;
-
-        min-width: 0;
-
-        padding: 0;
-
-    }
-
-
-    /*
-    ------------------------------------------------------
-    SEARCH BAR
-    IMPORTANT:
-    Supports your actual HTML:
-
-    <input type="search" class="app-input">
-    ------------------------------------------------------
-    */
-
-    .topbar-right > input[type="search"],
-    .topbar-right .app-input {
-
-        flex: 1 1 auto;
-
-        width: auto;
-
-        min-width: 0;
-
-        height: 40px;
-
-        margin: 0;
-
-        padding:
-            0 12px;
-
-        border: 1px solid
-            rgba(255,255,255,0.35);
-
-        border-radius: 10px;
-
-        outline: none;
-
-        background: #ffffff;
-
-        color: #1f2937;
-
-        font-size: 13px;
-
-        box-shadow:
-            0 2px 6px rgba(0,0,0,0.10);
-
-    }
-
-
-    .topbar-right > input[type="search"]::placeholder,
-    .topbar-right .app-input::placeholder {
-
-        color: #6b7280;
-
-        opacity: 1;
-
-    }
-
-
-    .topbar-right > input[type="search"]:focus,
-    .topbar-right .app-input:focus {
-
-        border-color: #ffffff;
-
-        box-shadow:
-            0 0 0 3px rgba(255,255,255,0.22);
-
-    }
-
-
-    /*
-    ------------------------------------------------------
-    TOPBAR ICON BUTTONS
-    ------------------------------------------------------
-    */
-
-    .topbar-right > .app-btn {
-
-        flex: 0 0 40px;
-
-        width: 40px;
-        min-width: 40px;
-
-        height: 40px;
-
-        padding: 0;
-
-        display: flex;
-
-        align-items: center;
-        justify-content: center;
-
-        border: 1px solid
-            rgba(255,255,255,0.35);
-
-        border-radius: 10px;
-
-        background: rgba(255,255,255,0.16);
-
-        color: #ffffff;
-
-        font-size: 17px;
-
-        line-height: 1;
-
-        cursor: pointer;
-
-        box-shadow:
-            inset 0 1px 0 rgba(255,255,255,0.12);
-
-    }
-
-
-    .topbar-right > .app-btn:hover {
-
-        background:
-            rgba(255,255,255,0.27);
-
-    }
-
-
-    /*
-    ------------------------------------------------------
-    PROFILE
-    ------------------------------------------------------
-    */
-
-    .topbar-profile {
-
-        flex: 0 0 auto;
-
-        display: flex;
-
-        align-items: center;
-
-        gap: 6px;
-
-        min-width: 0;
-
-        padding-left: 2px;
-
-    }
-
-
-    .profile-image {
-
-        width: 40px;
-
-        height: 40px;
-
-        min-width: 40px;
-
-        object-fit: cover;
-
-        border-radius: 50%;
-
-        border: 2px solid
-            rgba(255,255,255,0.85);
-
-        background: #ffffff;
-
-    }
-
-
-    /*
-    Hide Administrator / Super Admin text
-    on smaller screens.
-    */
-
-    .topbar-profile > div {
-
-        display: none;
-
-    }
-
-
-    /*
-    ------------------------------------------------------
-    DASHBOARD CARDS
-    ------------------------------------------------------
-    */
-
-    .app-card-grid {
-
-        grid-template-columns: 1fr;
-
-        gap: 16px;
-
-    }
-
-
-    .app-stat-card {
-
-        width: 100%;
-
-        padding: 18px;
-
-    }
-
-
-    /*
-    ------------------------------------------------------
-    PAGE HEADER
-    ------------------------------------------------------
-    */
-
-    .app-page-header {
-
-        display: flex;
-
-        flex-direction: column;
-
-        align-items: flex-start;
-
-        gap: 10px;
-
-    }
-
-
-    /*
-    ------------------------------------------------------
-    TABLE TOOLBAR
-    ------------------------------------------------------
-    */
-
-    .app-table-toolbar {
-
-        display: flex;
-
-        flex-direction: column;
-
-        align-items: stretch;
-
-        gap: 10px;
-
-    }
-
-
-    .app-table-toolbar-left,
-    .app-table-toolbar-right {
-
-        width: 100%;
-
-        display: flex;
-
-        flex-wrap: wrap;
-
-        gap: 8px;
-
-    }
-
-
-    .app-table-search {
-
-        width: 100%;
-
-        max-width: 100%;
-
-    }
-
-
-    /*
-    ------------------------------------------------------
-    TABLE
-    ------------------------------------------------------
-    */
-
-    .app-table {
-
-        display: block;
-
-        width: 100%;
-
-        overflow-x: auto;
-
-        white-space: nowrap;
-
-        -webkit-overflow-scrolling: touch;
-
-    }
-
-
-    /*
-    ------------------------------------------------------
-    PAGINATION
-    ------------------------------------------------------
-    */
-
-    .app-pagination {
-
-        display: flex;
-
-        flex-direction: column;
-
-        align-items: center;
-
-        gap: 12px;
-
-    }
-
-
-    /*
-    ------------------------------------------------------
-    FORM ACTIONS
-    ------------------------------------------------------
-    */
-
-    .app-form-actions {
-
-        display: flex;
-
-        justify-content: center;
-
-        flex-wrap: wrap;
-
-        gap: 8px;
-
-    }
-
-
-    /*
-    ------------------------------------------------------
-    MODAL
-    ------------------------------------------------------
-    */
-
-    .app-modal-content {
-
-        width: 95%;
-
-        max-width: 95%;
-
-        max-height: 90vh;
-
-        max-height: 90dvh;
-
-        overflow-y: auto;
-
-    }
-
-
-    .app-modal-header {
-        padding: 18px;
-    }
-
-
-    .app-modal-body {
-        padding: 18px;
-    }
-
-
-    .app-modal-footer {
-
-        padding: 18px;
-
-        display: flex;
-
-        flex-wrap: wrap;
-
-        justify-content: center;
-
-        gap: 8px;
-
-    }
-
-
-    /*
-    ------------------------------------------------------
-    TOAST
-    ------------------------------------------------------
-    */
-
-    .app-toast-container {
-
-        width: 95%;
-
-        left: 50%;
-
-        right: auto;
-
-        transform: translateX(-50%);
-
-    }
-
-
-    /*
-    ------------------------------------------------------
-    MOBILE SCROLLBAR
-    ------------------------------------------------------
-    */
-
-    ::-webkit-scrollbar {
-
-        width: 5px;
-
-        height: 5px;
-
-    }
-
-}
-
-
-/* ======================================================
-   SMALL MOBILE
-   401px - 576px
-====================================================== */
-
-@media (max-width: 576px) {
-
-    .app-topbar {
-
-        padding: 8px 9px;
-
-        gap: 7px;
-
-    }
-
-
-    .sidebar-toggle {
-
-        flex-basis: 38px;
-
-        width: 38px;
-
-        min-width: 38px;
-
-        height: 38px;
-
-        border-radius: 9px;
-
-        font-size: 20px;
-
-    }
-
-
-    .topbar-title h2 {
-
-        font-size: 16px;
-
-    }
-
-
-    .topbar-title p {
-
-        font-size: 10px;
-
-    }
-
-
-    .topbar-right {
-
-        gap: 5px;
-
-    }
-
-
-    .topbar-right > input[type="search"],
-    .topbar-right .app-input {
-
-        height: 36px;
-
-        padding-left: 9px;
-
-        padding-right: 9px;
-
-        font-size: 12px;
-
-    }
-
-
-    .topbar-right > .app-btn {
-
-        flex-basis: 35px;
-
-        width: 35px;
-
-        min-width: 35px;
-
-        height: 35px;
-
-        border-radius: 9px;
-
-        font-size: 15px;
-
-    }
-
-
-    .profile-image {
-
-        width: 35px;
-
-        height: 35px;
-
-        min-width: 35px;
-
-    }
-
-
-    .app-page-title {
-
-        font-size: 22px;
-
-    }
-
-
-    .app-page-subtitle {
-
-        font-size: 13px;
-
-    }
-
-
-    .app-stat-number {
-
-        font-size: 24px;
-
-    }
-
-
-    .app-stat-icon {
-
-        width: 55px;
-
-        height: 55px;
-
-        font-size: 22px;
-
-    }
-
-
-    .app-user-info {
-
-        display: none;
-
-    }
-
-
-    .app-action-group {
-
-        display: flex;
-
-        flex-wrap: wrap;
-
-        gap: 6px;
-
-    }
-
-
-    .app-action-btn {
-
-        width: 34px;
-
-        height: 34px;
-
-    }
-
-
-    .app-btn {
-
-        max-width: 100%;
-
-    }
-
-}
-
-
-/* ======================================================
-   VERY SMALL PHONE
-   400px AND BELOW
-====================================================== */
-
-@media (max-width: 400px) {
-
-    .app-topbar {
-
-        padding: 7px 8px;
-
-        gap: 6px;
-
-    }
-
-
-    .sidebar-toggle {
-
-        flex-basis: 36px;
-
-        width: 36px;
-
-        min-width: 36px;
-
-        height: 36px;
-
-        font-size: 19px;
-
-    }
-
-
-    .topbar-title h2 {
-
-        font-size: 14px;
-
-    }
-
-
-    .topbar-title p {
-
-        font-size: 9px;
-
-    }
-
-
-    /*
-    Keep search visible.
-    It gets smaller rather than disappearing.
-    */
-
-    .topbar-right > input[type="search"],
-    .topbar-right .app-input {
-
-        min-width: 70px;
-
-        height: 34px;
-
-        padding-left: 8px;
-
-        padding-right: 8px;
-
-        font-size: 11px;
-
-    }
-
-
-    .topbar-right > .app-btn {
-
-        flex-basis: 32px;
-
-        width: 32px;
-
-        min-width: 32px;
-
-        height: 32px;
-
-        border-radius: 8px;
-
-        font-size: 13px;
-
-    }
-
-
-    .profile-image {
-
-        width: 32px;
-
-        height: 32px;
-
-        min-width: 32px;
-
-    }
-
-}
-
-
-/* ======================================================
-   RESPONSIVE IMAGES
-====================================================== */
-
-@media (max-width: 768px) {
-
-    img {
-
-        max-width: 100%;
-
-        height: auto;
-
-    }
-
-}
-
-
-/* ======================================================
-   RESPONSIVE VIDEO
-====================================================== */
-
-video {
-
-    max-width: 100%;
-
-    height: auto;
-
-}
-
-
-/* ======================================================
-   RESPONSIVE IFRAME
-====================================================== */
-
-iframe {
-
-    max-width: 100%;
-
-    border: 0;
-
-}
-
-
-/* ======================================================
-   FINAL MOBILE SAFETY
-====================================================== */
-
-@media (max-width: 768px) {
-
-    body {
-
-        overflow-x: hidden;
-
-    }
-
-
-    .app-main,
-    .app-content,
-    .app-container {
-
-        max-width: 100%;
-
-        min-width: 0;
-
-    }
-
-
-    input,
-    select,
-    textarea,
-    button {
-
-        max-width: 100%;
-
-    }
-
-}
-
-
-
 /* ==========================================================
-   STUDENTMANAGER PRO ENTERPRISE
-   FINAL RESPONSIVE TOPBAR
-========================================================== */
-
-/* ==========================================================
-   DESKTOP TOPBAR
+   5. MASTER TOPBAR
+   DESKTOP + LAPTOP
 ========================================================== */
 
 .app-topbar {
@@ -1182,39 +241,48 @@ iframe {
     justify-content: space-between;
 
     gap: 20px;
+
     padding: 14px 22px;
 
-    background: linear-gradient(
-        135deg,
-        #0B5ED7,
-        #083C94
-    );
+    background:
+        linear-gradient(
+            135deg,
+            #0b5ed7 0%,
+            #083c94 100%
+        ) !important;
 
-    color: #ffffff;
+    color: #ffffff !important;
 
-    border-bottom: 1px solid rgba(255,255,255,.15);
+    border: 0 !important;
+    border-bottom:
+        1px solid rgba(255,255,255,.15) !important;
 
     box-shadow:
         0 5px 18px rgba(0,0,0,.12);
 
     position: relative;
+
     z-index: 1000;
+
+    overflow: visible;
 }
 
 
 /* ==========================================================
-   LEFT SIDE
+   TOPBAR LEFT
 ========================================================== */
 
-.topbar-left {
+.app-topbar .topbar-left {
 
     display: flex;
+
     align-items: center;
 
     gap: 14px;
 
     min-width: 0;
 
+    flex: 1 1 auto;
 }
 
 
@@ -1222,63 +290,71 @@ iframe {
    HAMBURGER
 ========================================================== */
 
-.sidebar-toggle {
+.app-topbar .sidebar-toggle {
 
     width: 46px;
     height: 46px;
 
+    min-width: 46px;
+
     flex: 0 0 46px;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
-    border: 1px solid rgba(255,255,255,.25);
+    padding: 0;
+
+    border:
+        1px solid rgba(255,255,255,.25) !important;
 
     border-radius: 12px;
 
-    background: rgba(255,255,255,.12);
+    background:
+        rgba(255,255,255,.12) !important;
 
-    color: #ffffff;
+    color: #ffffff !important;
 
     font-size: 25px;
+
+    line-height: 1;
 
     cursor: pointer;
 
     transition:
-        background .25s ease,
+        background .2s ease,
         transform .2s ease;
-
 }
 
-.sidebar-toggle:hover {
-
-    background: rgba(255,255,255,.22);
-
+.app-topbar .sidebar-toggle:hover {
+    background:
+        rgba(255,255,255,.22) !important;
 }
 
-.sidebar-toggle:active {
-
+.app-topbar .sidebar-toggle:active {
     transform: scale(.94);
-
 }
 
 
 /* ==========================================================
-   TITLE
+   TOPBAR TITLE / GOOD MORNING
 ========================================================== */
 
-.topbar-title {
+.app-topbar .topbar-title {
 
     min-width: 0;
 
+    flex: 1 1 auto;
+
+    overflow: hidden;
 }
 
-.topbar-title h2 {
+.app-topbar .topbar-title h2 {
 
     margin: 0;
 
-    color: #ffffff;
+    color: #ffffff !important;
 
     font-size: 20px;
 
@@ -1291,97 +367,116 @@ iframe {
     overflow: hidden;
 
     text-overflow: ellipsis;
-
 }
 
-.topbar-title p {
+.app-topbar .topbar-title p {
 
     margin: 4px 0 0;
 
-    color: rgba(255,255,255,.78);
+    color:
+        rgba(255,255,255,.82) !important;
 
     font-size: 12px;
+
+    line-height: 1.2;
 
     white-space: nowrap;
 
     overflow: hidden;
 
     text-overflow: ellipsis;
-
 }
 
 
 /* ==========================================================
-   RIGHT SIDE
+   TOPBAR RIGHT
 ========================================================== */
 
-.topbar-right {
+.app-topbar .topbar-right {
 
     display: flex;
 
     align-items: center;
 
+    justify-content: flex-end;
+
     gap: 10px;
 
     min-width: 0;
 
+    flex: 0 1 auto;
 }
 
 
 /* ==========================================================
-   SEARCH
+   SEARCH BAR
 ========================================================== */
 
-.topbar-right > input[type="search"],
-.topbar-right .app-input {
+.app-topbar .topbar-right > input[type="search"],
+.app-topbar .topbar-right .app-input {
 
     width: 300px;
 
+    min-width: 160px;
+
     height: 42px;
 
-    padding: 0 15px;
+    padding:
+        0 15px;
 
-    border: 1px solid rgba(255,255,255,.25);
+    border:
+        1px solid rgba(255,255,255,.28) !important;
 
     border-radius: 12px;
 
     outline: none;
 
-    background: rgba(255,255,255,.14);
+    background:
+        rgba(255,255,255,.14) !important;
 
-    color: #ffffff;
+    color: #ffffff !important;
 
     font-size: 14px;
 
-    transition: .25s ease;
+    box-shadow: none;
 
+    transition:
+        background .2s ease,
+        border-color .2s ease,
+        box-shadow .2s ease;
 }
 
-.topbar-right > input[type="search"]::placeholder,
-.topbar-right .app-input::placeholder {
+.app-topbar .topbar-right > input[type="search"]::placeholder,
+.app-topbar .topbar-right .app-input::placeholder {
 
-    color: rgba(255,255,255,.72);
+    color:
+        rgba(255,255,255,.82) !important;
 
+    opacity: 1;
 }
 
-.topbar-right > input[type="search"]:focus,
-.topbar-right .app-input:focus {
+.app-topbar .topbar-right > input[type="search"]:focus,
+.app-topbar .topbar-right .app-input:focus {
 
-    background: rgba(255,255,255,.22);
+    background:
+        rgba(255,255,255,.20) !important;
 
-    border-color: rgba(255,255,255,.55);
+    border-color:
+        rgba(255,255,255,.65) !important;
+
+    color: #ffffff !important;
 
     box-shadow:
-        0 0 0 3px rgba(255,255,255,.10);
-
+        0 0 0 3px
+        rgba(255,255,255,.12);
 }
 
 
 /* ==========================================================
-   TOPBAR ACTION BUTTONS
+   TOPBAR ICON BUTTONS
 ========================================================== */
 
-.topbar-right > .app-btn {
+.app-topbar .topbar-right > .app-btn {
 
     width: 42px;
 
@@ -1389,36 +484,40 @@ iframe {
 
     min-width: 42px;
 
+    flex: 0 0 42px;
+
     padding: 0;
 
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
-    border: 1px solid rgba(255,255,255,.22);
+    border:
+        1px solid rgba(255,255,255,.25) !important;
 
     border-radius: 12px;
 
-    background: rgba(255,255,255,.12);
+    background:
+        rgba(255,255,255,.12) !important;
 
-    color: #ffffff;
+    color: #ffffff !important;
 
     font-size: 18px;
+
+    line-height: 1;
 
     cursor: pointer;
 
     box-shadow: none;
-
 }
 
-.topbar-right > .app-btn:hover {
+.app-topbar .topbar-right > .app-btn:hover {
 
-    background: rgba(255,255,255,.22);
+    background:
+        rgba(255,255,255,.22) !important;
 
     transform: translateY(-1px);
-
 }
 
 
@@ -1426,7 +525,7 @@ iframe {
    PROFILE
 ========================================================== */
 
-.topbar-profile {
+.app-topbar .topbar-profile {
 
     display: flex;
 
@@ -1434,13 +533,12 @@ iframe {
 
     gap: 9px;
 
-    padding-left: 5px;
-
     min-width: 0;
 
+    padding-left: 5px;
 }
 
-.profile-image {
+.app-topbar .profile-image {
 
     width: 42px;
 
@@ -1452,39 +550,41 @@ iframe {
 
     border-radius: 50%;
 
-    border: 2px solid rgba(255,255,255,.8);
+    border:
+        2px solid rgba(255,255,255,.85) !important;
 
     background: #ffffff;
-
 }
 
-.topbar-profile strong {
+.app-topbar .topbar-profile strong {
 
     display: block;
 
-    color: #ffffff;
+    color: #ffffff !important;
 
     font-size: 13px;
 
     white-space: nowrap;
-
 }
 
-.topbar-profile small {
+.app-topbar .topbar-profile small {
 
     display: block;
 
     margin-top: 2px;
 
-    color: rgba(255,255,255,.72);
+    color:
+        rgba(255,255,255,.75) !important;
 
     font-size: 11px;
 
+    white-space: nowrap;
 }
 
 
 /* ==========================================================
-   TABLET
+   6. TABLET TOPBAR
+   992px AND BELOW
 ========================================================== */
 
 @media (max-width: 992px) {
@@ -1496,34 +596,32 @@ iframe {
         padding: 12px 16px;
 
         gap: 12px;
-
     }
 
-    .topbar-title h2 {
-
+    .app-topbar .topbar-title h2 {
         font-size: 18px;
-
     }
 
-    .topbar-right > input[type="search"],
-    .topbar-right .app-input {
+    .app-topbar .topbar-right > input[type="search"],
+    .app-topbar .topbar-right .app-input {
 
         width: 220px;
-
-    }
-
-    .topbar-profile > div {
-
-        display: none;
-
     }
 
 }
 
 
 /* ==========================================================
-   MOBILE
+   7. MOBILE TOPBAR
    768px AND BELOW
+
+   MOBILE STRUCTURE:
+
+   ┌───────────────────────────────┐
+   │ ☰  Good Morning Admin     👤 │
+   │                               │
+   │ 🔎 Search   🔔   💬   🌙     │
+   └───────────────────────────────┘
 ========================================================== */
 
 @media (max-width: 768px) {
@@ -1534,26 +632,39 @@ iframe {
 
         min-height: 0;
 
-        display: block;
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        justify-content: flex-start;
+
+        gap: 10px;
 
         padding: 12px;
 
-        background: linear-gradient(
-            135deg,
-            #0B5ED7,
-            #083C94
-        );
+        background:
+            linear-gradient(
+                135deg,
+                #0b5ed7 0%,
+                #083c94 100%
+            ) !important;
+
+        color: #ffffff !important;
+
+        border: 0 !important;
+
+        box-shadow:
+            0 4px 16px rgba(0,0,0,.18);
 
         overflow: visible;
-
     }
 
 
-    /* ------------------------------------------
-       FIRST ROW
-    ------------------------------------------ */
+    /* ---------- FIRST ROW ---------- */
 
-    .topbar-left {
+    .app-topbar .topbar-left {
 
         width: 100%;
 
@@ -1563,14 +674,15 @@ iframe {
 
         gap: 10px;
 
+        min-width: 0;
+
+        flex: none;
     }
 
 
-    /* ------------------------------------------
-       HAMBURGER
-    ------------------------------------------ */
+    /* ---------- MOBILE HAMBURGER ---------- */
 
-    .sidebar-toggle {
+    .app-topbar .sidebar-toggle {
 
         width: 44px;
 
@@ -1582,75 +694,74 @@ iframe {
 
         border-radius: 11px;
 
-        background: rgba(255,255,255,.14);
+        background:
+            rgba(255,255,255,.14) !important;
+
+        color: #ffffff !important;
 
         font-size: 23px;
-
     }
 
 
-    /* ------------------------------------------
-       TITLE
-    ------------------------------------------ */
+    /* ---------- MOBILE TITLE ---------- */
 
-    .topbar-title {
+    .app-topbar .topbar-title {
 
-        flex: 1;
+        flex: 1 1 auto;
 
         min-width: 0;
-
     }
 
-    .topbar-title h2 {
+    .app-topbar .topbar-title h2 {
 
         font-size: 17px;
 
         line-height: 1.2;
 
+        color: #ffffff !important;
     }
 
-    .topbar-title p {
-
-        font-size: 11px;
+    .app-topbar .topbar-title p {
 
         margin-top: 3px;
 
+        font-size: 11px;
+
+        color:
+            rgba(255,255,255,.82) !important;
     }
 
 
-    /* ------------------------------------------
-       PROFILE
-    ------------------------------------------ */
+    /* ---------- MOBILE PROFILE ---------- */
 
-    .topbar-profile {
+    .app-topbar .topbar-profile {
 
         margin-left: auto;
 
         padding: 0;
 
+        flex: 0 0 auto;
     }
 
-    .profile-image {
+    .app-topbar .profile-image {
 
         width: 40px;
 
         height: 40px;
 
         min-width: 40px;
-
     }
 
 
-    /* ------------------------------------------
-       SECOND ROW
-       ICONS + SEARCH
-    ------------------------------------------ */
+    /* ---------- SECOND ROW ---------- */
 
-    .topbar-right {
+    .app-topbar .topbar-right {
 
         width: 100%;
 
-        margin-top: 11px;
+        margin: 0;
+
+        padding: 0;
 
         display: grid;
 
@@ -1664,15 +775,14 @@ iframe {
 
         align-items: center;
 
+        flex: none;
     }
 
 
-    /* ------------------------------------------
-       SEARCH
-    ------------------------------------------ */
+    /* ---------- MOBILE SEARCH ---------- */
 
-    .topbar-right > input[type="search"],
-    .topbar-right .app-input {
+    .app-topbar .topbar-right > input[type="search"],
+    .app-topbar .topbar-right .app-input {
 
         grid-column: 1;
 
@@ -1682,55 +792,237 @@ iframe {
 
         height: 40px;
 
-        padding: 0 13px;
+        padding:
+            0 13px;
 
         border-radius: 11px;
 
-        background: rgba(255,255,255,.16);
+        background:
+            rgba(255,255,255,.16) !important;
 
-        color: #ffffff;
+        color: #ffffff !important;
+
+        border:
+            1px solid rgba(255,255,255,.25) !important;
 
         font-size: 13px;
+    }
 
+    .app-topbar .topbar-right > input[type="search"]::placeholder,
+    .app-topbar .topbar-right .app-input::placeholder {
+
+        color:
+            rgba(255,255,255,.85) !important;
     }
 
 
-    /* ------------------------------------------
-       ICON BUTTONS
-    ------------------------------------------ */
+    /* ---------- MOBILE ICONS ---------- */
 
-    .topbar-right > .app-btn {
+    .app-topbar .topbar-right > .app-btn {
 
         width: 40px;
 
+        height: 40px;
+
         min-width: 40px;
 
-        height: 40px;
+        flex: none;
 
         border-radius: 11px;
 
+        background:
+            rgba(255,255,255,.14) !important;
+
+        color: #ffffff !important;
+
         font-size: 17px;
-
-        background: rgba(255,255,255,.14);
-
     }
 
 
-    /* ------------------------------------------
-       PROFILE TEXT
-    ------------------------------------------ */
+    /* ---------- HIDE PROFILE TEXT ---------- */
 
-    .topbar-profile > div {
+    .app-topbar .topbar-profile > div {
 
-        display: none;
-
+        display: none !important;
     }
 
 }
 
 
 /* ==========================================================
-   SMALL MOBILE
+   8. MOBILE DASHBOARD CONTENT
+========================================================== */
+
+@media (max-width: 768px) {
+
+    .app-card-grid {
+
+        grid-template-columns: 1fr;
+
+        gap: 16px;
+    }
+
+    .app-stat-card {
+
+        width: 100%;
+
+        padding: 18px;
+    }
+
+
+    /* PAGE HEADER */
+
+    .app-page-header {
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 10px;
+    }
+
+
+    /* TABLE TOOLBAR */
+
+    .app-table-toolbar {
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 10px;
+    }
+
+    .app-table-toolbar-left,
+    .app-table-toolbar-right {
+
+        width: 100%;
+
+        display: flex;
+
+        flex-wrap: wrap;
+
+        gap: 8px;
+    }
+
+    .app-table-search {
+
+        width: 100%;
+
+        max-width: 100%;
+    }
+
+
+    /* TABLE */
+
+    .app-table {
+
+        display: block;
+
+        width: 100%;
+
+        overflow-x: auto;
+
+        white-space: nowrap;
+
+        -webkit-overflow-scrolling: touch;
+    }
+
+
+    /* PAGINATION */
+
+    .app-pagination {
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        gap: 12px;
+    }
+
+
+    /* FORM ACTIONS */
+
+    .app-form-actions {
+
+        display: flex;
+
+        justify-content: center;
+
+        flex-wrap: wrap;
+
+        gap: 8px;
+    }
+
+
+    /* MODAL */
+
+    .app-modal-content {
+
+        width: 95%;
+
+        max-width: 95%;
+
+        max-height: 90vh;
+
+        max-height: 90dvh;
+
+        overflow-y: auto;
+    }
+
+    .app-modal-header,
+    .app-modal-body,
+    .app-modal-footer {
+
+        padding: 18px;
+    }
+
+    .app-modal-footer {
+
+        display: flex;
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+
+        gap: 8px;
+    }
+
+
+    /* TOAST */
+
+    .app-toast-container {
+
+        width: 95%;
+
+        left: 50%;
+
+        right: auto;
+
+        transform: translateX(-50%);
+    }
+
+
+    /* SCROLLBAR */
+
+    ::-webkit-scrollbar {
+
+        width: 5px;
+
+        height: 5px;
+    }
+
+}
+
+
+/* ==========================================================
+   9. SMALL MOBILE
    576px AND BELOW
 ========================================================== */
 
@@ -1740,10 +1032,10 @@ iframe {
 
         padding: 10px;
 
+        gap: 8px;
     }
 
-
-    .sidebar-toggle {
+    .app-topbar .sidebar-toggle {
 
         width: 40px;
 
@@ -1754,36 +1046,28 @@ iframe {
         flex-basis: 40px;
 
         font-size: 21px;
-
     }
 
-
-    .profile-image {
+    .app-topbar .profile-image {
 
         width: 37px;
 
         height: 37px;
 
         min-width: 37px;
-
     }
 
-
-    .topbar-title h2 {
+    .app-topbar .topbar-title h2 {
 
         font-size: 15px;
-
     }
 
-
-    .topbar-title p {
+    .app-topbar .topbar-title p {
 
         font-size: 10px;
-
     }
 
-
-    .topbar-right {
+    .app-topbar .topbar-right {
 
         grid-template-columns:
             minmax(0, 1fr)
@@ -1792,39 +1076,85 @@ iframe {
             36px;
 
         gap: 6px;
-
     }
 
-
-    .topbar-right > input[type="search"],
-    .topbar-right .app-input {
+    .app-topbar .topbar-right > input[type="search"],
+    .app-topbar .topbar-right .app-input {
 
         height: 36px;
 
         font-size: 12px;
 
-        padding: 0 10px;
-
+        padding:
+            0 10px;
     }
 
-
-    .topbar-right > .app-btn {
+    .app-topbar .topbar-right > .app-btn {
 
         width: 36px;
 
-        min-width: 36px;
-
         height: 36px;
 
-        font-size: 15px;
+        min-width: 36px;
 
+        border-radius: 9px;
+
+        font-size: 15px;
+    }
+
+
+    /* OTHER CONTENT */
+
+    .app-page-title {
+        font-size: 22px;
+    }
+
+    .app-page-subtitle {
+        font-size: 13px;
+    }
+
+    .app-stat-number {
+        font-size: 24px;
+    }
+
+    .app-stat-icon {
+
+        width: 55px;
+
+        height: 55px;
+
+        font-size: 22px;
+    }
+
+    .app-user-info {
+        display: none;
+    }
+
+    .app-action-group {
+
+        display: flex;
+
+        flex-wrap: wrap;
+
+        gap: 6px;
+    }
+
+    .app-action-btn {
+
+        width: 34px;
+
+        height: 34px;
+    }
+
+    .app-btn {
+        max-width: 100%;
     }
 
 }
 
 
 /* ==========================================================
-   VERY SMALL PHONES
+   10. VERY SMALL PHONES
    400px AND BELOW
 ========================================================== */
 
@@ -1834,10 +1164,10 @@ iframe {
 
         padding: 8px;
 
+        gap: 7px;
     }
 
-
-    .sidebar-toggle {
+    .app-topbar .sidebar-toggle {
 
         width: 38px;
 
@@ -1848,36 +1178,28 @@ iframe {
         flex-basis: 38px;
 
         font-size: 20px;
-
     }
 
-
-    .profile-image {
+    .app-topbar .profile-image {
 
         width: 35px;
 
         height: 35px;
 
         min-width: 35px;
-
     }
 
-
-    .topbar-title h2 {
+    .app-topbar .topbar-title h2 {
 
         font-size: 14px;
-
     }
 
-
-    .topbar-title p {
+    .app-topbar .topbar-title p {
 
         display: none;
-
     }
 
-
-    .topbar-right {
+    .app-topbar .topbar-right {
 
         grid-template-columns:
             minmax(0, 1fr)
@@ -1886,30 +1208,71 @@ iframe {
             34px;
 
         gap: 5px;
-
     }
 
-
-    .topbar-right > input[type="search"],
-    .topbar-right .app-input {
+    .app-topbar .topbar-right > input[type="search"],
+    .app-topbar .topbar-right .app-input {
 
         height: 34px;
 
         font-size: 11px;
 
+        padding:
+            0 8px;
     }
 
-
-    .topbar-right > .app-btn {
+    .app-topbar .topbar-right > .app-btn {
 
         width: 34px;
 
-        min-width: 34px;
-
         height: 34px;
 
-        font-size: 14px;
+        min-width: 34px;
 
+        border-radius: 8px;
+
+        font-size: 14px;
+    }
+
+}
+
+
+/* ==========================================================
+   11. RESPONSIVE MEDIA
+========================================================== */
+
+video {
+
+    max-width: 100%;
+
+    height: auto;
+}
+
+iframe {
+
+    max-width: 100%;
+
+    border: 0;
+}
+
+
+/* ==========================================================
+   12. FINAL MOBILE SAFETY
+========================================================== */
+
+@media (max-width: 768px) {
+
+    body {
+        overflow-x: hidden;
+    }
+
+    .app-main,
+    .app-content,
+    .app-container {
+
+        max-width: 100%;
+
+        min-width: 0;
     }
 
 }
