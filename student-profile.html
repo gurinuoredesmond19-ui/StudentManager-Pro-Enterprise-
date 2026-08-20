@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Student Profile | StudentManager Pro Enterprise</title>
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link
+        rel="stylesheet"
+        href="assets/css/theme.css">
+
+    <link
+        rel="stylesheet"
+        href="assets/css/layout.css">
+
+    <link
+        rel="stylesheet"
+        href="assets/css/components.css">
+
+    <link
+        rel="stylesheet"
+        href="assets/css/forms.css">
+
+    <link
+        rel="stylesheet"
+        href="assets/css/students.css">
+
+</head>
+
+<body>
+
+<div class="app-layout">
+
+    <!-- SIDEBAR -->
+
+    <aside class="app-sidebar">
+
+        <div class="sidebar-brand">
+
+            <img
+                src="assets/images/logo.png"
+                alt="StudentManager Pro"
+                class="sidebar-logo">
+
+            <div class="sidebar-brand-text">
+
+                <strong>StudentManager Pro</strong>
+
+                <span>Enterprise</span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-navigation">
+
+            <a href="dashboard.html"
+               class="sidebar-link">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                <span>Dashboard</span>
+
+            </a>
+
+            <div class="sidebar-section-title">
+                STUDENTS
+            </div>
+
+            <a href="students.html"
+               class="sidebar-link active">
+
+                <i class="fa-solid fa-user-graduate"></i>
+
+                <span>Students</span>
+
+            </a>
+
+            <a href="student-register.html"
+               class="sidebar-link">
+
+                <i class="fa-solid fa-address-book"></i>
+
+                <span>Student Register</span>
+
+            </a>
+
+            <a href="#"
+               class="sidebar-link">
+
+                <i class="fa-solid fa-user-plus"></i>
+
+                <span>Admissions</span>
+
+            </a>
+
+            <a href="#"
+               class="sidebar-link">
+
+                <i class="fa-solid fa-user-check"></i>
+
+                <span>Enrollment</span>
+
+            </a>
+
+            <div class="sidebar-section-title">
+                ACADEMICS
+            </div>
+
+            <a href="#"
+               class="sidebar-link">
+
+                <i class="fa-solid fa-school"></i>
+
+                <span>Classes & Streams</span>
+
+            </a>
+
+            <a href="#"
+               class="sidebar-link">
+
+                <i class="fa-solid fa-book-open"></i>
+
+                <span>Subjects</span>
+
+            </a>
+
+            <div class="sidebar-section-title">
+                MANAGEMENT
+            </div>
+
+            <a href="#"
+               class="sidebar-link">
+
+                <i class="fa-solid fa-file-invoice-dollar"></i>
+
+                <span>Fees</span>
+
+            </a>
+
+            <a href="#"
+               class="sidebar-link">
+
+                <i class="fa-solid fa-calendar-check"></i>
+
+                <span>Attendance</span>
+
+            </a>
+
+            <a href="#"
+               class="sidebar-link">
+
+                <i class="fa-solid fa-chart-column"></i>
+
+                <span>Results</span>
+
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="app-main">
+
+      <!-- TOPBAR -->
+
+<header class="app-topbar">
+
+    <!-- LEFT -->
+
+    <div class="topbar-left">
+
+        <button
+            type="button"
+            class="sidebar-toggle"
+            id="sidebarToggle"
+            aria-label="Open navigation">
+
+            <i class="fa-solid fa-bars"></i>
+
+        </button>
+
+        <div class="topbar-title">
+
+            <h2>
+                Student Profile
+            </h2>
+
+            <p>
+                StudentManager Pro Enterprise
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- RIGHT -->
+
+    <div class="topbar-right">
+
+        <input
+            type="search"
+            class="app-input"
+            id="studentGlobalSearch"
+            placeholder="Search students...">
+
+
+        <button
+            type="button"
+            class="app-btn app-btn-light"
+            title="Notifications"
+            aria-label="Notifications">
+
+            <i class="fa-solid fa-bell"></i>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="app-btn app-btn-light"
+            title="Messages"
+            aria-label="Messages">
+
+            <i class="fa-solid fa-comments"></i>
+
+        </button>
+
+
+        <div class="topbar-profile">
+
+            <img
+                src="assets/images/avatar.png"
+                class="profile-image"
+                alt="Administrator">
+
+            <div>
+
+                <strong>
+                    Administrator
+                </strong>
+
+                <small>
+                    Super Admin
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+        </header>
+
+
+        <!-- PAGE -->
+
+        <div class="app-content student-profile-content">
+
+
+            <!-- BREADCRUMB -->
+
+            <div class="student-profile-breadcrumb">
+
+                <a href="students.html">
+                    Students
+                </a>
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+                <a href="student-register.html">
+                    Student Register
+                </a>
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+                <strong>
+                    Student Profile
+                </strong>
+
+            </div>
+
+
+            <!-- PROFILE HEADER -->
+
+            <section class="student-profile-header">
+
+                <div class="student-profile-identity">
+
+                    <div class="student-profile-avatar">
+
+                        <img
+                            src="assets/images/avatar.png"
+                            alt="Student">
+
+                    </div>
+
+
+                    <div class="student-profile-name">
+
+                        <span class="student-profile-label">
+                            STUDENT PROFILE
+                        </span>
+
+                        <h1 id ="profileStudentName"> 
+                            Student Name
+                        </h1>
+
+                        <p>
+                            Student ID:
+                             <strong id="profileStudentId">
+                              STU-2026-0001</strong>
+                        </p>
+
+                        <span class="student-status-badge active">
+
+                            <span></span>
+
+                            Active Student
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="student-profile-actions">
+
+                    <button
+                        type="button"
+                        class="app-btn app-btn-secondary">
+
+                        <i class="fa-solid fa-pen"></i>
+
+                        Edit Profile
+
+                    </button>
+
+                    <button
+                        type="button"
+                        class="app-btn app-btn-primary">
+
+                        <i class="fa-solid fa-download"></i>
+
+                        Export
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- QUICK IDENTITY -->
+
+            <section class="student-profile-summary">
+
+                <div class="profile-summary-item">
+
+                    <i class="fa-solid fa-id-card"></i>
+
+                    <div>
+
+                        <span>Admission Number</span>
+
+                        <strong>ADM-2026-0001</strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="profile-summary-item">
+
+                    <i class="fa-solid fa-school"></i>
+
+                    <div>
+
+                        <span>Class</span>
+
+                        <strong>SHS 1</strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="profile-summary-item">
+
+                    <i class="fa-solid fa-layer-group"></i>
+
+                    <div>
+
+                        <span>Stream</span>
+
+                        <strong>Science A</strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="profile-summary-item">
+
+                    <i class="fa-solid fa-house"></i>
+
+                    <div>
+
+                        <span>House</span>
+
+                        <strong>House Blue</strong>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- PROFILE NAVIGATION -->
+
+            <nav class="student-profile-tabs">
+
+                <button class="profile-tab active">
+
+                    <i class="fa-solid fa-user"></i>
+
+                    Overview
+
+                </button>
+
+                <button class="profile-tab">
+
+                    <i class="fa-solid fa-id-card"></i>
+
+                    Personal
+
+                </button>
+
+                <button class="profile-tab">
+
+                    <i class="fa-solid fa-graduation-cap"></i>
+
+                    Academic
+
+                </button>
+
+                <button class="profile-tab">
+
+                    <i class="fa-solid fa-users"></i>
+
+                    Guardians
+
+                </button>
+
+                <button class="profile-tab">
+
+                    <i class="fa-solid fa-file-lines"></i>
+
+                    Documents
+
+                </button>
+
+                <button class="profile-tab">
+
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+
+                    Activity
+
+                </button>
+
+            </nav>
+
+
+            <!-- OVERVIEW -->
+
+            <section class="student-profile-grid">
+
+
+                <!-- PERSONAL -->
+
+                <article class="student-profile-panel">
+
+                    <header>
+
+                        <div>
+
+                            <span>
+                                PERSONAL INFORMATION
+                            </span>
+
+                            <h2>
+                                Student Details
+                            </h2>
+
+                        </div>
+
+                        <i class="fa-solid fa-user"></i>
+
+                    </header>
+
+
+                    <div class="profile-detail-grid">
+
+                        <div>
+
+                            <span>Full Name</span>
+
+                            <strong>Student Name</strong>
+
+                        </div>
+
+                        <div>
+
+                            <span>Date of Birth</span>
+
+                            <strong>Not Available</strong>
+
+                        </div>
+
+                        <div>
+
+                            <span>Gender</span>
+
+                            <strong>Not Available</strong>
+
+                        </div>
+
+                        <div>
+
+                            <span>Nationality</span>
+
+                            <strong>Ghanaian</strong>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- ACADEMIC -->
+
+                <article class="student-profile-panel">
+
+                    <header>
+
+                        <div>
+
+                            <span>
+                                ACADEMIC INFORMATION
+                            </span>
+
+                            <h2>
+                                Current Enrollment
+                            </h2>
+
+                        </div>
+
+                        <i class="fa-solid fa-graduation-cap"></i>
+
+                    </header>
+
+
+                    <div class="profile-detail-grid">
+
+                        <div>
+
+                            <span>Academic Year</span>
+
+                            <strong>2026 / 2027</strong>
+
+                        </div>
+
+                        <div>
+
+                            <span>Programme</span>
+
+                            <strong>General Science</strong>
+
+                        </div>
+
+                        <div>
+
+                            <span>Class</span>
+
+                            <strong>SHS 1</strong>
+
+                        </div>
+
+                        <div>
+
+                            <span>Enrollment Status</span>
+
+                            <strong class="success-text">
+                                Active
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- GUARDIAN -->
+
+                <article class="student-profile-panel">
+
+                    <header>
+
+                        <div>
+
+                            <span>
+                                PARENT / GUARDIAN
+                            </span>
+
+                            <h2>
+                                Primary Contact
+                            </h2>
+
+                        </div>
+
+                        <i class="fa-solid fa-users"></i>
+
+                    </header>
+
+
+                    <div class="profile-detail-grid">
+
+                        <div>
+
+                            <span>Guardian Name</span>
+
+                            <strong>Not Available</strong>
+
+                        </div>
+
+                        <div>
+
+                            <span>Relationship</span>
+
+                            <strong>Not Available</strong>
+
+                        </div>
+
+                        <div>
+
+                            <span>Phone</span>
+
+                            <strong>Not Available</strong>
+
+                        </div>
+
+                        <div>
+
+                            <span>Emergency Contact</span>
+
+                            <strong>Not Available</strong>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- LIFECYCLE -->
+
+                <article class="student-profile-panel">
+
+                    <header>
+
+                        <div>
+
+                            <span>
+                                STUDENT LIFECYCLE
+                            </span>
+
+                            <h2>
+                                Admission Progress
+                            </h2>
+
+                        </div>
+
+                        <i class="fa-solid fa-route"></i>
+
+                    </header>
+
+
+                    <div class="profile-lifecycle">
+
+                        <div class="lifecycle-step completed">
+
+                            <span></span>
+
+                            <div>
+
+                                <strong>
+                                    Placement Received
+                                </strong>
+
+                                <small>
+                                    Student placement received
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="lifecycle-step completed">
+
+                            <span></span>
+
+                            <div>
+
+                                <strong>
+                                    Admission Verified
+                                </strong>
+
+                                <small>
+                                    Student information verified
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="lifecycle-step current">
+
+                            <span></span>
+
+                            <div>
+
+                                <strong>
+                                    Enrollment
+                                </strong>
+
+                                <small>
+                                    Current student enrollment
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<script src="assets/js/core/app.js"></script>
+
+<script src="assets/js/core/ui.js"></script>
+
+<script
+    type="module"
+    src="assets/js/modules/student-profile.js">
+</script>
+
+</body>
+
+</html>
