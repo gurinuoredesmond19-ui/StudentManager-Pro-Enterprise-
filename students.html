@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Students | StudentManager Pro Enterprise</title>
+
+<!-- Font Awesome -->
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- Chart.js -->
+
+    <script
+    src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- Global Design System -->
+<link rel="stylesheet" href="assets/css/theme.css">
+<link rel="stylesheet" href="assets/css/layout.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/forms.css">
+<link rel="stylesheet" href="assets/css/tables.css">
+<link rel="stylesheet" href="assets/css/modal.css">
+<link rel="stylesheet" href="assets/css/animations.css">
+
+<!-- Student Module -->
+<link rel="stylesheet" href="assets/css/students.css">
+
+<!-- Responsive -->
+<link rel="stylesheet" href="assets/css/responsive.css">
+
+</head>
+
+<body>
+
+<div class="app-shell">
+
+    <!-- ==================================================
+         SIDEBAR
+    =================================================== -->
+
+    <aside class="app-sidebar" id="appSidebar">
+
+        <div class="sidebar-brand">
+
+            <img
+                src="assets/images/logo.png"
+                alt="StudentManager Pro"
+                class="sidebar-logo">
+
+            <div class="sidebar-brand-text">
+
+                <strong>StudentManager Pro</strong>
+
+                <span>Enterprise</span>
+
+            </div>
+
+        </div>
+
+
+        <!-- Main Navigation -->
+
+        <nav class="sidebar-navigation">
+
+            <a href="dashboard.html"
+               class="sidebar-link">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                <span>Dashboard</span>
+
+            </a>
+
+
+            <div class="sidebar-section-title">
+                STUDENTS
+            </div>
+
+
+            <a href="students.html"
+               class="sidebar-link active">
+
+                <i class="fa-solid fa-user-graduate"></i>
+
+                <span>Students</span>
+
+            </a>
+
+
+            <a href="#"
+               class="sidebar-link">
+
+                <i class="fa-solid fa-user-plus"></i>
+
+                <span>Admissions</span>
+
+            </a>
+
+
+            <a href="#"
+               class="sidebar-link">
+
+                <i class="fa-solid fa-user-check"></i>
+
+                <span>Enrollment</span>
+
+            </a>
+
+
+            <a href="#"
+               class="sidebar-link">
+
+                <i class="fa-solid fa-file-lines"></i>
+
+                <span>Student Records</span>
+
+            </a>
+
+
+            <div class="sidebar-section-title">
+                ACADEMICS
+            </div>
+
+
+            <a href="#"
+               class="sidebar-link">
+
+                <i class="fa-solid fa-school"></i>
+
+                <span>Classes & Streams</span>
+
+            </a>
+
+
+            <a href="#"
+               class="sidebar-link">
+
+                <i class="fa-solid fa-book-open"></i>
+
+                <span>Subjects</span>
+
+            </a>
+
+
+            <a href="#"
+               class="sidebar-link">
+
+                <i class="fa-solid fa-people-roof"></i>
+
+                <span>Houses</span>
+
+            </a>
+
+
+            <div class="sidebar-section-title">
+                MANAGEMENT
+            </div>
+
+
+            <a href="#"
+               class="sidebar-link">
+
+                <i class="fa-solid fa-file-invoice-dollar"></i>
+
+                <span>Fees</span>
+
+            </a>
+
+
+            <a href="#"
+               class="sidebar-link">
+
+                <i class="fa-solid fa-calendar-check"></i>
+
+                <span>Attendance</span>
+
+            </a>
+
+
+            <a href="#"
+               class="sidebar-link">
+
+                <i class="fa-solid fa-chart-column"></i>
+
+                <span>Results</span>
+
+            </a>
+
+        </nav>
+
+
+        <!-- Sidebar Footer -->
+
+        <div class="sidebar-footer">
+
+            <a href="#"
+               class="sidebar-link">
+
+                <i class="fa-solid fa-gear"></i>
+
+                <span>Settings</span>
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ==================================================
+         SIDEBAR OVERLAY
+    =================================================== -->
+
+    <div
+        class="app-sidebar-overlay"
+        id="sidebarOverlay">
+    </div>
+
+
+    <!-- ==================================================
+         MAIN APPLICATION
+    =================================================== -->
+
+    <main class="app-main">
+
+
+        <!-- ==================================================
+             TOPBAR
+        =================================================== -->
+
+        <header class="app-topbar">
+
+
+            <!-- Left -->
+
+            <div class="topbar-left">
+
+                <button
+                    type="button"
+                    id="sidebarToggle"
+                    class="sidebar-toggle"
+                    aria-label="Open navigation">
+
+                    <i class="fa-solid fa-bars"></i>
+
+                </button>
+
+
+                <div class="topbar-title">
+
+                    <h2>
+                        Student Management
+                    </h2>
+
+                    <p>
+                        StudentManager Pro Enterprise
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Right -->
+
+            <div class="topbar-right">
+
+                <input
+                    type="search"
+                    class="app-input"
+                    id="studentGlobalSearch"
+                    placeholder="Search students...">
+
+
+                <button
+                    type="button"
+                    class="app-btn app-btn-light"
+                    title="Notifications"
+                    aria-label="Notifications">
+
+                    <i class="fa-solid fa-bell"></i>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="app-btn app-btn-light"
+                    title="Messages"
+                    aria-label="Messages">
+
+                    <i class="fa-solid fa-comments"></i>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="app-btn app-btn-light"
+                    title="Dark Mode"
+                    aria-label="Dark Mode">
+
+                    <i class="fa-solid fa-moon"></i>
+
+                </button>
+
+
+                <div class="topbar-profile">
+
+                    <img
+                        src="assets/images/avatar.png"
+                        class="profile-image"
+                        alt="Administrator">
+
+                    <div>
+
+                        <strong>Administrator</strong>
+
+                        <small>Super Admin</small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ==================================================
+             PAGE CONTENT
+        =================================================== -->
+
+        <div class="app-content student-module-content">
+
+
+            <!-- ==================================================
+                 PAGE HEADER
+            =================================================== -->
+
+            <section class="student-page-header">
+
+                <div>
+
+                    <div class="student-breadcrumb">
+
+                        <span>Dashboard</span>
+
+                        <i class="fa-solid fa-chevron-right"></i>
+
+                        <strong>Students</strong>
+
+                    </div>
+
+
+                    <h1>
+                        Student Dashboard
+                    </h1>
+
+                    <p>
+                        Manage admissions, enrollment, student records,
+                        academic information and student lifecycle data.
+                    </p>
+
+                </div>
+
+
+                <div class="student-header-actions">
+
+                    <button
+                        type="button"
+                        class="app-btn app-btn-secondary">
+
+                        <i class="fa-solid fa-file-import"></i>
+
+                        Import Students
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="app-btn app-btn-primary">
+
+                        <i class="fa-solid fa-user-plus"></i>
+
+                        Add Student
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================================
+                 ACADEMIC YEAR BAR
+            =================================================== -->
+
+            <section class="student-context-bar">
+
+                <div class="student-context-item">
+
+                    <i class="fa-solid fa-calendar-days"></i>
+
+                    <div>
+
+                        <span>Academic Year</span>
+
+                        <strong>2026 / 2027</strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="student-context-divider"></div>
+
+
+                <div class="student-context-item">
+
+                    <i class="fa-solid fa-graduation-cap"></i>
+
+                    <div>
+
+                        <span>Student Status</span>
+
+                        <strong>Active Enrollment</strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="student-context-spacer"></div>
+
+
+                <span class="student-live-status">
+
+                    <span class="live-dot"></span>
+
+                    System Ready
+
+                </span>
+
+            </section>
+
+
+            <!-- ==================================================
+                 STATISTICS
+            =================================================== -->
+
+            <section class="student-stat-grid">
+
+
+                <!-- Total Students -->
+
+                <article class="student-stat-card">
+
+                    <div class="student-stat-icon blue">
+
+                        <i class="fa-solid fa-user-graduate"></i>
+
+                    </div>
+
+                    <div class="student-stat-content">
+
+                        <span class="student-stat-label">
+                            Total Students
+                        </span>
+
+                        <strong
+                            class="student-stat-value"
+                            id="totalStudents">
+
+                            0
+
+                        </strong>
+
+                        <small class="student-stat-meta positive">
+
+                            <i class="fa-solid fa-arrow-trend-up"></i>
+
+                            <span>Live database count</span>
+
+                        </small>
+
+                    </div>
+
+                </article>
+
+
+                <!-- New Admissions -->
+
+                <article class="student-stat-card">
+
+                    <div class="student-stat-icon purple">
+
+                        <i class="fa-solid fa-user-plus"></i>
+
+                    </div>
+
+                    <div class="student-stat-content">
+
+                        <span class="student-stat-label">
+                            New Admissions
+                        </span>
+
+                        <strong
+                            class="student-stat-value"
+                            id="newAdmissions">
+
+                            0
+
+                        </strong>
+
+                        <small class="student-stat-meta">
+
+                            This academic year
+
+                        </small>
+
+                    </div>
+
+                </article>
+
+
+                <!-- Pending Enrollment -->
+
+                <article class="student-stat-card">
+
+                    <div class="student-stat-icon orange">
+
+                        <i class="fa-solid fa-user-clock"></i>
+
+                    </div>
+
+                    <div class="student-stat-content">
+
+                        <span class="student-stat-label">
+                            Pending Enrollment
+                        </span>
+
+                        <strong
+                            class="student-stat-value"
+                            id="pendingEnrollment">
+
+                            0
+
+                        </strong>
+
+                        <small class="student-stat-meta warning">
+
+                            Awaiting reporting
+
+                        </small>
+
+                    </div>
+
+                </article>
+
+
+                <!-- Graduating -->
+
+                <article class="student-stat-card">
+
+                    <div class="student-stat-icon green">
+
+                        <i class="fa-solid fa-user-graduate"></i>
+
+                    </div>
+
+                    <div class="student-stat-content">
+
+                        <span class="student-stat-label">
+                            Final Year
+                        </span>
+
+                        <strong
+                            class="student-stat-value"
+                            id="finalYearStudents">
+
+                            0
+
+                        </strong>
+
+                        <small class="student-stat-meta">
+
+                            SHS 3 students
+
+                        </small>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- ==================================================
+                 MAIN DASHBOARD GRID
+            =================================================== -->
+
+            <section class="student-dashboard-grid">
+
+
+                <!-- ==================================================
+                     POPULATION OVERVIEW
+                =================================================== -->
+
+                <article class="student-panel student-population-panel">
+
+                    <header class="student-panel-header">
+
+                        <div>
+
+                            <h2>
+                                Student Population
+                            </h2>
+
+                            <p>
+                                Current enrollment distribution
+                            </p>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="student-panel-action">
+
+                            <i class="fa-solid fa-ellipsis"></i>
+
+                        </button>
+
+                    </header>
+
+
+<div class="population-chart-container">
+
+    <div class="population-chart-summary">
+
+        <div>
+            <span>Current Population</span>
+
+            <strong id="populationChartTotal">
+                0
+            </strong>
+        </div>
+
+        <div class="population-chart-filter">
+
+            <button
+                type="button"
+                class="population-filter active"
+                data-period="year">
+
+                Year
+
+            </button>
+
+            <button
+                type="button"
+                class="population-filter"
+                data-period="term">
+
+                Term
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="population-chart-wrapper">
+
+        <canvas
+            id="studentPopulationChart">
+        </canvas>
+
+    </div>
+
+</div>
+
+                </article>
+
+
+                <!-- ==================================================
+                     ADMISSION PIPELINE
+                =================================================== -->
+
+                <article class="student-panel admission-pipeline-panel">
+
+                    <header class="student-panel-header">
+
+                        <div>
+
+                            <h2>
+                                Admission Pipeline
+                            </h2>
+
+                            <p>
+                                Student lifecycle overview
+                            </p>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="student-panel-action">
+
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                        </button>
+
+                    </header>
+
+
+                    <div class="admission-pipeline">
+
+
+                        <div class="pipeline-item">
+
+                            <div class="pipeline-icon blue">
+
+                                <i class="fa-solid fa-file-import"></i>
+
+                            </div>
+
+                            <div>
+
+                                <strong>Placement Intake</strong>
+
+                                <span>
+                                    Students received
+                                </span>
+
+                            </div>
+
+                            <b id="placementCount">
+                                0
+                            </b>
+
+                        </div>
+
+
+                        <div class="pipeline-line"></div>
+
+
+                        <div class="pipeline-item">
+
+                            <div class="pipeline-icon purple">
+
+                                <i class="fa-solid fa-user-check"></i>
+
+                            </div>
+
+                            <div>
+
+                                <strong>Verified</strong>
+
+                                <span>
+                                    Admission records verified
+                                </span>
+
+                            </div>
+
+                            <b id="verifiedCount">
+                                0
+                            </b>
+
+                        </div>
+
+
+                        <div class="pipeline-line"></div>
+
+
+                        <div class="pipeline-item">
+
+                            <div class="pipeline-icon orange">
+
+                                <i class="fa-solid fa-person-walking-arrow-right"></i>
+
+                            </div>
+
+                            <div>
+
+                                <strong>Reported</strong>
+
+                                <span>
+                                    Students who reported
+                                </span>
+
+                            </div>
+
+                            <b id="reportedCount">
+                                0
+                            </b>
+
+                        </div>
+
+
+                        <div class="pipeline-line"></div>
+
+
+                        <div class="pipeline-item">
+
+                            <div class="pipeline-icon green">
+
+                                <i class="fa-solid fa-circle-check"></i>
+
+                            </div>
+
+                            <div>
+
+                                <strong>Enrolled</strong>
+
+                                <span>
+                                    Active students
+                                </span>
+
+                            </div>
+
+                            <b id="enrolledCount">
+                                0
+                            </b>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+            </section>
+
+
+            <!-- ==================================================
+                 QUICK ACTIONS
+            =================================================== -->
+
+            <section class="student-panel student-quick-actions">
+
+                <header class="student-panel-header">
+
+                    <div>
+
+                        <h2>
+                            Quick Actions
+                        </h2>
+
+                        <p>
+                            Frequently used student management tools
+                        </p>
+
+                    </div>
+
+                </header>
+
+
+                <div class="quick-action-grid">
+
+
+                    <button
+                        type="button"
+                        class="quick-action-card">
+
+                        <span class="quick-action-icon blue">
+
+                            <i class="fa-solid fa-user-plus"></i>
+
+                        </span>
+
+                        <span>
+
+                            <strong>Add Student</strong>
+
+                            <small>
+                                Register a student manually
+                            </small>
+
+                        </span>
+
+                        <i class="fa-solid fa-chevron-right"></i>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="quick-action-card">
+
+                        <span class="quick-action-icon purple">
+
+                            <i class="fa-solid fa-file-import"></i>
+
+                        </span>
+
+                        <span>
+
+                            <strong>Bulk Import</strong>
+
+                            <small>
+                                Import CSV or Excel records
+                            </small>
+
+                        </span>
+
+                        <i class="fa-solid fa-chevron-right"></i>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="quick-action-card">
+
+                        <span class="quick-action-icon orange">
+
+                            <i class="fa-solid fa-user-check"></i>
+
+                        </span>
+
+                        <span>
+
+                            <strong>Enrollment</strong>
+
+                            <small>
+                                Process reporting students
+                            </small>
+
+                        </span>
+
+                        <i class="fa-solid fa-chevron-right"></i>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="quick-action-card">
+
+                        <span class="quick-action-icon green">
+
+                            <i class="fa-solid fa-users"></i>
+
+                        </span>
+
+                        <span>
+
+                            <strong>Student Register</strong>
+
+                            <small>
+                                Browse all students
+                            </small>
+
+                        </span>
+
+                        <i class="fa-solid fa-chevron-right"></i>
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================================
+                 RECENT ACTIVITY
+            =================================================== -->
+
+            <section class="student-panel student-activity-panel">
+
+                <header class="student-panel-header">
+
+                    <div>
+
+                        <h2>
+                            Recent Student Activity
+                        </h2>
+
+                        <p>
+                            Latest activity across the student lifecycle
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="student-text-action">
+
+                        View all
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </button>
+
+                </header>
+
+
+                <div
+                    class="student-activity-empty"
+                    id="studentActivity">
+
+                    <div>
+
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+
+                    </div>
+
+                    <h3>
+                        No student activity yet
+                    </h3>
+
+                    <p>
+                        Admissions, enrollment and student activities
+                        will appear here automatically.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- ==================================================
+     JAVASCRIPT
+=================================================== -->
+
+<script src="assets/js/core/app.js"></script>
+
+<script src="assets/js/core/ui.js"></script>
+
+<script
+    type="module"
+    src="assets/js/modules/students.js">
+</script>
+
+</body>
+
+</html>
