@@ -1494,16 +1494,26 @@
 
 
 
+/* ==========================================================
+   STUDENTMANAGER PRO ENTERPRISE
+   STUDENT REGISTER
+   Professional Data Management Interface
+   ========================================================== */
+
 
 /* ==========================================================
-   STUDENT REGISTER
-   PROFESSIONAL DATA MANAGEMENT INTERFACE
+   REGISTER PAGE
    ========================================================== */
 
 .student-register-content {
+    width: 100%;
     max-width: 1500px;
+
     margin: 0 auto;
+
     padding: 28px 30px 50px;
+
+    color: var(--student-text);
 }
 
 
@@ -1515,21 +1525,34 @@
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
+
     gap: 24px;
+
     margin-bottom: 22px;
+}
+
+.student-register-header > div:first-child {
+    min-width: 0;
 }
 
 .student-register-header h1 {
     margin: 0;
+
     color: var(--student-text);
+
     font-size: 28px;
     font-weight: 800;
-    letter-spacing: -0.6px;
+
+    letter-spacing: -.6px;
 }
 
 .student-register-header p {
+    max-width: 720px;
+
     margin: 7px 0 0;
+
     color: var(--student-muted);
+
     font-size: 13px;
     line-height: 1.6;
 }
@@ -1537,7 +1560,9 @@
 .student-register-header .student-header-actions {
     display: flex;
     align-items: center;
+
     gap: 10px;
+
     flex-shrink: 0;
 }
 
@@ -1547,8 +1572,11 @@
    ========================================================== */
 
 .student-register-summary {
+    width: 100%;
+
     display: flex;
     align-items: center;
+
     gap: 24px;
 
     min-height: 78px;
@@ -1557,28 +1585,37 @@
     padding: 15px 20px;
 
     background: var(--student-card);
+
     border: 1px solid var(--student-border);
     border-radius: var(--student-radius);
 
     box-shadow: var(--student-shadow);
+
+    overflow: hidden;
 }
 
 .register-summary-item {
+    min-width: 110px;
+
     display: flex;
     flex-direction: column;
+
     gap: 4px;
 }
 
 .register-summary-item span {
     color: var(--student-light-text);
+
     font-size: 10px;
     font-weight: 700;
+
     text-transform: uppercase;
     letter-spacing: .5px;
 }
 
 .register-summary-item strong {
     color: var(--student-text);
+
     font-size: 20px;
     font-weight: 800;
 }
@@ -1586,6 +1623,9 @@
 .register-summary-divider {
     width: 1px;
     height: 38px;
+
+    flex-shrink: 0;
+
     background: var(--student-border);
 }
 
@@ -1599,65 +1639,98 @@
    ========================================================== */
 
 .student-register-filter-panel {
+    width: 100%;
+
     display: grid;
+
     grid-template-columns:
-        minmax(280px, 1.8fr)
-        repeat(3, minmax(130px, .7fr))
+        minmax(240px, 1.8fr)
+        repeat(3, minmax(120px, .7fr))
         auto;
 
     align-items: center;
+
     gap: 10px;
 
     margin-bottom: 18px;
     padding: 14px;
 
     background: var(--student-card);
+
     border: 1px solid var(--student-border);
     border-radius: var(--student-radius);
 
     box-shadow: var(--student-shadow);
 }
 
+
+/* Search */
+
 .register-search-box {
+    width: 100%;
     height: 42px;
 
     display: flex;
     align-items: center;
+
+    min-width: 0;
 
     padding: 0 13px;
 
     border: 1px solid var(--student-border);
     border-radius: 10px;
 
-    background: #fff;
+    background: #ffffff;
 
-    transition: .2s ease;
+    transition:
+        border-color .2s ease,
+        box-shadow .2s ease;
 }
 
 .register-search-box:focus-within {
     border-color: #b9cdf0;
-    box-shadow: 0 0 0 3px rgba(11, 94, 215, .07);
+
+    box-shadow:
+        0 0 0 3px rgba(11, 94, 215, .07);
 }
 
 .register-search-box i {
+    flex-shrink: 0;
+
     margin-right: 9px;
+
     color: var(--student-light-text);
+
     font-size: 13px;
 }
 
 .register-search-box input {
     width: 100%;
+    min-width: 0;
+
     border: 0;
     outline: 0;
+
     background: transparent;
 
     color: var(--student-text);
+
     font-size: 12px;
 }
 
+.register-search-box input::placeholder {
+    color: var(--student-light-text);
+}
+
+
+/* Filters */
+
 .student-register-filter-panel select.app-input {
     width: 100%;
+    min-width: 0;
+
     height: 42px;
+
     padding: 0 11px;
 
     cursor: pointer;
@@ -1669,36 +1742,72 @@
    ========================================================== */
 
 .student-register-table-panel {
+    width: 100%;
+
     overflow: hidden;
+
+    background: var(--student-card);
+
+    border: 1px solid var(--student-border);
+    border-radius: var(--student-radius);
+
+    box-shadow: var(--student-shadow);
 }
 
 .register-table-tools {
     display: flex;
     align-items: center;
+
     gap: 10px;
 }
 
 .register-table-tools span {
     color: var(--student-light-text);
+
     font-size: 11px;
     font-weight: 600;
 }
 
 
 /* ==========================================================
-   TABLE WRAPPER
+   TABLE SCROLL CONTAINER
    ========================================================== */
 
 .student-table-wrapper {
     width: 100%;
+
     overflow-x: auto;
+    overflow-y: hidden;
+
+    -webkit-overflow-scrolling: touch;
+
+    scrollbar-width: thin;
 }
+
+.student-table-wrapper::-webkit-scrollbar {
+    height: 7px;
+}
+
+.student-table-wrapper::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+
+    border-radius: 20px;
+}
+
+
+/* ==========================================================
+   REGISTER TABLE
+   ========================================================== */
 
 .student-register-table {
     width: 100%;
+
     min-width: 900px;
 
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
+
+    background: #ffffff;
 }
 
 .student-register-table thead {
@@ -1716,6 +1825,7 @@
     font-weight: 750;
 
     text-align: left;
+
     text-transform: uppercase;
     letter-spacing: .45px;
 
@@ -1732,6 +1842,8 @@
     font-size: 12px;
 
     vertical-align: middle;
+
+    white-space: nowrap;
 }
 
 .student-register-table tbody tr {
@@ -1756,6 +1868,7 @@
 
     display: flex;
     flex-direction: column;
+
     align-items: center;
     justify-content: center;
 
@@ -1777,6 +1890,7 @@
     border-radius: 16px;
 
     background: var(--student-primary-soft);
+
     color: var(--student-primary);
 
     font-size: 21px;
@@ -1809,6 +1923,7 @@
 
 .student-register-pagination {
     display: flex;
+
     align-items: center;
     justify-content: space-between;
 
@@ -1823,50 +1938,54 @@
 
 .student-register-pagination > span {
     color: var(--student-muted);
+
     font-size: 11px;
 }
 
 .pagination-controls {
     display: flex;
     align-items: center;
+
     gap: 8px;
 }
 
 .pagination-controls > span {
     min-width: 32px;
+    height: 32px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
     color: var(--student-text);
+
     font-size: 11px;
     font-weight: 700;
 }
 
 
 /* ==========================================================
-   RESPONSIVE — LAPTOP
+   LAPTOP
    ========================================================== */
 
 @media (max-width: 1199px) {
 
-    .student-register-filter-panel {
-        grid-template-columns:
-            minmax(250px, 1fr)
-            repeat(2, minmax(140px, 1fr))
-            auto;
+    .student-register-content {
+        padding: 24px 22px 45px;
     }
 
-    .student-register-filter-panel .app-input:nth-of-type(3) {
-        grid-column: span 1;
+    .student-register-filter-panel {
+        grid-template-columns:
+            minmax(220px, 1fr)
+            repeat(2, minmax(130px, 1fr))
+            auto;
     }
 
 }
 
 
 /* ==========================================================
-   RESPONSIVE — TABLET
+   TABLET
    ========================================================== */
 
 @media (max-width: 992px) {
@@ -1877,7 +1996,10 @@
 
     .student-register-header {
         align-items: flex-start;
+
         flex-direction: column;
+
+        gap: 16px;
     }
 
     .student-register-header .student-header-actions {
@@ -1888,24 +2010,25 @@
         flex: 1;
     }
 
+    .student-register-summary {
+        flex-wrap: wrap;
+
+        gap: 16px;
+    }
+
     .student-register-filter-panel {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .register-search-box {
         grid-column: 1 / -1;
     }
 
-    .student-register-summary {
-        flex-wrap: wrap;
-        gap: 16px;
-    }
-
 }
 
 
 /* ==========================================================
-   RESPONSIVE — MOBILE
+   MOBILE
    ========================================================== */
 
 @media (max-width: 768px) {
@@ -1918,19 +2041,43 @@
         font-size: 23px;
     }
 
+    .student-register-header p {
+        font-size: 12px;
+    }
+
     .student-register-header .student-header-actions {
+        width: 100%;
+
         flex-direction: column;
+
+        gap: 8px;
     }
 
     .student-register-header .student-header-actions .app-btn {
         width: 100%;
     }
 
+
+    /* Summary becomes vertical */
+
     .student-register-summary {
-        align-items: flex-start;
+        align-items: stretch;
+
         flex-direction: column;
-        gap: 12px;
-        padding: 15px;
+
+        gap: 0;
+
+        padding: 14px;
+    }
+
+    .register-summary-item {
+        min-width: 0;
+
+        padding: 8px 4px;
+    }
+
+    .register-summary-item strong {
+        font-size: 18px;
     }
 
     .register-summary-divider {
@@ -1942,18 +2089,47 @@
         display: none;
     }
 
+
+    /* Filters become single column */
+
     .student-register-filter-panel {
         grid-template-columns: 1fr;
+
         gap: 9px;
+
+        padding: 12px;
     }
 
     .register-search-box {
         grid-column: auto;
     }
 
+
+    /* Table stays wide but scrolls inside its card */
+
+    .student-register-table-panel {
+        overflow: hidden;
+    }
+
+    .student-table-wrapper {
+        width: 100%;
+
+        overflow-x: auto;
+    }
+
+    .student-register-table {
+        min-width: 850px;
+    }
+
+
+    /* Pagination */
+
     .student-register-pagination {
         align-items: flex-start;
+
         flex-direction: column;
+
+        padding: 13px 14px;
     }
 
 }
@@ -1969,6 +2145,10 @@
         padding: 14px 9px 30px;
     }
 
+    .student-register-header {
+        margin-bottom: 17px;
+    }
+
     .student-register-header h1 {
         font-size: 21px;
     }
@@ -1981,11 +2161,33 @@
         border-radius: 13px;
     }
 
+    .student-register-filter-panel {
+        border-radius: 13px;
+    }
+
     .student-register-table-panel {
         border-radius: 13px;
     }
 
+    .student-register-table {
+        min-width: 820px;
+    }
+
 }
+
+
+/* ==========================================================
+   ACCESSIBILITY
+   ========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .student-register-table tbody tr {
+        transition: none;
+    }
+
+}
+
 
 
 
