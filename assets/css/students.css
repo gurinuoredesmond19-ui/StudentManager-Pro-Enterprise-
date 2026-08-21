@@ -3560,3 +3560,520 @@
     }
 
 }
+
+
+
+
+
+/* ==========================================================
+   STUDENT REGISTRATION MODAL
+   STEP 4C
+   ========================================================== */
+
+.student-registration-modal {
+    position: fixed;
+    inset: 0;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(15, 23, 42, .55);
+
+    z-index: 2000;
+
+    overflow-y: auto;
+}
+
+.student-registration-modal.show {
+    display: flex;
+}
+
+
+/* ==========================================================
+   MODAL CONTAINER
+   ========================================================== */
+
+.student-registration-dialog {
+    width: min(100%, 920px);
+    max-height: calc(100vh - 40px);
+
+    display: flex;
+    flex-direction: column;
+
+    background: var(--student-card, #ffffff);
+
+    border: 1px solid var(--student-border, #e2e8f0);
+    border-radius: 18px;
+
+    box-shadow:
+        0 24px 70px rgba(15, 23, 42, .20);
+
+    overflow: hidden;
+}
+
+
+/* ==========================================================
+   MODAL HEADER
+   ========================================================== */
+
+.student-registration-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 20px 24px;
+
+    border-bottom: 1px solid var(--student-border, #e2e8f0);
+}
+
+.student-registration-header h2 {
+    margin: 0;
+
+    color: var(--student-text, #0f172a);
+
+    font-size: 19px;
+    font-weight: 800;
+}
+
+.student-registration-header p {
+    margin: 5px 0 0;
+
+    color: var(--student-muted, #64748b);
+
+    font-size: 11px;
+}
+
+
+/* ==========================================================
+   CLOSE BUTTON
+   ========================================================== */
+
+.student-registration-close {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border: 1px solid var(--student-border, #e2e8f0);
+    border-radius: 10px;
+
+    background: transparent;
+
+    color: var(--student-muted, #64748b);
+
+    cursor: pointer;
+
+    transition: .2s ease;
+}
+
+.student-registration-close:hover {
+    background: #f1f5f9;
+    color: var(--student-text, #0f172a);
+}
+
+
+/* ==========================================================
+   COMPLETION AREA
+   ========================================================== */
+
+.student-registration-progress {
+    padding: 16px 24px;
+
+    border-bottom: 1px solid var(--student-border, #e2e8f0);
+
+    background: #fafbfd;
+}
+
+.student-registration-progress-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 8px;
+}
+
+.student-registration-progress-top span {
+    color: var(--student-muted, #64748b);
+
+    font-size: 11px;
+    font-weight: 650;
+}
+
+.student-registration-progress-percent {
+    color: var(--student-text, #0f172a);
+
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.student-registration-progress-track {
+    width: 100%;
+    height: 8px;
+
+    overflow: hidden;
+
+    border-radius: 999px;
+
+    background: #e2e8f0;
+}
+
+.student-registration-progress-bar {
+    width: 0;
+    height: 100%;
+
+    border-radius: inherit;
+
+    background: #dc2626;
+
+    transition:
+        width .3s ease,
+        background .3s ease;
+}
+
+
+/* ==========================================================
+   STEP NAVIGATION
+   ========================================================== */
+
+.student-registration-steps {
+    display: flex;
+    align-items: center;
+
+    gap: 0;
+
+    padding: 14px 24px;
+
+    overflow-x: auto;
+
+    border-bottom: 1px solid var(--student-border, #e2e8f0);
+}
+
+.student-registration-step {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    flex-shrink: 0;
+
+    color: #94a3b8;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.student-registration-step-number {
+    width: 28px;
+    height: 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #cbd5e1;
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    font-size: 10px;
+}
+
+.student-registration-step.active {
+    color: var(--student-primary, #0b5ed7);
+}
+
+.student-registration-step.active
+.student-registration-step-number {
+    border-color: var(--student-primary, #0b5ed7);
+
+    background: var(--student-primary, #0b5ed7);
+
+    color: #ffffff;
+}
+
+.student-registration-step.completed {
+    color: #15803d;
+}
+
+.student-registration-step.completed
+.student-registration-step-number {
+    border-color: #16a34a;
+
+    background: #16a34a;
+
+    color: #ffffff;
+}
+
+.student-registration-step-divider {
+    width: 35px;
+    height: 1px;
+
+    margin: 0 10px;
+
+    flex-shrink: 0;
+
+    background: #e2e8f0;
+}
+
+
+/* ==========================================================
+   MODAL BODY
+   ========================================================== */
+
+.student-registration-body {
+    flex: 1;
+
+    min-height: 0;
+
+    padding: 24px;
+
+    overflow-y: auto;
+}
+
+.student-registration-panel {
+    display: none;
+}
+
+.student-registration-panel.active {
+    display: block;
+}
+
+.student-registration-panel h3 {
+    margin: 0 0 5px;
+
+    color: var(--student-text, #0f172a);
+
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.student-registration-panel-description {
+    margin: 0 0 20px;
+
+    color: var(--student-muted, #64748b);
+
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+
+/* ==========================================================
+   FORM GRID
+   ========================================================== */
+
+.student-registration-form-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 16px;
+}
+
+.student-registration-field {
+    min-width: 0;
+}
+
+.student-registration-field.full-width {
+    grid-column: 1 / -1;
+}
+
+.student-registration-field label {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: var(--student-text, #0f172a);
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.student-registration-field label .required {
+    color: #dc2626;
+}
+
+.student-registration-field input,
+.student-registration-field select,
+.student-registration-field textarea {
+    width: 100%;
+
+    min-height: 42px;
+
+    padding: 9px 12px;
+
+    border: 1px solid var(--student-border, #dbe2ea);
+    border-radius: 9px;
+
+    background: #ffffff;
+
+    color: var(--student-text, #0f172a);
+
+    font-family: inherit;
+    font-size: 12px;
+
+    outline: none;
+
+    transition:
+        border-color .2s ease,
+        box-shadow .2s ease;
+}
+
+.student-registration-field textarea {
+    min-height: 90px;
+
+    resize: vertical;
+}
+
+.student-registration-field input:focus,
+.student-registration-field select:focus,
+.student-registration-field textarea:focus {
+    border-color: var(--student-primary, #0b5ed7);
+
+    box-shadow:
+        0 0 0 3px rgba(11, 94, 215, .08);
+}
+
+
+/* ==========================================================
+   VALIDATION
+   ========================================================== */
+
+.student-registration-field.has-error input,
+.student-registration-field.has-error select,
+.student-registration-field.has-error textarea {
+    border-color: #dc2626;
+
+    box-shadow:
+        0 0 0 3px rgba(220, 38, 38, .07);
+}
+
+.student-registration-error {
+    display: none;
+
+    margin-top: 5px;
+
+    color: #dc2626;
+
+    font-size: 10px;
+    line-height: 1.4;
+}
+
+.student-registration-field.has-error
+.student-registration-error {
+    display: block;
+}
+
+
+/* ==========================================================
+   MODAL FOOTER
+   ========================================================== */
+
+.student-registration-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding: 16px 24px;
+
+    border-top: 1px solid var(--student-border, #e2e8f0);
+
+    background: #fafbfd;
+}
+
+.student-registration-footer-left,
+.student-registration-footer-right {
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+}
+
+
+/* ==========================================================
+   RESPONSIVE
+   ========================================================== */
+
+@media (max-width: 768px) {
+
+    .student-registration-modal {
+        align-items: flex-start;
+
+        padding: 10px;
+    }
+
+    .student-registration-dialog {
+        width: 100%;
+        max-height: calc(100vh - 20px);
+
+        border-radius: 14px;
+    }
+
+    .student-registration-header,
+    .student-registration-progress,
+    .student-registration-steps,
+    .student-registration-body,
+    .student-registration-footer {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .student-registration-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .student-registration-field.full-width {
+        grid-column: auto;
+    }
+
+    .student-registration-footer {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .student-registration-footer-left,
+    .student-registration-footer-right {
+        width: 100%;
+    }
+
+    .student-registration-footer-right .app-btn,
+    .student-registration-footer-left .app-btn {
+        flex: 1;
+    }
+
+}
+
+
+/* ==========================================================
+   SMALL PHONE
+   ========================================================== */
+
+@media (max-width: 480px) {
+
+    .student-registration-header h2 {
+        font-size: 16px;
+    }
+
+    .student-registration-body {
+        padding-top: 18px;
+        padding-bottom: 18px;
+    }
+
+    .student-registration-steps {
+        padding-top: 11px;
+        padding-bottom: 11px;
+    }
+
+}

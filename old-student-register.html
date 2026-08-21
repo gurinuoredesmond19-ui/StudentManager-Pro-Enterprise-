@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Student Register | StudentManager Pro Enterprise</title>
+
+    <!-- Font Awesome -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- Global Styles -->
+
+    <link
+        rel="stylesheet"
+        href="assets/css/theme.css">
+
+    <link
+        rel="stylesheet"
+        href="assets/css/layout.css">
+
+    <link
+        rel="stylesheet"
+        href="assets/css/components.css">
+
+    <link
+        rel="stylesheet"
+        href="assets/css/forms.css">
+
+    
+    <link
+        rel="stylesheet"
+        href="assets/css/responsive.css">    
+
+    <!-- Student Module -->
+
+    <link
+        rel="stylesheet"
+        href="assets/css/students.css">
+
+</head>
+
+
+<body>
+
+<div class="app-shell">
+
+
+    <!-- ==================================================
+         SIDEBAR
+    =================================================== -->
+
+    <aside class="app-sidebar" id="appSidebar">
+
+        <div class="sidebar-brand">
+
+            <img
+                src="assets/images/logo.png"
+                alt="StudentManager Pro"
+                class="sidebar-logo">
+
+            <div class="sidebar-brand-text">
+
+                <strong>StudentManager Pro</strong>
+
+                <span>Enterprise</span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-navigation">
+
+            <a
+                href="dashboard.html"
+                class="sidebar-link">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                <span>Dashboard</span>
+
+            </a>
+
+
+            <div class="sidebar-section-title">
+                STUDENTS
+            </div>
+
+
+            <a
+                href="students.html"
+                class="sidebar-link">
+
+                <i class="fa-solid fa-user-graduate"></i>
+
+                <span>Student Dashboard</span>
+
+            </a>
+
+
+            <a
+                href="student-register.html"
+                class="sidebar-link active">
+
+                <i class="fa-solid fa-address-book"></i>
+
+                <span>Student Register</span>
+
+            </a>
+
+
+            <a href="#" class="sidebar-link">
+
+                <i class="fa-solid fa-user-plus"></i>
+
+                <span>Admissions</span>
+
+            </a>
+
+
+            <a href="#" class="sidebar-link">
+
+                <i class="fa-solid fa-user-check"></i>
+
+                <span>Enrollment</span>
+
+            </a>
+
+
+            <a href="#" class="sidebar-link">
+
+                <i class="fa-solid fa-file-lines"></i>
+
+                <span>Student Records</span>
+
+            </a>
+
+
+            <div class="sidebar-section-title">
+                ACADEMICS
+            </div>
+
+
+            <a href="#" class="sidebar-link">
+
+                <i class="fa-solid fa-school"></i>
+
+                <span>Classes & Streams</span>
+
+            </a>
+
+
+            <a href="#" class="sidebar-link">
+
+                <i class="fa-solid fa-book-open"></i>
+
+                <span>Subjects</span>
+
+            </a>
+
+
+            <a href="#" class="sidebar-link">
+
+                <i class="fa-solid fa-people-roof"></i>
+
+                <span>Houses</span>
+
+            </a>
+
+
+            <div class="sidebar-section-title">
+                MANAGEMENT
+            </div>
+
+
+            <a href="#" class="sidebar-link">
+
+                <i class="fa-solid fa-file-invoice-dollar"></i>
+
+                <span>Fees</span>
+
+            </a>
+
+
+            <a href="#" class="sidebar-link">
+
+                <i class="fa-solid fa-calendar-check"></i>
+
+                <span>Attendance</span>
+
+            </a>
+
+
+            <a href="#" class="sidebar-link">
+
+                <i class="fa-solid fa-chart-column"></i>
+
+                <span>Results</span>
+
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-footer">
+
+            <a href="#" class="sidebar-link">
+
+                <i class="fa-solid fa-gear"></i>
+
+                <span>Settings</span>
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ==================================================
+         SIDEBAR OVERLAY
+    =================================================== -->
+
+    <div
+        class="app-sidebar-overlay"
+        id="sidebarOverlay">
+    </div>
+
+
+    <!-- ==================================================
+         MAIN
+    =================================================== -->
+
+    <main class="app-main">
+
+
+        <!-- ==================================================
+             TOPBAR
+        =================================================== -->
+
+        <header class="app-topbar">
+
+            <div class="topbar-left">
+
+                <button
+                    type="button"
+                    id="sidebarToggle"
+                    class="sidebar-toggle"
+                    aria-label="Open navigation">
+
+                    <i class="fa-solid fa-bars"></i>
+
+                </button>
+
+
+                <div class="topbar-title">
+
+                    <h2>
+                        Student Register
+                    </h2>
+
+                    <p>
+                        StudentManager Pro Enterprise
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <input
+                    type="search"
+                    class="app-input"
+                    id="studentGlobalSearch"
+                    placeholder="Search students...">
+
+
+                <button
+                    type="button"
+                    class="app-btn app-btn-light"
+                    title="Notifications"
+                    aria-label="Notifications">
+
+                    <i class="fa-solid fa-bell"></i>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="app-btn app-btn-light"
+                    title="Messages"
+                    aria-label="Messages">
+
+                    <i class="fa-solid fa-comments"></i>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="app-btn app-btn-light"
+                    title="Dark Mode"
+                    aria-label="Dark Mode">
+
+                    <i class="fa-solid fa-moon"></i>
+
+                </button>
+
+
+                <div class="topbar-profile">
+
+                    <img
+                        src="assets/images/avatar.png"
+                        class="profile-image"
+                        alt="Administrator">
+
+                    <div>
+
+                        <strong>Administrator</strong>
+
+                        <small>Super Admin</small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ==================================================
+             REGISTER CONTENT
+        =================================================== -->
+
+        <div class="app-content student-register-content">
+
+
+            <!-- PAGE HEADER -->
+
+            <section class="student-register-header">
+
+                <div>
+
+                    <div class="student-breadcrumb">
+
+                        <span>Students</span>
+
+                        <i class="fa-solid fa-chevron-right"></i>
+
+                        <strong>Student Register</strong>
+
+                    </div>
+
+
+                    <h1>
+                        Student Register
+                    </h1>
+
+
+                    <p>
+                        Browse, search and manage enrolled student
+                        records across the school.
+                    </p>
+
+                </div>
+
+
+                <div class="student-header-actions">
+
+                    <button
+                        type="button"
+                        class="app-btn app-btn-secondary">
+
+                        <i class="fa-solid fa-file-export"></i>
+
+                        Export
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="app-btn app-btn-secondary">
+
+                        <i class="fa-solid fa-file-import"></i>
+
+                        Import
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="app-btn app-btn-primary">
+
+                        <i class="fa-solid fa-user-plus"></i>
+
+                        Add Student
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================================
+                 REGISTER SUMMARY
+            =================================================== -->
+
+            <section class="student-register-summary">
+
+
+                <div class="register-summary-item">
+
+                    <span>Total Students</span>
+
+                    <strong id="registerTotalStudents">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="register-summary-divider"></div>
+
+
+                <div class="register-summary-item">
+
+                    <span>Active</span>
+
+                    <strong id="registerActiveStudents">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="register-summary-divider"></div>
+
+
+                <div class="register-summary-item">
+
+                    <span>Pending</span>
+
+                    <strong id="registerPendingStudents">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="register-summary-divider"></div>
+
+
+                <div class="register-summary-item">
+
+                    <span>Final Year</span>
+
+                    <strong id="registerFinalYearStudents">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="register-summary-spacer"></div>
+
+
+                <span class="student-live-status">
+
+                    <span class="live-dot"></span>
+
+                    Live Register
+
+                </span>
+
+            </section>
+
+
+            <!-- ==================================================
+                 FILTER PANEL
+            =================================================== -->
+
+            <section class="student-register-filter-panel">
+
+
+                <div class="register-search-box">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        type="search"
+                        id="registerSearch"
+                        placeholder="Search by student name, ID or index number...">
+
+                </div>
+
+
+                <select
+                    id="registerLevelFilter"
+                    class="app-input">
+
+                    <option value="">
+                        All Levels
+                    </option>
+
+                    <option value="SHS 1">
+                        SHS 1
+                    </option>
+
+                    <option value="SHS 2">
+                        SHS 2
+                    </option>
+
+                    <option value="SHS 3">
+                        SHS 3
+                    </option>
+
+                </select>
+
+
+                <select
+                    id="registerGenderFilter"
+                    class="app-input">
+
+                    <option value="">
+                        All Gender
+                    </option>
+
+                    <option value="Male">
+                        Male
+                    </option>
+
+                    <option value="Female">
+                        Female
+                    </option>
+
+                </select>
+
+
+                <select
+                    id="registerStatusFilter"
+                    class="app-input">
+
+                    <option value="">
+                        All Status
+                    </option>
+
+                    <option value="Active">
+                        Active
+                    </option>
+
+                    <option value="Pending">
+                        Pending
+                    </option>
+
+                    <option value="Graduated">
+                        Graduated
+                    </option>
+
+                    <option value="Withdrawn">
+                        Withdrawn
+                    </option>
+
+                </select>
+
+
+                <button
+                    type="button"
+                    id="clearRegisterFilters"
+                    class="app-btn app-btn-light">
+
+                    <i class="fa-solid fa-filter-circle-xmark"></i>
+
+                    Clear
+
+                </button>
+
+            </section>
+
+
+            <!-- ==================================================
+                 STUDENT TABLE
+            =================================================== -->
+
+            <section class="student-panel student-register-table-panel">
+
+
+                <header class="student-panel-header">
+
+                    <div>
+
+                        <h2>
+                            Students
+                        </h2>
+
+                        <p>
+                            Current student register
+                        </p>
+
+                    </div>
+
+
+                    <div class="register-table-tools">
+
+                        <span id="registerResultCount">
+                            0 records
+                        </span>
+
+                    </div>
+
+                </header>
+
+
+                <div class="student-table-wrapper">
+
+                    <table class="student-register-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Student
+                                </th>
+
+                                <th>
+                                    Student ID
+                                </th>
+
+                                <th>
+                                    Gender
+                                </th>
+
+                                <th>
+                                    Level
+                                </th>
+
+                                <th>
+                                    Programme
+                                </th>
+
+                                <th>
+                                    House
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Actions
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="studentRegisterTableBody">
+
+                            <!-- JavaScript will render records here -->
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <!-- ==================================================
+                     TABLE EMPTY STATE
+                =================================================== -->
+
+                <div
+                    class="student-register-empty"
+                    id="studentRegisterEmpty">
+
+                    <div>
+
+                        <i class="fa-solid fa-users"></i>
+
+                    </div>
+
+                    <h3>
+                        No student records found
+                    </h3>
+
+                    <p>
+                        Student records will appear here when
+                        students are added or imported.
+                    </p>
+
+                </div>
+
+
+                <!-- ==================================================
+                     PAGINATION
+                =================================================== -->
+
+                <footer class="student-register-pagination">
+
+                    <span id="registerPaginationInfo">
+                        Showing 0–0 of 0
+                    </span>
+
+
+                    <div class="pagination-controls">
+
+                        <button
+                            type="button"
+                            id="registerPreviousPage"
+                            class="app-btn app-btn-light"
+                            disabled>
+
+                            <i class="fa-solid fa-chevron-left"></i>
+
+                        </button>
+
+
+                        <span id="registerCurrentPage">
+                            1
+                        </span>
+
+
+                        <button
+                            type="button"
+                            id="registerNextPage"
+                            class="app-btn app-btn-light"
+                            disabled>
+
+                            <i class="fa-solid fa-chevron-right"></i>
+
+                        </button>
+
+                    </div>
+
+                </footer>
+
+            </section>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- ==================================================
+     JAVASCRIPT
+=================================================== -->
+
+<script type="module" src="assets/js/engines/student-sidebar.js"></script>
+
+<script src="assets/js/core/app.js"></script>
+
+<script src="assets/js/core/ui.js"></script>
+
+<script
+    type="module"
+    src="assets/js/modules/student-register.js">
+</script>
+
+</body>
+
+</html>

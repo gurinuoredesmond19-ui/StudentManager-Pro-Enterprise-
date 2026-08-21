@@ -747,3 +747,803 @@ tableBody?.addEventListener(
    ========================================================== */
 
 renderStudents();
+
+
+
+
+/* ==========================================================
+   STUDENTMANAGER PRO ENTERPRISE
+   STUDENT REGISTRATION FLOW
+   Step 4D — Registration Engine
+   ========================================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    /* ======================================================
+       ELEMENTS
+    ====================================================== */
+
+    const modal = document.querySelector(".student-registration-modal");
+    const dialog = document.querySelector(".student-registration-dialog");
+
+    const openButtons = document.querySelectorAll(
+        ".student-register-content .app-btn-primary"
+    );
+
+    const closeButton = document.querySelector(
+        ".student-registration-close"
+    );
+
+    const stepPanels = document.querySelectorAll(
+        ".student-registration-panel"
+    );
+
+    const stepIndicators = document.querySelectorAll(
+        ".student-registration-step"
+    );
+
+    const progressBar = document.querySelector(
+        ".student-registration-progress-bar"
+    );
+
+    const progressPercent = document.querySelector(
+        ".student-registration-progress-percent"
+    );
+
+    const nextButton = document.querySelector(
+        "#studentRegistrationNext"
+    );
+
+    const previousButton = document.querySelector(
+        "#studentRegistrationPrevious"
+    );
+
+    const saveButton = document.querySelector(
+        "#studentRegistrationSave"
+    );
+
+    const form = document.querySelector(
+        "#studentRegistrationForm"
+    );
+
+
+    /* ======================================================
+       SAFETY CHECK
+    ====================================================== */
+
+    if (!modal || !form) {
+        console.warn(
+            "Student registration modal or form was not found."
+        );
+
+        return;
+    }
+
+
+    /* ======================================================
+       STATE
+    ====================================================== */
+
+    let currentStep = 0;
+
+    const totalSteps = stepPanels.length;
+
+
+    /* ======================================================
+       REQUIRED FIELDS
+       ====================================================== */
+
+    const requiredFields = form.querySelectorAll(
+        "[required]"
+    );
+
+
+    /* ======================================================
+       OPEN MODAL
+    ====================================================== */
+
+    function openModal() {
+
+        modal.classList.add("show");
+
+        document.body.style.overflow = "hidden";
+
+        currentStep = 0;
+
+        updateStep();
+
+        updateProgress();
+
+    }
+
+
+    /* ======================================================
+       CLOSE MODAL
+    ====================================================== */
+
+    function closeModal() {
+
+        modal.classList.remove("show");
+
+        document.body.style.overflow = "";
+
+    }
+
+
+    /* ======================================================
+       OPEN BUTTONS
+    ====================================================== */
+
+    openButtons.forEach(button => {
+
+        button.addEventListener("click", event => {
+
+            event.preventDefault();
+
+            openModal();
+
+        });
+
+    });
+
+
+    /* ======================================================
+       CLOSE BUTTON
+    ====================================================== */
+
+    if (closeButton) {
+
+        closeButton.addEventListener(
+            "click",
+            closeModal
+        );
+
+    }
+
+
+    /* ======================================================
+       CLOSE WHEN CLICKING BACKDROP
+    ====================================================== */
+
+    modal.addEventListener("click", event => {
+
+        if (event.target === modal) {
+
+            closeModal();
+
+        }
+
+    });
+
+
+    /* ======================================================
+       ESCAPE KEY
+    ====================================================== */
+
+    document.addEventListener("keydown", event => {
+
+        if (
+            event.key === "Escape" &&
+            modal.classList.contains("show")
+        ) {
+
+            closeModal();
+
+        }
+
+    });
+
+
+    /* ======================================================
+       UPDATE STEP
+    ====================================================== */
+
+    function updateStep() {
+
+        stepPanels.forEach((panel, index) => {
+
+            panel.classList.toggle(
+                "active",
+                index === currentStep
+            );
+
+        });
+
+
+        stepIndicators.forEach((indicator, index) => {
+
+            indicator.classList.toggle(
+                "active",
+                index === currentStep
+            );
+
+            indicator.classList.toggle(
+                "completed",
+                index < currentStep
+            );
+
+        });
+
+
+        if (previousButton) {
+
+            previousButton.disabled =
+                currentStep === 0;
+
+        }
+
+
+        if (nextButton) {
+
+            if (currentStep === totalSteps - 1) {
+
+                nextButton.innerHTML = `
+                    <i class="fa-solid fa-check"></i>
+                    Finish
+                `;
+
+            } else {
+
+                nextButton.innerHTML = `
+                    Next
+                    <i class="fa-solid fa-arrow-right"></i>
+                `;
+
+            }
+
+        }
+
+    }
+
+
+    /* ======================================================
+       FIELD VALIDATION
+    ====================================================== */
+
+    function validateCurrentStep() {
+
+        const currentPanel =
+            stepPanels[currentStep];
+
+        if (!currentPanel) {
+            return true;
+        }
+
+
+        const fields =
+            currentPanel.querySelectorAll(
+                "input, select, textarea"
+            );
+
+
+        let valid = true;
+
+
+        fields.forEach(field => {
+
+            if (!field.hasAttribute("required")) {
+                return;
+            }
+
+
+            const value =
+                field.value.trim();
+
+
+            const wrapper =
+                field.closest(
+                    ".student-registration-field"
+                );
+
+
+            if (!value) {
+
+                valid = false;
+
+                if (wrapper) {
+
+                    wrapper.classList.add(
+                        "has-error"
+                    );
+
+                }
+
+                field.setAttribute(
+                    "aria-invalid",
+                    "true"
+                );
+
+            } else {
+
+                if (wrapper) {
+
+                    wrapper.classList.remove(
+                        "has-error"
+                    );
+
+                }
+
+                field.removeAttribute(
+                    "aria-invalid"
+                );
+
+            }
+
+        });
+
+
+        if (!valid) {
+
+            const firstError =
+                currentPanel.querySelector(
+                    ".has-error input, .has-error select, .has-error textarea"
+                );
+
+            if (firstError) {
+
+                firstError.focus();
+
+            }
+
+        }
+
+
+        return valid;
+
+    }
+
+
+    /* ======================================================
+       LIVE VALIDATION
+    ====================================================== */
+
+    form.addEventListener(
+        "input",
+        event => {
+
+            const field =
+                event.target;
+
+            if (!field.matches(
+                "input, select, textarea"
+            )) {
+                return;
+            }
+
+
+            const wrapper =
+                field.closest(
+                    ".student-registration-field"
+                );
+
+
+            if (
+                field.hasAttribute("required") &&
+                field.value.trim()
+            ) {
+
+                if (wrapper) {
+
+                    wrapper.classList.remove(
+                        "has-error"
+                    );
+
+                }
+
+                field.removeAttribute(
+                    "aria-invalid"
+                );
+
+            }
+
+
+            updateProgress();
+
+        }
+    );
+
+
+    form.addEventListener(
+        "change",
+        updateProgress
+    );
+
+
+    /* ======================================================
+       NEXT
+    ====================================================== */
+
+    if (nextButton) {
+
+        nextButton.addEventListener(
+            "click",
+            () => {
+
+                if (!validateCurrentStep()) {
+
+                    return;
+
+                }
+
+
+                if (
+                    currentStep <
+                    totalSteps - 1
+                ) {
+
+                    currentStep++;
+
+                    updateStep();
+
+                    updateProgress();
+
+                } else {
+
+                    finishRegistration();
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* ======================================================
+       PREVIOUS
+    ====================================================== */
+
+    if (previousButton) {
+
+        previousButton.addEventListener(
+            "click",
+            () => {
+
+                if (currentStep > 0) {
+
+                    currentStep--;
+
+                    updateStep();
+
+                    updateProgress();
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* ======================================================
+       COMPLETION CALCULATION
+       ====================================================== */
+
+    function calculateCompletion() {
+
+        const fields =
+            form.querySelectorAll(
+                "input, select, textarea"
+            );
+
+
+        if (!fields.length) {
+
+            return 0;
+
+        }
+
+
+        let completed = 0;
+
+
+        fields.forEach(field => {
+
+            if (
+                field.type === "file"
+            ) {
+
+                if (
+                    field.files &&
+                    field.files.length > 0
+                ) {
+
+                    completed++;
+
+                }
+
+                return;
+
+            }
+
+
+            if (
+                field.value &&
+                field.value.trim() !== ""
+            ) {
+
+                completed++;
+
+            }
+
+        });
+
+
+        return Math.round(
+            (completed / fields.length) * 100
+        );
+
+    }
+
+
+    /* ======================================================
+       PROGRESS COLOR
+       ====================================================== */
+
+    function getProgressColor(percent) {
+
+        if (percent <= 50) {
+
+            return "#dc2626";
+
+        }
+
+        if (percent <= 80) {
+
+            return "#eab308";
+
+        }
+
+        if (percent <= 95) {
+
+            return "#84cc16";
+
+        }
+
+        return "#15803d";
+
+    }
+
+
+    /* ======================================================
+       UPDATE PROGRESS
+       ====================================================== */
+
+    function updateProgress() {
+
+        const percent =
+            calculateCompletion();
+
+
+        if (progressBar) {
+
+            progressBar.style.width =
+                `${percent}%`;
+
+            progressBar.style.background =
+                getProgressColor(percent);
+
+        }
+
+
+        if (progressPercent) {
+
+            progressPercent.textContent =
+                `${percent}%`;
+
+        }
+
+    }
+
+
+    /* ======================================================
+       SAVE & CONTINUE LATER
+       ====================================================== */
+
+    if (saveButton) {
+
+        saveButton.addEventListener(
+            "click",
+            () => {
+
+                saveRegistration();
+
+            }
+        );
+
+    }
+
+
+    function saveRegistration() {
+
+        const formData =
+            new FormData(form);
+
+        const studentData = {};
+
+
+        formData.forEach(
+            (value, key) => {
+
+                if (
+                    value instanceof File
+                ) {
+
+                    if (value.name) {
+
+                        studentData[key] =
+                            value.name;
+
+                    }
+
+                } else {
+
+                    studentData[key] =
+                        value;
+
+                }
+
+            }
+        );
+
+
+        studentData.registrationProgress =
+            calculateCompletion();
+
+
+        studentData.lastSaved =
+            new Date().toISOString();
+
+
+        localStorage.setItem(
+            "studentRegistrationDraft",
+            JSON.stringify(studentData)
+        );
+
+
+        alert(
+            "Student registration saved. You can continue later."
+        );
+
+    }
+
+
+    /* ======================================================
+       RESTORE DRAFT
+       ====================================================== */
+
+    function restoreDraft() {
+
+        const saved =
+            localStorage.getItem(
+                "studentRegistrationDraft"
+            );
+
+
+        if (!saved) {
+
+            return;
+
+        }
+
+
+        try {
+
+            const data =
+                JSON.parse(saved);
+
+
+            Object.keys(data).forEach(
+                key => {
+
+                    const field =
+                        form.elements[key];
+
+
+                    if (
+                        !field ||
+                        key === "registrationProgress" ||
+                        key === "lastSaved"
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    if (
+                        field.type === "file"
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    field.value =
+                        data[key];
+
+                }
+            );
+
+
+            updateProgress();
+
+
+        } catch (error) {
+
+            console.error(
+                "Unable to restore student registration draft.",
+                error
+            );
+
+        }
+
+    }
+
+
+    /* ======================================================
+       FINISH REGISTRATION
+       ====================================================== */
+
+    function finishRegistration() {
+
+        if (!validateCurrentStep()) {
+
+            return;
+
+        }
+
+
+        const completion =
+            calculateCompletion();
+
+
+        if (completion < 100) {
+
+            const proceed =
+                confirm(
+                    `Registration is ${completion}% complete. Some optional information is still missing. Save this student anyway?`
+                );
+
+
+            if (!proceed) {
+
+                return;
+
+            }
+
+        }
+
+
+        alert(
+            "Student registration completed successfully."
+        );
+
+
+        localStorage.removeItem(
+            "studentRegistrationDraft"
+        );
+
+
+        closeModal();
+
+
+        form.reset();
+
+        updateProgress();
+
+    }
+
+
+    /* ======================================================
+       INITIALIZE
+    ====================================================== */
+
+    restoreDraft();
+
+    updateStep();
+
+    updateProgress();
+
+});
