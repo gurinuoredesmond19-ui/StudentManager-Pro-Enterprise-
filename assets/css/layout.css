@@ -624,3 +624,51 @@ body {
     }
 
 }
+
+
+
+
+
+/* ==========================================================
+   DESKTOP COLLAPSED SIDEBAR
+   Controlled by student-sidebar.js
+   ========================================================== */
+
+@media (min-width: 993px) {
+
+    .app-sidebar.collapsed {
+        width: 85px;
+    }
+
+    .app-sidebar.collapsed .sidebar-brand-text,
+    .app-sidebar.collapsed .sidebar-section-title,
+    .app-sidebar.collapsed .sidebar-link span {
+        display: none;
+    }
+
+    .app-sidebar.collapsed .sidebar-brand {
+        justify-content: center;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .app-sidebar.collapsed .sidebar-navigation {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .app-sidebar.collapsed .sidebar-link {
+        justify-content: center;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .app-sidebar.collapsed .sidebar-link i {
+        margin: 0;
+    }
+
+    .app-main.expanded {
+        margin-left: 85px;
+    }
+
+}
