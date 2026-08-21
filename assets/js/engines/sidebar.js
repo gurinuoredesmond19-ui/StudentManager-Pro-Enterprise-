@@ -2,330 +2,133 @@
 ==========================================================
     STUDENTMANAGER PRO ENTERPRISE
     SIDEBAR ENGINE
-    Version 2.0
-==========================================================
+    Version 3.0
 
-    RESPONSIBILITIES:
+    Compatible with:
+    - dashboard.html
+    - students.html
+    - student-register.html
+    - student-profile.html
 
-    1. Load sidebar HTML
-    2. Initialize hamburger
-    3. Open / close sidebar
-    4. Handle mobile overlay
-    5. Remember desktop collapsed state
-    6. Highlight active page
-    7. Handle admin navigation
-
-    IMPORTANT:
-
-    sidebar.js owns the SIDEBAR ENGINE.
-
-    ui.js does NOT initialize the sidebar.
-
-    dashboard.js should call:
-
-        App.UI.Sidebar.load();
-
+    Uses the existing static sidebar HTML.
 ==========================================================
 */
-
-
-import {
-    monitorAuth,
-    getUserRole
-} from "../core/auth.js";
-
-
-/*==========================================================
-    APP SAFETY
-==========================================================*/
 
 window.App = window.App || {};
 
 App.UI = App.UI || {};
 
-
-/*==========================================================
-    SIDEBAR ENGINE
-==========================================================*/
-
 App.UI.Sidebar = {
 
     sidebar: null,
-
     overlay: null,
-
     toggleButton: null,
 
     initialized: false,
 
-    authMonitoringStarted: false,
-
 
     /*======================================================
-        LOAD SIDEBAR HTML
-    ======================================================*/
-
-    async load() {
-
-        const container =
-            document.getElementById("sidebar");
-
-
-        if (!container) {
-
-            console.warn(
-                "Sidebar container #sidebar not found."
-            );
-
-            return false;
-
-        }
-
-
-        try {
-
-            const response =
-                await fetch(
-                    "assets/components/sidebar.html"
-                );
-
-
-            if (!response.ok) {
-
-                throw new Error(
-                    `Sidebar failed to load: ${response.status}`
-                );
-
-            }
-
-
-            const html =
-                await response.text();
-
-
-            /*
-            Insert sidebar HTML.
-            */
-
-            container.innerHTML =
-                html;
-
-
-            /*
-            Now the sidebar exists.
-            Initialize it.
-            */
-
-            const initialized =
-                this.init();
-
-
-            if (!initialized) {
-
-                throw new Error(
-                    "Sidebar HTML loaded, but initialization failed."
-                );
-
-            }
-
-
-            console.log(
-                "✓ Sidebar loaded and initialized."
-            );
-
-
-            return true;
-
-        }
-
-        catch (error) {
-
-            console.error(
-                "Sidebar loading error:",
-                error
-            );
-
-
-            container.innerHTML = `
-
-                <div class="sidebar-error">
-
-                    <span>⚠️</span>
-
-                    <p>
-                        Unable to load navigation.
-                    </p>
-
-                </div>
-
-            `;
-
-
-            return false;
-
-        }
-
-    },
-
-
-    /*======================================================
-        INITIALIZE SIDEBAR
+        INITIALIZE
     ======================================================*/
 
     init() {
 
-        /*
-        --------------------------------------------------
-        IMPORTANT
-
-        Do NOT use initialized as the first check.
-
-        The sidebar can be dynamically replaced.
-        Therefore we always rediscover the current
-        DOM elements.
-        --------------------------------------------------
-        */
-
-
         this.sidebar =
-            document.querySelector(
-                ".app-sidebar"
-            );
-
+            document.getElementById("appSidebar");
 
         this.overlay =
-            document.querySelector(
-                ".app-sidebar-overlay"
-            );
-
+            document.getElementById("sidebarOverlay");
 
         this.toggleButton =
-            document.getElementById(
-                "sidebarToggle"
-            );
+            document.getElementById("sidebarToggle");
 
-
-        /*
-        --------------------------------------------------
-        SIDEBAR NOT READY
-        --------------------------------------------------
-        */
 
         if (!this.sidebar) {
 
             console.warn(
-                "Sidebar HTML is not available yet."
+                "Sidebar Engine: #appSidebar not found."
             );
 
             return false;
-
         }
 
 
         /*
-        --------------------------------------------------
-        REMOVE PREVIOUS HANDLERS
-        --------------------------------------------------
-        */
-
-        if (this.toggleButton) {
-
-            this.toggleButton.onclick = null;
-
-        }
-
-
-        if (this.overlay) {
-
-            this.overlay.onclick = null;
-
-        }
-
-
-        /*
-        ==================================================
+        -----------------------------------------------
         HAMBURGER
-        ==================================================
+        -----------------------------------------------
         */
 
         if (this.toggleButton) {
 
-            this.toggleButton.onclick =
-                (event) => {
+            this.toggleButton.onclick = (event) => {
 
-                    event.preventDefault();
+                event.preventDefault();
+                event.stopPropagation();
 
-                    event.stopPropagation();
+                this.toggle();
 
-                    this.toggle();
-
-                };
-
-        }
-
-        else {
-
-            console.warn(
-                "Sidebar hamburger #sidebarToggle was not found."
-            );
+            };
 
         }
 
 
         /*
-        ==================================================
-        MOBILE OVERLAY
-        ==================================================
+        -----------------------------------------------
+        OVERLAY
+        -----------------------------------------------
         */
 
         if (this.overlay) {
 
-            this.overlay.onclick =
-                (event) => {
+            this.overlay.onclick = () => {
 
-                    event.preventDefault();
+                this.close();
 
-                    this.close();
-
-                };
+            };
 
         }
 
 
         /*
-        ==================================================
-        RESTORE SIDEBAR STATE
-        ==================================================
+        -----------------------------------------------
+        SIDEBAR LINKS
+        -----------------------------------------------
+        */
+
+        this.bindNavigation();
+
+
+        /*
+        -----------------------------------------------
+        RESTORE DESKTOP STATE
+        -----------------------------------------------
         */
 
         this.restoreState();
 
 
         /*
-        ==================================================
-        ACTIVE PAGE
-        ==================================================
+        -----------------------------------------------
+        HANDLE RESIZE
+        -----------------------------------------------
         */
 
-        this.highlightCurrentPage();
+        window.addEventListener(
+            "resize",
+            () => {
 
+                this.handleResize();
 
-        /*
-        ==================================================
-        AUTHENTICATION MONITOR
-
-        Start this ONLY ONCE.
-        ==================================================
-        */
-
-        this.startAuthMonitoring();
+            }
+        );
 
 
         this.initialized = true;
 
 
         console.log(
-            "✓ Sidebar engine initialized."
+            "✓ Sidebar Engine initialized."
         );
 
 
@@ -335,228 +138,22 @@ App.UI.Sidebar = {
 
 
     /*======================================================
-        AUTH MONITORING
-    ======================================================*/
-
-    startAuthMonitoring() {
-
-        /*
-        Prevent duplicate Firebase listeners.
-        */
-
-        if (
-            this.authMonitoringStarted
-        ) {
-
-            return;
-
-        }
-
-
-        this.authMonitoringStarted = true;
-
-
-        monitorAuth(
-            async (state) => {
-
-                if (!state.authenticated) {
-
-                    return;
-
-                }
-
-
-                this.setupRoleNavigation();
-
-            }
-        );
-
-    },
-
-
-    /*======================================================
-        ROLE NAVIGATION
-    ======================================================*/
-
-    setupRoleNavigation() {
-
-        const navigation =
-            document.querySelector(
-                ".app-sidebar-menu"
-            );
-
-
-        if (!navigation) {
-
-            return;
-
-        }
-
-
-        /*
-        --------------------------------------------------
-        Remove existing Admin Setup link.
-        --------------------------------------------------
-        */
-
-        const existing =
-            navigation.querySelector(
-                '[data-admin-setup="true"]'
-            );
-
-
-        if (existing) {
-
-            existing.remove();
-
-        }
-
-
-        /*
-        --------------------------------------------------
-        Get current role.
-        --------------------------------------------------
-        */
-
-        const role =
-            getUserRole();
-
-
-        /*
-        Only admin gets Admin Setup.
-        */
-
-        if (
-            role !== "admin"
-        ) {
-
-            this.highlightCurrentPage();
-
-            return;
-
-        }
-
-
-        /*
-        --------------------------------------------------
-        CREATE ADMIN SETUP LINK
-        --------------------------------------------------
-        */
-
-        const adminSetup =
-            document.createElement(
-                "a"
-            );
-
-
-        adminSetup.href =
-            "admin-setup.html";
-
-
-        adminSetup.className =
-            "app-menu-item";
-
-
-        adminSetup.dataset.adminSetup =
-            "true";
-
-
-        adminSetup.innerHTML = `
-
-            <span class="app-menu-icon">
-
-                <i class="fa-solid fa-user-shield"></i>
-
-            </span>
-
-            <span class="app-menu-label">
-
-                Admin Setup
-
-            </span>
-
-        `;
-
-
-        /*
-        --------------------------------------------------
-        FIND SETTINGS
-        --------------------------------------------------
-        */
-
-        const settings =
-            Array.from(
-                navigation.querySelectorAll(
-                    ".app-menu-item"
-                )
-            ).find(
-                item =>
-                    item.textContent
-                        .trim()
-                        .toLowerCase()
-                        .includes(
-                            "settings"
-                        )
-            );
-
-
-        /*
-        --------------------------------------------------
-        INSERT ADMIN SETUP
-        --------------------------------------------------
-        */
-
-        if (settings) {
-
-            navigation.insertBefore(
-                adminSetup,
-                settings
-            );
-
-        }
-
-        else {
-
-            navigation.appendChild(
-                adminSetup
-            );
-
-        }
-
-
-        this.highlightCurrentPage();
-
-    },
-
-
-    /*======================================================
-        TOGGLE SIDEBAR
+        TOGGLE
     ======================================================*/
 
     toggle() {
 
-        /*
-        Refresh DOM references in case the sidebar
-        was dynamically replaced.
-        */
+        if (!this.sidebar) {
 
-        this.sidebar =
-            document.querySelector(
-                ".app-sidebar"
-            );
+            this.sidebar =
+                document.getElementById(
+                    "appSidebar"
+                );
 
-
-        this.overlay =
-            document.querySelector(
-                ".app-sidebar-overlay"
-            );
+        }
 
 
         if (!this.sidebar) {
-
-            console.warn(
-                "Cannot toggle sidebar: sidebar not found."
-            );
 
             return;
 
@@ -564,33 +161,26 @@ App.UI.Sidebar = {
 
 
         /*
-        ==================================================
-        MOBILE
-        ==================================================
+        -----------------------------------------------
+        MOBILE / TABLET
+        -----------------------------------------------
         */
 
-        if (
-            window.innerWidth <= 992
-        ) {
+        if (window.innerWidth <= 992) {
 
-            const opening =
-                !this.sidebar.classList.contains(
+            const isOpen =
+                this.sidebar.classList.contains(
                     "show"
                 );
 
 
-            this.sidebar.classList.toggle(
-                "show",
-                opening
-            );
+            if (isOpen) {
 
+                this.close();
 
-            if (this.overlay) {
+            } else {
 
-                this.overlay.classList.toggle(
-                    "show",
-                    opening
-                );
+                this.open();
 
             }
 
@@ -601,12 +191,12 @@ App.UI.Sidebar = {
 
 
         /*
-        ==================================================
+        -----------------------------------------------
         DESKTOP
-        ==================================================
+        -----------------------------------------------
         */
 
-        const collapsing =
+        const collapsed =
             !this.sidebar.classList.contains(
                 "collapsed"
             );
@@ -614,15 +204,9 @@ App.UI.Sidebar = {
 
         this.sidebar.classList.toggle(
             "collapsed",
-            collapsing
+            collapsed
         );
 
-
-        /*
-        --------------------------------------------------
-        Main content
-        --------------------------------------------------
-        */
 
         const main =
             document.querySelector(
@@ -634,21 +218,45 @@ App.UI.Sidebar = {
 
             main.classList.toggle(
                 "expanded",
-                collapsing
+                collapsed
             );
 
         }
 
 
-        /*
-        --------------------------------------------------
-        Save desktop preference
-        --------------------------------------------------
-        */
-
         localStorage.setItem(
             "sidebarCollapsed",
-            String(collapsing)
+            String(collapsed)
+        );
+
+    },
+
+
+    /*======================================================
+        OPEN MOBILE SIDEBAR
+    ======================================================*/
+
+    open() {
+
+        if (!this.sidebar) return;
+
+
+        this.sidebar.classList.add(
+            "show"
+        );
+
+
+        if (this.overlay) {
+
+            this.overlay.classList.add(
+                "show"
+            );
+
+        }
+
+
+        document.body.classList.add(
+            "sidebar-open"
         );
 
     },
@@ -677,6 +285,11 @@ App.UI.Sidebar = {
 
         }
 
+
+        document.body.classList.remove(
+            "sidebar-open"
+        );
+
     },
 
 
@@ -686,39 +299,16 @@ App.UI.Sidebar = {
 
     restoreState() {
 
-        if (!this.sidebar) {
-
-            return;
-
-        }
+        if (!this.sidebar) return;
 
 
         /*
-        --------------------------------------------------
-        MOBILE
-        --------------------------------------------------
-
-        Always start closed on mobile.
-        --------------------------------------------------
+        Mobile always starts closed.
         */
 
-        if (
-            window.innerWidth <= 992
-        ) {
+        if (window.innerWidth <= 992) {
 
-            this.sidebar.classList.remove(
-                "show"
-            );
-
-
-            if (this.overlay) {
-
-                this.overlay.classList.remove(
-                    "show"
-                );
-
-            }
-
+            this.close();
 
             return;
 
@@ -726,9 +316,7 @@ App.UI.Sidebar = {
 
 
         /*
-        --------------------------------------------------
-        DESKTOP
-        --------------------------------------------------
+        Desktop remembers collapsed state.
         */
 
         const collapsed =
@@ -762,22 +350,114 @@ App.UI.Sidebar = {
 
 
     /*======================================================
+        HANDLE RESIZE
+    ======================================================*/
+
+    handleResize() {
+
+        if (!this.sidebar) return;
+
+
+        if (window.innerWidth <= 992) {
+
+            /*
+            Remove desktop collapsed state.
+            */
+
+            this.sidebar.classList.remove(
+                "collapsed"
+            );
+
+
+            const main =
+                document.querySelector(
+                    ".app-main"
+                );
+
+
+            if (main) {
+
+                main.classList.remove(
+                    "expanded"
+                );
+
+            }
+
+
+        } else {
+
+            /*
+            Returning to desktop.
+            Close mobile sidebar.
+            */
+
+            this.close();
+
+
+            this.restoreState();
+
+        }
+
+    },
+
+
+    /*======================================================
+        NAVIGATION
+    ======================================================*/
+
+    bindNavigation() {
+
+        const links =
+            this.sidebar.querySelectorAll(
+                ".sidebar-link"
+            );
+
+
+        links.forEach(
+            link => {
+
+                link.addEventListener(
+                    "click",
+                    () => {
+
+                        /*
+                        Close mobile sidebar
+                        after navigation.
+                        */
+
+                        if (
+                            window.innerWidth <= 992
+                        ) {
+
+                            this.close();
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+
+        this.highlightCurrentPage();
+
+    },
+
+
+    /*======================================================
         ACTIVE PAGE
     ======================================================*/
 
     highlightCurrentPage() {
 
-        const menuItems =
-            document.querySelectorAll(
-                ".app-menu-item"
+        if (!this.sidebar) return;
+
+
+        const links =
+            this.sidebar.querySelectorAll(
+                ".sidebar-link"
             );
-
-
-        if (!menuItems.length) {
-
-            return;
-
-        }
 
 
         let currentPage =
@@ -794,43 +474,21 @@ App.UI.Sidebar = {
         }
 
 
-        /*
-        --------------------------------------------------
-        Remove active states.
-        --------------------------------------------------
-        */
+        links.forEach(
+            link => {
 
-        menuItems.forEach(
-            item => {
-
-                item.classList.remove(
+                link.classList.remove(
                     "active"
                 );
 
-            }
-        );
-
-
-        /*
-        --------------------------------------------------
-        Highlight current page.
-        --------------------------------------------------
-        */
-
-        menuItems.forEach(
-            item => {
 
                 const href =
-                    item.getAttribute(
+                    link.getAttribute(
                         "href"
                     );
 
 
-                if (!href) {
-
-                    return;
-
-                }
+                if (!href) return;
 
 
                 if (
@@ -845,7 +503,7 @@ App.UI.Sidebar = {
                 }
 
 
-                const linkPage =
+                const page =
                     href
                         .split("/")
                         .pop()
@@ -854,11 +512,10 @@ App.UI.Sidebar = {
 
 
                 if (
-                    linkPage ===
-                    currentPage
+                    page === currentPage
                 ) {
 
-                    item.classList.add(
+                    link.classList.add(
                         "active"
                     );
 
@@ -876,21 +533,15 @@ App.UI.Sidebar = {
 
     refresh() {
 
-        /*
-        Re-discover current sidebar elements.
-        */
-
         this.sidebar =
-            document.querySelector(
-                ".app-sidebar"
+            document.getElementById(
+                "appSidebar"
             );
-
 
         this.overlay =
-            document.querySelector(
-                ".app-sidebar-overlay"
+            document.getElementById(
+                "sidebarOverlay"
             );
-
 
         this.toggleButton =
             document.getElementById(
@@ -898,12 +549,26 @@ App.UI.Sidebar = {
             );
 
 
-        /*
-        Reconnect events.
-        */
+        this.initialized = false;
 
         this.init();
 
     }
 
 };
+
+
+/*==========================================================
+    AUTO INITIALIZE
+
+    This means every page gets the sidebar automatically.
+==========================================================*/
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        App.UI.Sidebar.init();
+
+    }
+);
