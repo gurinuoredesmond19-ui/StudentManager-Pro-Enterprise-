@@ -1,3 +1,5 @@
+StudentManager Pro Enterprise — Student Register Data & Registration Engine
+
 /* ==========================================================
    STUDENTMANAGER PRO ENTERPRISE
    STUDENT REGISTER — DATA ENGINE
@@ -169,7 +171,9 @@ function renderStudents() {
 
     if (pageStudents.length === 0) {
 
-        emptyState.style.display = "flex";
+        if (emptyState) {
+            emptyState.style.display = "flex";
+        }
 
         updatePagination();
 
@@ -178,7 +182,9 @@ function renderStudents() {
     }
 
 
-    emptyState.style.display = "none";
+    if (emptyState) {
+        emptyState.style.display = "none";
+    }
 
 
     pageStudents.forEach(student => {
@@ -714,9 +720,8 @@ tableBody?.addEventListener(
 
         if (action === "view") {
 
-           window.location.href =
-                `student-profile.html?id=$
-                {encodeURIComponent(student.id)}`;
+            window.location.href =
+                `student-profile.html?id=${encodeURIComponent(student.id)}`;
 
         }
 
@@ -749,17 +754,12 @@ tableBody?.addEventListener(
 renderStudents();
 
 
-
-
-
+/* ==========================================================
+   STUDENT REGISTRATION CONTROLLER
+   SIX-STEP REGISTRATION WORKFLOW
+   ========================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
-
-    /* ======================================================
-       STUDENTMANAGER PRO ENTERPRISE
-       STUDENT REGISTRATION CONTROLLER
-       Six-Step Registration Workflow
-       ====================================================== */
 
 
     /* ======================================================
@@ -767,16 +767,24 @@ document.addEventListener("DOMContentLoaded", () => {
        ====================================================== */
 
     const modal =
-        document.querySelector(".student-registration-modal");
+        document.querySelector(
+            ".student-registration-modal"
+        );
 
     const form =
-        document.querySelector("#studentRegistrationForm");
+        document.querySelector(
+            "#studentRegistrationForm"
+        );
 
     const closeButton =
-        document.querySelector(".student-registration-close");
+        document.querySelector(
+            ".student-registration-close"
+        );
 
     const cancelButton =
-        document.querySelector("#cancelStudentRegistration");
+        document.querySelector(
+            "#cancelStudentRegistration"
+        );
 
     const saveDraftButtons =
         document.querySelectorAll(
@@ -794,15 +802,15 @@ document.addEventListener("DOMContentLoaded", () => {
             ".registration-step"
         );
 
-   const progressBar =
-    document.querySelector(
-        "#registrationProgressBar"
-    );
+    const progressBar =
+        document.querySelector(
+            "#registrationProgressBar"
+        );
 
-const progressPercent =
-    document.querySelector(
-        "#registrationPercentage"
-    );
+    const progressPercent =
+        document.querySelector(
+            "#registrationPercentage"
+        );
 
     const completeButton =
         document.querySelector(
@@ -860,14 +868,15 @@ const progressPercent =
             ".registration-form-step .app-btn-light"
         );
 
-      /* ======================================================
+
+    /* ======================================================
        STEP 6 REVIEW CONTAINER
        ====================================================== */
 
     const reviewContainer =
         document.querySelector(
             "#studentRegistrationReview"
-        );    
+        );
 
 
     /* ======================================================
@@ -876,17 +885,17 @@ const progressPercent =
 
     function openModal() {
 
-       modal.hidden = false;
+        modal.hidden = false;
 
-       modal.classList.add("show");
+        modal.classList.add("show");
 
-         document.body.style.overflow = "hidden";
+        document.body.style.overflow = "hidden";
 
-         currentStep = 0;
+        currentStep = 0;
 
-         updateStep();
+        updateStep();
 
-         updateProgress();
+        updateProgress();
 
     }
 
@@ -897,12 +906,11 @@ const progressPercent =
 
     function closeModal() {
 
-    modal.classList.remove("show");
+        modal.classList.remove("show");
 
-    modal.hidden = true;
+        modal.hidden = true;
 
-    document.body.style.overflow = "";
-
+        document.body.style.overflow = "";
 
     }
 
@@ -1135,9 +1143,8 @@ const progressPercent =
 
         }
 
-    }
 
-         /* ----------------------------------------------
+        /* ----------------------------------------------
            STEP 6 — ALWAYS REFRESH REVIEW
         ---------------------------------------------- */
 
@@ -1149,7 +1156,7 @@ const progressPercent =
 
         }
 
-    
+    }
 
 
     /* ======================================================
@@ -1179,9 +1186,14 @@ const progressPercent =
 
         fields.forEach(field => {
 
-          if (!field.hasAttribute("required") && field.dataset.required !== "true") {
-    return;
-}
+            if (
+                !field.hasAttribute("required") &&
+                field.dataset.required !== "true"
+            ) {
+
+                return;
+
+            }
 
 
             let value =
@@ -1414,7 +1426,7 @@ const progressPercent =
     );
 
 
-     /* ======================================================
+    /* ======================================================
        LIVE VALIDATION
        ====================================================== */
 
@@ -1629,8 +1641,6 @@ const progressPercent =
 
         }
 
-        
-
     }
 
 
@@ -1842,11 +1852,7 @@ const progressPercent =
     }
 
 
-
-
-
-    
- /* ======================================================
+    /* ======================================================
        STEP 6 — REVIEW ENGINE
        ====================================================== */
 

@@ -1,0 +1,1731 @@
+/* ==========================================================
+   STUDENTMANAGER PRO ENTERPRISE
+   STUDENT REGISTRATION MODAL
+   PREMIUM ENTERPRISE UI
+   ========================================================== */
+
+
+/* ==========================================================
+   DESIGN TOKENS
+   ========================================================== */
+
+.student-registration-modal {
+    --sr-blue: #0b5ed7;
+    --sr-blue-dark: #084298;
+    --sr-blue-light: #eaf2ff;
+
+    --sr-white: #ffffff;
+    --sr-page: #f4f7fb;
+
+    --sr-text: #172033;
+    --sr-text-soft: #596579;
+
+    --sr-border: #c8d1df;
+    --sr-border-dark: #9eabbd;
+
+    --sr-success: #198754;
+    --sr-warning: #d89b00;
+    --sr-danger: #dc3545;
+
+    --sr-shadow:
+        0 30px 80px rgba(15, 23, 42, .28),
+        0 8px 30px rgba(15, 23, 42, .14);
+}
+
+
+/* ==========================================================
+   MODAL
+   ========================================================== */
+
+.student-registration-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+
+    padding: 32px;
+
+    box-sizing: border-box;
+}
+
+.student-registration-modal[hidden] {
+    display: none;
+}
+
+
+/* ==========================================================
+   BACKDROP
+   ========================================================== */
+
+.student-registration-backdrop {
+    position: absolute;
+    inset: 0;
+
+    background:
+        rgba(7, 18, 38, .72);
+
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+}
+
+
+/* ==========================================================
+   MAIN MODAL
+   ========================================================== */
+
+.student-registration-dialog {
+    position: relative;
+    z-index: 2;
+
+    width: min(1180px, 100%);
+    height: min(850px, calc(100vh - 64px));
+    height: min(850px, calc(100dvh - 64px));
+
+    margin: auto;
+
+    display: flex;
+    flex-direction: column;
+
+    background: var(--sr-white);
+
+    border:
+        1px solid rgba(255, 255, 255, .7);
+
+    border-radius: 16px;
+
+    box-shadow: var(--sr-shadow);
+
+    overflow: hidden;
+}
+
+
+/* ==========================================================
+   TOPBAR / HEADER
+   ========================================================== */
+
+.student-registration-header {
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    min-height: 92px;
+
+    padding: 20px 30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--sr-blue-dark) 0%,
+            var(--sr-blue) 55%,
+            #2878e8 100%
+        );
+
+    color: var(--sr-white);
+
+    border-bottom: 1px solid rgba(255, 255, 255, .15);
+}
+
+
+/* Header text */
+
+.student-registration-header > div:first-child {
+    min-width: 0;
+}
+
+.student-registration-header > div:first-child > span {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: rgba(255, 255, 255, .72);
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.student-registration-header h2 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 25px;
+    line-height: 1.2;
+    font-weight: 750;
+
+    letter-spacing: -.3px;
+}
+
+.student-registration-header p {
+    margin: 6px 0 0;
+
+    color: rgba(255, 255, 255, .82);
+
+    font-size: 13px;
+    line-height: 1.45;
+}
+
+
+/* ==========================================================
+   CLOSE BUTTON
+   ========================================================== */
+
+.student-registration-close {
+    flex-shrink: 0;
+
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-left: 20px;
+
+    border: 1px solid rgba(255, 255, 255, .28);
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, .10);
+
+    color: #ffffff;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    transition:
+        background .2s ease,
+        border-color .2s ease,
+        transform .2s ease;
+}
+
+.student-registration-close:hover {
+    background: rgba(255, 255, 255, .20);
+
+    border-color: rgba(255, 255, 255, .5);
+
+    transform: scale(1.04);
+}
+
+
+/* ==========================================================
+   PROGRESS AREA
+   ========================================================== */
+
+.student-registration-progress {
+    flex-shrink: 0;
+
+    padding: 18px 30px 20px;
+
+    background: #ffffff;
+
+    border-bottom: 1px solid var(--sr-border);
+}
+
+.registration-progress-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 10px;
+}
+
+.registration-progress-top > div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.registration-progress-top span {
+    color: var(--sr-text-soft);
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.registration-progress-top strong {
+    color: var(--sr-blue);
+
+    font-size: 14px;
+    font-weight: 800;
+}
+
+#registrationStatus {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 5px 11px;
+
+    border: 1px solid #bcd2f5;
+    border-radius: 999px;
+
+    background: var(--sr-blue-light);
+    color: var(--sr-blue-dark);
+
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.registration-progress-track {
+    width: 100%;
+    height: 8px;
+
+    overflow: hidden;
+
+    border-radius: 999px;
+
+    background: #dce3ed;
+}
+
+.registration-progress-bar {
+    height: 100%;
+
+    min-width: 0;
+
+    border-radius: inherit;
+
+    background:
+        linear-gradient(
+            90deg,
+            #0b5ed7,
+            #2878e8
+        );
+
+    box-shadow:
+        0 1px 4px rgba(11, 94, 215, .35);
+
+    transition:
+        width .35s ease,
+        background .35s ease;
+}
+
+
+/* ==========================================================
+   STEP NAVIGATION
+   ========================================================== */
+
+.student-registration-steps {
+    flex-shrink: 0;
+
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+
+    gap: 8px;
+
+    padding: 14px 30px;
+
+    background: #f8fafc;
+
+    border-bottom: 1px solid var(--sr-border);
+}
+
+
+/* Individual step */
+
+.registration-step {
+    position: relative;
+
+    min-height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    padding: 7px 10px;
+
+    border:
+        1px solid transparent;
+
+    border-radius: 9px;
+
+    background: transparent;
+
+    color: #68758a;
+
+    font-family: inherit;
+
+    cursor: pointer;
+
+    transition:
+        background .2s ease,
+        color .2s ease,
+        border-color .2s ease;
+}
+
+
+/* Number */
+
+.registration-step > span {
+    width: 30px;
+    height: 30px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border:
+        2px solid #b9c5d4;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    color: #667085;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    transition:
+        background .2s ease,
+        color .2s ease,
+        border-color .2s ease;
+}
+
+
+/* Label */
+
+.registration-step strong {
+    color: inherit;
+
+    font-size: 12px;
+    font-weight: 750;
+
+    white-space: nowrap;
+}
+
+
+/* Hover */
+
+.registration-step:hover {
+    background: #edf4ff;
+
+    color: var(--sr-blue);
+
+    border-color: #c7daf7;
+}
+
+
+/* Active */
+
+.registration-step.active {
+    background: #ffffff;
+
+    color: var(--sr-blue-dark);
+
+    border-color: #a9c7f3;
+
+    box-shadow:
+        0 2px 7px rgba(11, 94, 215, .08);
+}
+
+.registration-step.active > span {
+    background: var(--sr-blue);
+
+    border-color: var(--sr-blue);
+
+    color: #ffffff;
+
+    box-shadow:
+        0 3px 8px rgba(11, 94, 215, .25);
+}
+
+
+/* Completed */
+
+.registration-step.completed {
+    color: var(--sr-success);
+}
+
+.registration-step.completed > span {
+    background: var(--sr-success);
+
+    border-color: var(--sr-success);
+
+    color: #ffffff;
+}
+
+
+/* ==========================================================
+   FORM SCROLL AREA
+   ========================================================== */
+
+#studentRegistrationForm {
+    flex: 1;
+
+    min-height: 0;
+
+    overflow-y: auto;
+
+    background: var(--sr-page);
+
+    scrollbar-width: thin;
+    scrollbar-color: #aeb9c8 transparent;
+}
+
+#studentRegistrationForm::-webkit-scrollbar {
+    width: 7px;
+}
+
+#studentRegistrationForm::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#studentRegistrationForm::-webkit-scrollbar-thumb {
+    background: #aeb9c8;
+
+    border-radius: 999px;
+}
+
+
+/* ==========================================================
+   STEP PANEL
+   ========================================================== */
+
+.registration-form-step {
+    padding: 32px 34px 30px;
+
+    background: var(--sr-page);
+}
+
+.registration-form-step[hidden] {
+    display: none;
+}
+
+
+/* ==========================================================
+   STEP HEADING
+   ========================================================== */
+
+.registration-step-heading {
+    margin-bottom: 27px;
+
+    padding-bottom: 18px;
+
+    border-bottom: 1px solid #d7dee8;
+}
+
+.registration-step-heading > span {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: var(--sr-blue);
+
+    font-size: 11px;
+    font-weight: 850;
+
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.registration-step-heading h3 {
+    margin: 0;
+
+    color: var(--sr-text);
+
+    font-size: 22px;
+    line-height: 1.25;
+    font-weight: 750;
+}
+
+.registration-step-heading p {
+    margin: 7px 0 0;
+
+    color: var(--sr-text-soft);
+
+    font-size: 13px;
+    line-height: 1.55;
+}
+
+
+/* ==========================================================
+   FIELD GRID
+   ========================================================== */
+
+.registration-fields {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 21px 24px;
+}
+
+.registration-field {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.registration-field.full {
+    grid-column: 1 / -1;
+}
+
+
+/* ==========================================================
+   LABEL
+   ========================================================== */
+
+.registration-field label {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 6px;
+
+    margin-bottom: 8px;
+
+    color: #263246;
+
+    font-size: 13px;
+    line-height: 1.3;
+    font-weight: 750;
+}
+
+.registration-field label .required {
+    color: var(--sr-danger);
+
+    font-size: 14px;
+    font-weight: 900;
+}
+
+.registration-field label .optional {
+    padding: 3px 7px;
+
+    border: 1px solid #d5dce6;
+    border-radius: 5px;
+
+    background: #eef2f7;
+
+    color: #697689;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: .25px;
+}
+
+
+/* ==========================================================
+   INPUTS — DEEP BORDER STYLE
+   ========================================================== */
+
+.registration-field input,
+.registration-field select,
+.registration-field textarea {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    border:
+        1.5px solid var(--sr-border-dark);
+
+    border-radius: 8px;
+
+    background: #ffffff;
+
+    color: var(--sr-text);
+
+    outline: none;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+
+    box-shadow:
+        inset 0 1px 2px rgba(15, 23, 42, .035);
+
+    transition:
+        border-color .18s ease,
+        box-shadow .18s ease,
+        background .18s ease;
+}
+
+
+/* Text/select */
+
+.registration-field input,
+.registration-field select {
+    height: 46px;
+
+    padding: 0 13px;
+}
+
+
+/* Textarea */
+
+.registration-field textarea {
+    min-height: 96px;
+
+    padding: 12px 13px;
+
+    resize: vertical;
+
+    line-height: 1.55;
+}
+
+
+/* Placeholder */
+
+.registration-field input::placeholder,
+.registration-field textarea::placeholder {
+    color: #8793a5;
+
+    opacity: 1;
+}
+
+
+/* Hover */
+
+.registration-field input:hover,
+.registration-field select:hover,
+.registration-field textarea:hover {
+    border-color: #718096;
+
+    background: #ffffff;
+}
+
+
+/* Focus */
+
+.registration-field input:focus,
+.registration-field select:focus,
+.registration-field textarea:focus {
+    border-color: var(--sr-blue);
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 0 3px rgba(11, 94, 215, .12),
+        inset 0 1px 2px rgba(15, 23, 42, .04);
+}
+
+
+/* ==========================================================
+   SELECT
+   ========================================================== */
+
+.registration-field select {
+    cursor: pointer;
+}
+
+
+/* ==========================================================
+   DATE INPUT
+   ========================================================== */
+
+.registration-field input[type="date"] {
+    color-scheme: light;
+}
+
+
+/* ==========================================================
+   FILE INPUT
+   ========================================================== */
+
+.registration-field input[type="file"] {
+    height: auto;
+
+    min-height: 46px;
+
+    padding: 7px;
+
+    cursor: pointer;
+
+    font-size: 12px;
+}
+
+.registration-field input[type="file"]::file-selector-button {
+    margin-right: 10px;
+
+    padding: 8px 12px;
+
+    border: 1px solid #b9cce8;
+    border-radius: 6px;
+
+    background: var(--sr-blue-light);
+
+    color: var(--sr-blue-dark);
+
+    font-family: inherit;
+
+    font-size: 11px;
+    font-weight: 750;
+
+    cursor: pointer;
+}
+
+
+/* ==========================================================
+   VALIDATION
+   ========================================================== */
+
+.registration-field.has-error input,
+.registration-field.has-error select,
+.registration-field.has-error textarea {
+    border-color: var(--sr-danger);
+
+    background: #fffafa;
+
+    box-shadow:
+        0 0 0 3px rgba(220, 53, 69, .08);
+}
+
+.registration-field input[aria-invalid="true"],
+.registration-field select[aria-invalid="true"],
+.registration-field textarea[aria-invalid="true"] {
+    border-color: var(--sr-danger);
+}
+
+.registration-error {
+    min-height: 16px;
+
+    margin-top: 5px;
+
+    color: var(--sr-danger);
+
+    font-size: 11px;
+    font-weight: 600;
+
+    line-height: 1.35;
+}
+
+
+/* ==========================================================
+   FORM ACTION BAR
+   ========================================================== */
+
+.registration-form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-top: 32px;
+    padding-top: 20px;
+
+    border-top:
+        1px solid #d2dae5;
+}
+
+.registration-form-actions > div {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+/* ==========================================================
+   BUTTONS
+   ========================================================== */
+
+.registration-form-actions .app-btn {
+    min-height: 44px;
+
+    padding: 0 17px;
+
+    border-radius: 8px;
+
+    font-family: inherit;
+
+    font-size: 13px;
+    font-weight: 750;
+
+    transition:
+        transform .15s ease,
+        box-shadow .15s ease,
+        background .15s ease;
+}
+
+.registration-form-actions .app-btn:hover {
+    transform: translateY(-1px);
+}
+
+
+/* Primary */
+
+.registration-form-actions .app-btn-primary {
+    background: var(--sr-blue);
+
+    border-color: var(--sr-blue);
+
+    color: #ffffff;
+
+    box-shadow:
+        0 3px 8px rgba(11, 94, 215, .20);
+}
+
+.registration-form-actions .app-btn-primary:hover {
+    background: var(--sr-blue-dark);
+
+    box-shadow:
+        0 5px 12px rgba(11, 94, 215, .25);
+}
+
+
+/* Secondary */
+
+.registration-form-actions .app-btn-secondary {
+    background: #ffffff;
+
+    border: 1px solid #aeb9c8;
+
+    color: #344054;
+}
+
+.registration-form-actions .app-btn-secondary:hover {
+    background: #f5f8fc;
+
+    border-color: #8795a8;
+}
+
+
+/* Light */
+
+.registration-form-actions .app-btn-light {
+    background: #ffffff;
+
+    border: 1px solid #aeb9c8;
+
+    color: #344054;
+}
+
+.registration-form-actions .app-btn-light:hover {
+    background: #f3f6fa;
+
+    border-color: #8795a8;
+}
+
+
+/* ==========================================================
+   REVIEW
+   ========================================================== */
+
+.student-registration-review {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 14px;
+}
+
+
+/*
+   These styles also make dynamically-created
+   review cards look professional if your JS
+   inserts them using common div structures.
+*/
+
+.student-registration-review > div {
+    padding: 15px 16px;
+
+    background: #ffffff;
+
+    border:
+        1px solid var(--sr-border);
+
+    border-left:
+        3px solid var(--sr-blue);
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 2px 5px rgba(15, 23, 42, .04);
+}
+
+
+/* Empty review */
+
+.student-registration-review:empty::before {
+    content:
+        "Your registration summary will appear here.";
+
+    grid-column: 1 / -1;
+
+    min-height: 130px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px;
+
+    border:
+        1px dashed #aeb9c8;
+
+    border-radius: 9px;
+
+    background: #ffffff;
+
+    color: #7a8799;
+
+    font-size: 13px;
+}
+
+
+/* ==========================================================
+   VALIDATION SUMMARY
+   ========================================================== */
+
+.student-registration-validation-summary {
+    margin-top: 18px;
+
+    padding: 15px 17px;
+
+    border:
+        1px solid rgba(220, 53, 69, .25);
+
+    border-left:
+        4px solid var(--sr-danger);
+
+    border-radius: 8px;
+
+    background: #fff8f8;
+
+    color: #9d2534;
+}
+
+.student-registration-validation-summary strong {
+    display: block;
+
+    margin-bottom: 5px;
+
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.student-registration-validation-summary p {
+    margin: 0;
+
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+
+/* ==========================================================
+   FOOTER
+   ========================================================== */
+
+.student-registration-footer {
+    flex-shrink: 0;
+
+    min-height: 56px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 0 30px;
+
+    background: #ffffff;
+
+    border-top: 1px solid var(--sr-border);
+}
+
+.student-registration-footer span {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    color: #68758a;
+
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.student-registration-footer span i {
+    color: var(--sr-success);
+
+    font-size: 13px;
+}
+
+.student-registration-footer button {
+    padding: 6px 10px;
+
+    border: 0;
+
+    background: transparent;
+
+    color: #68758a;
+
+    font-family: inherit;
+
+    font-size: 11px;
+    font-weight: 750;
+
+    cursor: pointer;
+}
+
+.student-registration-footer button:hover {
+    color: var(--sr-danger);
+}
+
+
+/* ==========================================================
+   TABLET
+   ========================================================== */
+
+@media (max-width: 950px) {
+
+    .student-registration-modal {
+        padding: 20px;
+    }
+
+    .student-registration-dialog {
+        height: calc(100vh - 40px);
+        height: calc(100dvh - 40px);
+    }
+
+    .student-registration-steps {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .registration-fields {
+        grid-template-columns: 1fr;
+    }
+
+    .registration-field.full {
+        grid-column: auto;
+    }
+
+}
+
+
+/* ==========================================================
+   MOBILE
+   ========================================================== */
+
+@media (max-width: 650px) {
+
+    .student-registration-modal {
+        padding: 0;
+    }
+
+    .student-registration-dialog {
+        width: 100%;
+        height: 100vh;
+        height: 100dvh;
+
+        max-height: none;
+
+        border-radius: 0;
+        border: 0;
+    }
+
+    .student-registration-header {
+        min-height: 78px;
+
+        padding: 16px 18px;
+    }
+
+    .student-registration-header h2 {
+        font-size: 20px;
+    }
+
+    .student-registration-header p {
+        font-size: 11px;
+    }
+
+    .student-registration-close {
+        width: 38px;
+        height: 38px;
+    }
+
+    .student-registration-progress {
+        padding: 14px 18px 16px;
+    }
+
+    .student-registration-steps {
+        grid-template-columns: repeat(3, 1fr);
+
+        gap: 6px;
+
+        padding: 10px 14px;
+    }
+
+    .registration-step {
+        min-height: 43px;
+
+        gap: 5px;
+
+        padding: 6px 4px;
+    }
+
+    .registration-step > span {
+        width: 25px;
+        height: 25px;
+
+        font-size: 10px;
+    }
+
+    .registration-step strong {
+        font-size: 10px;
+    }
+
+    .registration-form-step {
+        padding: 22px 18px 25px;
+    }
+
+    .registration-step-heading h3 {
+        font-size: 19px;
+    }
+
+    .registration-step-heading p {
+        font-size: 12px;
+    }
+
+    .registration-fields {
+        grid-template-columns: 1fr;
+
+        gap: 17px;
+    }
+
+    .registration-field input,
+    .registration-field select {
+        height: 47px;
+
+        font-size: 14px;
+    }
+
+    .registration-form-actions {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    .registration-form-actions > div {
+        width: 100%;
+    }
+
+    .registration-form-actions .app-btn {
+        flex: 1;
+    }
+
+    .student-registration-footer {
+        min-height: 52px;
+
+        padding: 0 18px;
+    }
+
+}
+
+
+/* ==========================================================
+   SMALL PHONES
+   ========================================================== */
+
+@media (max-width: 420px) {
+
+    .student-registration-steps {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .registration-step {
+        justify-content: flex-start;
+
+        padding-left: 9px;
+    }
+
+    .student-registration-header {
+        padding: 14px 15px;
+    }
+
+    .student-registration-header p {
+        display: none;
+    }
+
+    .registration-form-step {
+        padding: 20px 15px;
+    }
+
+    .student-registration-footer {
+        padding: 0 15px;
+    }
+
+    .student-registration-footer span {
+        font-size: 9px;
+    }
+
+}
+
+
+/* ==========================================================
+   REDUCED MOTION
+   ========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .student-registration-close,
+    .registration-step,
+    .registration-field input,
+    .registration-field select,
+    .registration-field textarea,
+    .registration-progress-bar,
+    .registration-form-actions .app-btn {
+        transition: none;
+    }
+
+}
+
+
+
+
+Review & Save CSS
+
+/* ==========================================================
+   STEP 6 — REVIEW & SAVE
+   STUDENTMANAGER PRO ENTERPRISE
+========================================================== */
+
+.student-registration-review {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 24px;
+}
+
+
+/* ==========================================================
+   REVIEW SECTION
+========================================================== */
+
+.registration-review-section {
+    background: #ffffff;
+    border: 1px solid #d8e1ec;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 3px 12px rgba(15, 23, 42, 0.05);
+}
+
+
+/* ==========================================================
+   SECTION HEADER
+========================================================== */
+
+.registration-review-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+
+    padding: 16px 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f7faff 0%,
+            #eef5ff 100%
+        );
+
+    border-bottom: 1px solid #dbe5f0;
+}
+
+
+.registration-review-section-header > div {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+
+/* ==========================================================
+   SECTION ICON
+========================================================== */
+
+.registration-review-section-icon {
+    width: 42px;
+    height: 42px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 10px;
+
+    background: #e7f0ff;
+    color: #155eef;
+
+    font-size: 17px;
+}
+
+
+/* ==========================================================
+   SECTION TITLES
+========================================================== */
+
+.registration-review-kicker {
+    display: block;
+
+    margin-bottom: 2px;
+
+    color: #64748b;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+
+.registration-review-section-header h4 {
+    margin: 0;
+
+    color: #0f172a;
+
+    font-size: 16px;
+    font-weight: 750;
+    line-height: 1.3;
+}
+
+
+/* ==========================================================
+   EDIT BUTTON
+========================================================== */
+
+.registration-review-edit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    min-height: 34px;
+
+    padding: 7px 12px;
+
+    border: 1px solid #cbd8e8;
+    border-radius: 7px;
+
+    background: #ffffff;
+    color: #155eef;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease,
+        color 0.18s ease,
+        transform 0.18s ease;
+}
+
+
+.registration-review-edit:hover {
+    background: #155eef;
+    border-color: #155eef;
+    color: #ffffff;
+}
+
+
+.registration-review-edit:active {
+    transform: translateY(1px);
+}
+
+
+/* ==========================================================
+   REVIEW GRID
+========================================================== */
+
+.registration-review-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 0;
+
+    background: #ffffff;
+}
+
+
+/* ==========================================================
+   REVIEW ROW
+========================================================== */
+
+.registration-review-row {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    min-height: 68px;
+
+    padding: 13px 20px;
+
+    border-bottom: 1px solid #edf1f5;
+}
+
+
+.registration-review-row:nth-child(odd) {
+    border-right: 1px solid #edf1f5;
+}
+
+
+/* ==========================================================
+   REVIEW LABEL
+========================================================== */
+
+.registration-review-label {
+    margin-bottom: 5px;
+
+    color: #64748b;
+
+    font-size: 11px;
+    font-weight: 650;
+
+    letter-spacing: 0.02em;
+}
+
+
+/* ==========================================================
+   REVIEW VALUE
+========================================================== */
+
+.registration-review-value {
+    min-width: 0;
+
+    color: #172033;
+
+    font-size: 14px;
+    font-weight: 650;
+    line-height: 1.45;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* Empty values
+---------------------------------------------------------- */
+
+.registration-review-value:empty {
+    color: #94a3b8;
+}
+
+
+/* ==========================================================
+   VALIDATION SUMMARY
+========================================================== */
+
+.student-registration-validation-summary {
+    margin-top: 18px;
+
+    padding: 15px 18px;
+
+    border: 1px solid #f4c7c7;
+    border-left: 4px solid #dc2626;
+
+    border-radius: 9px;
+
+    background: #fff7f7;
+    color: #7f1d1d;
+}
+
+
+.student-registration-validation-summary strong {
+    display: block;
+
+    margin-bottom: 4px;
+
+    font-size: 14px;
+    font-weight: 750;
+}
+
+
+.student-registration-validation-summary p {
+    margin: 0;
+
+    color: #991b1b;
+
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+
+/* ==========================================================
+   REVIEW STATUS
+========================================================== */
+
+.registration-review-status {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin-bottom: 20px;
+
+    padding: 15px 18px;
+
+    border: 1px solid #bbf7d0;
+    border-radius: 10px;
+
+    background: #f0fdf4;
+    color: #166534;
+}
+
+
+.registration-review-status i {
+    font-size: 18px;
+}
+
+
+.registration-review-status strong {
+    display: block;
+
+    margin-bottom: 2px;
+
+    font-size: 14px;
+}
+
+
+.registration-review-status span {
+    display: block;
+
+    color: #15803d;
+
+    font-size: 12px;
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width: 700px) {
+
+    .student-registration-review {
+        gap: 14px;
+        margin-top: 18px;
+    }
+
+
+    .registration-review-section-header {
+        padding: 14px;
+    }
+
+
+    .registration-review-section-header > div {
+        gap: 10px;
+    }
+
+
+    .registration-review-section-icon {
+        width: 36px;
+        height: 36px;
+
+        border-radius: 8px;
+
+        font-size: 15px;
+    }
+
+
+    .registration-review-section-header h4 {
+        font-size: 14px;
+    }
+
+
+    .registration-review-kicker {
+        font-size: 9px;
+    }
+
+
+    .registration-review-edit {
+        min-height: 32px;
+
+        padding: 6px 9px;
+
+        font-size: 11px;
+    }
+
+
+    .registration-review-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .registration-review-row {
+        min-height: 62px;
+
+        padding: 11px 14px;
+
+        border-right: 0 !important;
+    }
+
+
+    .registration-review-label {
+        font-size: 10px;
+    }
+
+
+    .registration-review-value {
+        font-size: 13px;
+    }
+
+}
+
+
+/* ==========================================================
+   VERY SMALL PHONES
+========================================================== */
+
+@media (max-width: 420px) {
+
+    .registration-review-section-header {
+        align-items: flex-start;
+    }
+
+
+    .registration-review-section-header > div {
+        min-width: 0;
+    }
+
+
+    .registration-review-section-icon {
+        width: 34px;
+        height: 34px;
+    }
+
+
+    .registration-review-section-header h4 {
+        font-size: 13px;
+    }
+
+
+    .registration-review-edit {
+        flex-shrink: 0;
+
+        font-size: 0;
+    }
+
+
+    .registration-review-edit i {
+        font-size: 12px;
+    }
+
+}
