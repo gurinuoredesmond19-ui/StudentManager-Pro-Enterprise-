@@ -876,7 +876,7 @@
     grid-template-columns:
         repeat(4, minmax(0, 1fr));
 
-    gap: 12px;
+    gap: 15px;
 
     padding: 17px 21px 21px;
 
@@ -899,7 +899,7 @@
 
     padding: 12px;
 
-    border: 1px solid var(--student-border);
+    border: 3px solid var(--student-border);
 
     border-radius: 12px;
 
@@ -910,6 +910,10 @@
     text-align: left;
 
     cursor: pointer;
+
+    text-decoration: none;
+
+
 
     transition:
         transform .2s ease,
@@ -989,6 +993,8 @@
 .quick-action-card > span:nth-child(2) {
 
     min-width: 0;
+
+  
 
 }
 
@@ -1087,6 +1093,8 @@
 
     text-align: center;
 
+    
+
 }
 
 
@@ -1111,6 +1119,8 @@
     color: #94a3b8;
 
     font-size: 19px;
+
+    gap: 14px;
 
 }
 
