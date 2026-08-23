@@ -1,0 +1,439 @@
+/* ======================================================
+           COLLECT COMPLETE STUDENT DATA
+           ====================================================== */
+
+        function collectStudentData() {
+
+            const formData =
+                new FormData(
+                    form
+                );
+
+
+            const studentData =
+                {};
+
+
+            formData.forEach(
+                (value, key) => {
+
+                    if (
+                        value instanceof File
+                    ) {
+
+                        if (
+                            value.name
+                        ) {
+
+                            studentData[key] =
+                                value.name;
+
+                        }
+
+
+                        return;
+
+                    }
+
+
+                    if (
+                        Object.prototype.hasOwnProperty.call(
+                            studentData,
+                            key
+                        )
+                    ) {
+
+                        if (
+                            Array.isArray(
+                                studentData[
+                                    key
+                                ]
+                            )
+                        ) {
+
+                            studentData[
+                                key
+                            ].push(
+                                value
+                            );
+
+                        } else {
+
+                            studentData[
+                                key
+                            ] = [
+
+                                studentData[
+                                    key
+                                ],
+
+                                value
+
+                            ];
+
+                        }
+
+                    } else {
+
+                        studentData[
+                            key
+                        ] =
+                            value;
+
+                    }
+
+                }
+            );
+
+
+            studentData.registrationProgress =
+                calculateCompletion();
+
+
+            studentData.savedAt =
+                new Date().toISOString();
+
+
+            return studentData;
+
+        }
+
+
+        /* ======================================================
+           GENERATE UNIQUE STUDENT ID
+           ====================================================== */
+
+        function generateStudentId() {
+
+            /*
+             * Read ALL existing records, including demo
+             * students, so we never create a duplicate ID.
+             */
+
+            const allStudents =
+                loadStudents();
+
+
+            const usedNumbers =
+                allStudents
+                    .map(
+                        student => {
+
+                            const match =
+                                String(
+                                    student.id ||
+                                    ""
+                                ).match(
+                                    /SMP-\d{4}-(\d+)$/
+                                );
+
+
+                            return match
+                                ? Number(
+                                    match[1]
+                                )
+                                : 0;
+
+                        }
+                    )
+                    .filter(
+                        number =>
+                            Number.isFinite(
+                                number
+                            )
+                    );
+
+
+            const highestNumber =
+                usedNumbers.length
+                    ? Math.max(
+                        ...usedNumbers
+                    )
+                    : 0;
+
+
+            return `SMP-${new Date().getFullYear()}-${String(
+                highestNumber + 1
+            ).padStart(
+                4,
+                "0"
+            )}`;
+
+        }
+
+
+        /* ======================================================
+           SAVE COMPLETED STUDENT
+           ====================================================== */
+
+        function saveCompletedStudent() {
+
+            const studentData =
+                collectStudentData();
+
+
+            let savedStudents =
+                [];
+
+
+            const existing =
+                localStorage.getItem(
+                    "studentRecords"
+                );
+
+
+            if (existing) {
+
+                try {
+
+                    const parsed =
+                        JSON.parse(
+                            existing
+                        );
+
+
+                    if (
+                        Array.isArray(
+                            parsed
+                        )
+                    ) {
+
+                        savedStudents =
+                            parsed;
+
+                    }
+
+                } catch (error) {
+
+                    console.warn(
+                        "Unable to read existing student records. Starting a new list.",
+                        error
+                    );
+
+                }
+
+            }
+
+
+            /*
+             * Generate an ID that cannot collide with
+             * the demo records or previously registered
+             * students.
+             */
+
+            const studentId =
+                generateStudentId();
+
+
+            studentData.id =
+                studentId;
+
+
+            studentData.status =
+                "Active";
+
+
+            savedStudents.push(
+                studentData
+            );
+
+
+            localStorage.setItem(
+                "studentRecords",
+                JSON.stringify(
+                    savedStudents
+                )
+            );
+
+
+            return studentData;
+
+        }
+
+
+        /* ======================================================
+           COMPLETE REGISTRATION
+           ====================================================== */
+
+        if (
+            completeButton
+        ) {
+
+            completeButton.addEventListener(
+                "click",
+                event => {
+
+                    event.preventDefault();
+
+                    finishRegistration();
+
+                }
+            );
+
+        }
+
+
+        function finishRegistration() {
+
+            /*
+             * Step 6 is a review step.
+             */
+
+            const completion =
+                calculateCompletion();
+
+
+            if (
+                completion <
+                100
+            ) {
+
+                const proceed =
+                    confirm(
+                        `Registration is ${completion}% complete. Some information is still missing. Save this student anyway?`
+                    );
+
+
+                if (!proceed) {
+
+                    return;
+
+                }
+
+            }
+
+
+            /* ==================================================
+               SAVE STUDENT
+               ================================================== */
+
+            const savedStudent =
+                saveCompletedStudent();
+
+
+            /* ==================================================
+               IMPORTANT:
+               REFRESH TABLE DATA IMMEDIATELY
+               ================================================== */
+
+            refreshStudentData();
+
+
+            /*
+             * The new student has been appended to the
+             * registered records.
+             *
+             * We now move the table to the LAST PAGE so
+             * the newly saved student is immediately visible.
+             */
+
+            const totalPages =
+                Math.max(
+                    1,
+                    Math.ceil(
+                        filteredStudents.length /
+                        recordsPerPage
+                    )
+                );
+
+
+            currentPage =
+                totalPages;
+
+
+            renderStudents();
+
+
+            /*
+             * Remove temporary draft.
+             */
+
+            localStorage.removeItem(
+                "studentRegistrationDraft"
+            );
+
+
+            /* ==================================================
+               SUCCESS MESSAGE
+               ================================================== */
+
+            alert(
+                `Student registration completed successfully.\n\nStudent ID: ${savedStudent.id}`
+            );
+
+
+            /* ==================================================
+               RESET FORM
+               ================================================== */
+
+            form.reset();
+
+
+            currentStep =
+                0;
+
+
+            updateStep();
+
+            updateProgress();
+
+
+            /*
+             * Close registration modal.
+             */
+
+            closeModal();
+
+
+            /*
+             * Final refresh after modal closes.
+             * This guarantees the cards and table are
+             * synchronized with localStorage.
+             */
+
+            refreshStudentData();
+
+
+            currentPage =
+                Math.max(
+                    1,
+                    Math.ceil(
+                        filteredStudents.length /
+                        recordsPerPage
+                    )
+                );
+
+
+            renderStudents();
+
+        }
+
+
+        /* ======================================================
+           FORM SUBMIT PROTECTION
+           ====================================================== */
+
+        form.addEventListener(
+            "submit",
+            event => {
+
+                event.preventDefault();
+
+                finishRegistration();
+
+            }
+        );
+
+
+        /* ======================================================
+           INITIALIZE
+           ====================================================== */
+
+        restoreDraft();
+
+        updateStep();
+
+        updateProgress();
+
+    }
+);

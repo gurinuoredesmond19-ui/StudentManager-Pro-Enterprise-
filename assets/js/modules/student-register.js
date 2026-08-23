@@ -1,17 +1,13 @@
 /* ==========================================================
    STUDENTMANAGER PRO ENTERPRISE
-   STUDENT REGISTER — DATA ENGINE + REGISTRATION CONTROLLER
+   STUDENT REGISTER — DATA ENGINE
+   STEP 4B
    ========================================================== */
 
 
 /* ==========================================================
    STUDENT REGISTER — DATA SOURCE
    ========================================================== */
-
-/*
- * Demo students.
- * These remain available alongside registered students.
- */
 
 const demoStudents = [
 
@@ -109,7 +105,6 @@ function loadStudents() {
             "studentRecords"
         );
 
-
     let registeredStudents = [];
 
 
@@ -140,10 +135,6 @@ function loadStudents() {
     }
 
 
-    /*
-     * Demo records + real registered records.
-     */
-
     return [
         ...demoStudents,
         ...registeredStudents
@@ -156,17 +147,7 @@ function loadStudents() {
    STUDENT DATA
    ========================================================== */
 
-/*
- * IMPORTANT:
- *
- * This is intentionally `let`, not `const`.
- *
- * A newly registered student is written to localStorage
- * while this page is already open. The refreshStudentData()
- * function below reloads the latest records into this array.
- */
-
-let students =
+const students =
     loadStudents();
 
 
@@ -177,37 +158,9 @@ let students =
 let filteredStudents =
     [...students];
 
+let currentPage = 1;
 
-let currentPage =
-    1;
-
-
-const recordsPerPage =
-    5;
-
-
-/* ==========================================================
-   REFRESH STUDENT DATA
-   ========================================================== */
-
-function refreshStudentData() {
-
-    /*
-     * Reload the latest records from localStorage.
-     */
-
-    students =
-        loadStudents();
-
-
-    /*
-     * Reapply the current filters so the table stays
-     * consistent with what the user is currently viewing.
-     */
-
-    applyFilters(false);
-
-}
+const recordsPerPage = 5;
 
 
 /* ==========================================================
@@ -219,66 +172,55 @@ const tableBody =
         "studentRegisterTableBody"
     );
 
-
 const emptyState =
     document.getElementById(
         "studentRegisterEmpty"
     );
-
 
 const searchInput =
     document.getElementById(
         "registerSearch"
     );
 
-
 const levelFilter =
     document.getElementById(
         "registerLevelFilter"
     );
-
 
 const genderFilter =
     document.getElementById(
         "registerGenderFilter"
     );
 
-
 const statusFilter =
     document.getElementById(
         "registerStatusFilter"
     );
-
 
 const clearFiltersButton =
     document.getElementById(
         "clearRegisterFilters"
     );
 
-
 const resultCount =
     document.getElementById(
         "registerResultCount"
     );
-
 
 const paginationInfo =
     document.getElementById(
         "registerPaginationInfo"
     );
 
-
 const currentPageElement =
     document.getElementById(
         "registerCurrentPage"
     );
 
-
 const previousButton =
     document.getElementById(
         "registerPreviousPage"
     );
-
 
 const nextButton =
     document.getElementById(
@@ -293,14 +235,11 @@ const nextButton =
 function renderStudents() {
 
     if (!tableBody) {
-
         return;
-
     }
 
 
-    tableBody.innerHTML =
-        "";
+    tableBody.innerHTML = "";
 
 
     const startIndex =
@@ -320,9 +259,7 @@ function renderStudents() {
         );
 
 
-    if (
-        pageStudents.length === 0
-    ) {
+    if (pageStudents.length === 0) {
 
         if (emptyState) {
 
@@ -330,7 +267,6 @@ function renderStudents() {
                 "flex";
 
         }
-
 
         updatePagination();
 
@@ -365,7 +301,8 @@ function renderStudents() {
                         <div class="register-avatar">
 
                             ${getInitials(
-                                student.name || ""
+                                student.name ||
+                                "Student"
                             )}
 
                         </div>
@@ -373,8 +310,9 @@ function renderStudents() {
                         <div>
 
                             <strong>
-                                ${escapeTableValue(
-                                    student.name || "Unnamed Student"
+                                ${escapeHtml(
+                                    student.name ||
+                                    "Unnamed Student"
                                 )}
                             </strong>
 
@@ -392,40 +330,43 @@ function renderStudents() {
                 <td>
 
                     <span class="student-id">
-
-                        ${escapeTableValue(
-                            student.id || "—"
+                        ${escapeHtml(
+                            student.id ||
+                            "—"
                         )}
-
                     </span>
 
                 </td>
 
 
                 <td>
-                    ${escapeTableValue(
-                        student.gender || "—"
+                    ${escapeHtml(
+                        student.gender ||
+                        "—"
                     )}
                 </td>
 
 
                 <td>
-                    ${escapeTableValue(
-                        student.level || "—"
+                    ${escapeHtml(
+                        student.level ||
+                        "—"
                     )}
                 </td>
 
 
                 <td>
-                    ${escapeTableValue(
-                        student.programme || "—"
+                    ${escapeHtml(
+                        student.programme ||
+                        "—"
                     )}
                 </td>
 
 
                 <td>
-                    ${escapeTableValue(
-                        student.house || "—"
+                    ${escapeHtml(
+                        student.house ||
+                        "—"
                     )}
                 </td>
 
@@ -435,12 +376,14 @@ function renderStudents() {
                     <span class="
                         register-status
                         ${getStatusClass(
-                            student.status || ""
+                            student.status ||
+                            "Pending"
                         )}
                     ">
 
-                        ${escapeTableValue(
-                            student.status || "—"
+                        ${escapeHtml(
+                            student.status ||
+                            "Pending"
                         )}
 
                     </span>
@@ -457,8 +400,9 @@ function renderStudents() {
                             class="register-action-btn"
                             title="View Student"
                             data-action="view"
-                            data-id="${escapeTableValue(
-                                student.id || ""
+                            data-id="${escapeHtml(
+                                student.id ||
+                                ""
                             )}">
 
                             <i class="fa-solid fa-eye"></i>
@@ -471,8 +415,9 @@ function renderStudents() {
                             class="register-action-btn"
                             title="Edit Student"
                             data-action="edit"
-                            data-id="${escapeTableValue(
-                                student.id || ""
+                            data-id="${escapeHtml(
+                                student.id ||
+                                ""
                             )}">
 
                             <i class="fa-solid fa-pen"></i>
@@ -485,8 +430,9 @@ function renderStudents() {
                             class="register-action-btn"
                             title="More Actions"
                             data-action="more"
-                            data-id="${escapeTableValue(
-                                student.id || ""
+                            data-id="${escapeHtml(
+                                student.id ||
+                                ""
                             )}">
 
                             <i class="fa-solid fa-ellipsis"></i>
@@ -514,34 +460,17 @@ function renderStudents() {
 
 
 /* ==========================================================
-   ESCAPE TABLE VALUE
+   ESCAPE HTML
    ========================================================== */
 
-function escapeTableValue(value) {
+function escapeHtml(value) {
 
-    return String(
-        value ?? ""
-    )
-    .replace(
-        /&/g,
-        "&amp;"
-    )
-    .replace(
-        /</g,
-        "&lt;"
-    )
-    .replace(
-        />/g,
-        "&gt;"
-    )
-    .replace(
-        /"/g,
-        "&quot;"
-    )
-    .replace(
-        /'/g,
-        "&#039;"
-    );
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 
 }
 
@@ -552,18 +481,14 @@ function escapeTableValue(value) {
 
 function getInitials(name) {
 
-    return String(name || "")
-        .trim()
-        .split(/\s+/)
+    return String(name || "Student")
+        .split(" ")
         .filter(Boolean)
         .map(
             word =>
                 word.charAt(0)
         )
-        .slice(
-            0,
-            2
-        )
+        .slice(0, 2)
         .join("")
         .toUpperCase();
 
@@ -576,12 +501,9 @@ function getInitials(name) {
 
 function getStatusClass(status) {
 
-    return String(status || "")
+    return String(status || "pending")
         .toLowerCase()
-        .replace(
-            /\s+/g,
-            "-"
-        );
+        .replace(/\s+/g, "-");
 
 }
 
@@ -590,9 +512,7 @@ function getStatusClass(status) {
    FILTERING
    ========================================================== */
 
-function applyFilters(
-    resetPage = true
-) {
+function applyFilters() {
 
     const search =
         searchInput?.value
@@ -616,41 +536,26 @@ function applyFilters(
         students.filter(
             student => {
 
-                const studentName =
-                    String(
-                        student.name || ""
-                    )
-                    .toLowerCase();
-
-
-                const studentId =
-                    String(
-                        student.id || ""
-                    )
-                    .toLowerCase();
-
-
-                const programme =
-                    String(
-                        student.programme || ""
-                    )
-                    .toLowerCase();
-
-
                 const matchesSearch =
                     !search ||
 
-                    studentName.includes(
-                        search
-                    ) ||
+                    String(
+                        student.name || ""
+                    )
+                    .toLowerCase()
+                    .includes(search) ||
 
-                    studentId.includes(
-                        search
-                    ) ||
+                    String(
+                        student.id || ""
+                    )
+                    .toLowerCase()
+                    .includes(search) ||
 
-                    programme.includes(
-                        search
-                    );
+                    String(
+                        student.programme || ""
+                    )
+                    .toLowerCase()
+                    .includes(search);
 
 
                 const matchesLevel =
@@ -679,47 +584,7 @@ function applyFilters(
         );
 
 
-    /*
-     * Normal filter changes return to page 1.
-     *
-     * When refreshing after saving a student,
-     * resetPage is false so the current page can
-     * be preserved.
-     */
-
-    if (resetPage) {
-
-        currentPage =
-            1;
-
-    }
-
-
-    /*
-     * Make sure currentPage is still valid after
-     * filtering or refreshing.
-     */
-
-    const totalPages =
-        Math.max(
-            1,
-            Math.ceil(
-                filteredStudents.length /
-                recordsPerPage
-            )
-        );
-
-
-    if (
-        currentPage >
-        totalPages
-    ) {
-
-        currentPage =
-            totalPages;
-
-    }
-
+    currentPage = 1;
 
     renderStudents();
 
@@ -733,34 +598,19 @@ function applyFilters(
 function clearFilters() {
 
     if (searchInput) {
-
-        searchInput.value =
-            "";
-
+        searchInput.value = "";
     }
-
 
     if (levelFilter) {
-
-        levelFilter.value =
-            "";
-
+        levelFilter.value = "";
     }
-
 
     if (genderFilter) {
-
-        genderFilter.value =
-            "";
-
+        genderFilter.value = "";
     }
 
-
     if (statusFilter) {
-
-        statusFilter.value =
-            "";
-
+        statusFilter.value = "";
     }
 
 
@@ -768,9 +618,7 @@ function clearFilters() {
         [...students];
 
 
-    currentPage =
-        1;
-
+    currentPage = 1;
 
     renderStudents();
 
@@ -797,10 +645,7 @@ function updatePagination() {
         );
 
 
-    if (
-        currentPage >
-        totalPages
-    ) {
+    if (currentPage > totalPages) {
 
         currentPage =
             totalPages;
@@ -848,9 +693,7 @@ function updatePagination() {
     if (currentPageElement) {
 
         currentPageElement.textContent =
-            String(
-                currentPage
-            );
+            currentPage;
 
     }
 
@@ -940,15 +783,10 @@ function updateSummary() {
    SAFE TEXT UPDATE
    ========================================================== */
 
-function setText(
-    id,
-    value
-) {
+function setText(id, value) {
 
     const element =
-        document.getElementById(
-            id
-        );
+        document.getElementById(id);
 
 
     if (element) {
@@ -967,43 +805,23 @@ function setText(
 
 searchInput?.addEventListener(
     "input",
-    () => {
-
-        applyFilters();
-
-    }
+    applyFilters
 );
-
 
 levelFilter?.addEventListener(
     "change",
-    () => {
-
-        applyFilters();
-
-    }
+    applyFilters
 );
-
 
 genderFilter?.addEventListener(
     "change",
-    () => {
-
-        applyFilters();
-
-    }
+    applyFilters
 );
-
 
 statusFilter?.addEventListener(
     "change",
-    () => {
-
-        applyFilters();
-
-    }
+    applyFilters
 );
-
 
 clearFiltersButton?.addEventListener(
     "click",
@@ -1012,17 +830,14 @@ clearFiltersButton?.addEventListener(
 
 
 /* ==========================================================
-   PAGINATION — PREVIOUS
+   PAGINATION EVENTS
    ========================================================== */
 
 previousButton?.addEventListener(
     "click",
     () => {
 
-        if (
-            currentPage >
-            1
-        ) {
+        if (currentPage > 1) {
 
             currentPage--;
 
@@ -1034,21 +849,14 @@ previousButton?.addEventListener(
 );
 
 
-/* ==========================================================
-   PAGINATION — NEXT
-   ========================================================== */
-
 nextButton?.addEventListener(
     "click",
     () => {
 
         const totalPages =
-            Math.max(
-                1,
-                Math.ceil(
-                    filteredStudents.length /
-                    recordsPerPage
-                )
+            Math.ceil(
+                filteredStudents.length /
+                recordsPerPage
             );
 
 
@@ -1082,9 +890,7 @@ tableBody?.addEventListener(
 
 
         if (!button) {
-
             return;
-
         }
 
 
@@ -1105,60 +911,34 @@ tableBody?.addEventListener(
 
 
         if (!student) {
-
             return;
-
         }
 
 
-        /* ==================================================
-           VIEW STUDENT
-           ================================================== */
-
-        if (
-            action === "view"
-        ) {
+        if (action === "view") {
 
             window.location.href =
                 `student-profile.html?id=${encodeURIComponent(
                     student.id
                 )}`;
 
-            return;
-
         }
 
 
-        /* ==================================================
-           EDIT STUDENT
-           ================================================== */
-
-        if (
-            action === "edit"
-        ) {
+        if (action === "edit") {
 
             alert(
                 `Edit student: ${student.name}`
             );
 
-            return;
-
         }
 
 
-        /* ==================================================
-           MORE ACTIONS
-           ================================================== */
-
-        if (
-            action === "more"
-        ) {
+        if (action === "more") {
 
             alert(
                 `More actions for: ${student.name}`
             );
-
-            return;
 
         }
 
@@ -1180,6 +960,7 @@ renderStudents();
 document.addEventListener(
     "DOMContentLoaded",
     () => {
+
 
         /* ======================================================
            ELEMENTS
@@ -1250,10 +1031,7 @@ document.addEventListener(
            SAFETY CHECK
            ====================================================== */
 
-        if (
-            !modal ||
-            !form
-        ) {
+        if (!modal || !form) {
 
             console.warn(
                 "Student registration modal or form was not found."
@@ -1264,9 +1042,7 @@ document.addEventListener(
         }
 
 
-        if (
-            !stepPanels.length
-        ) {
+        if (!stepPanels.length) {
 
             console.warn(
                 "No registration form steps were found."
@@ -1281,8 +1057,7 @@ document.addEventListener(
            STATE
            ====================================================== */
 
-        let currentStep =
-            0;
+        let currentStep = 0;
 
 
         const totalSteps =
@@ -1321,22 +1096,16 @@ document.addEventListener(
 
         function openModal() {
 
-            modal.hidden =
-                false;
-
+            modal.hidden = false;
 
             modal.classList.add(
                 "show"
             );
 
-
             document.body.style.overflow =
                 "hidden";
 
-
-            currentStep =
-                0;
-
+            currentStep = 0;
 
             updateStep();
 
@@ -1355,10 +1124,7 @@ document.addEventListener(
                 "show"
             );
 
-
-            modal.hidden =
-                true;
-
+            modal.hidden = true;
 
             document.body.style.overflow =
                 "";
@@ -1437,8 +1203,7 @@ document.addEventListener(
             event => {
 
                 if (
-                    event.target ===
-                    modal
+                    event.target === modal
                 ) {
 
                     closeModal();
@@ -1458,8 +1223,7 @@ document.addEventListener(
             event => {
 
                 if (
-                    event.key ===
-                    "Escape" &&
+                    event.key === "Escape" &&
                     modal.classList.contains(
                         "show"
                     )
@@ -1484,14 +1248,12 @@ document.addEventListener(
 
                     panel.classList.toggle(
                         "active",
-                        index ===
-                        currentStep
+                        index === currentStep
                     );
 
 
                     panel.hidden =
-                        index !==
-                        currentStep;
+                        index !== currentStep;
 
                 }
             );
@@ -1502,22 +1264,19 @@ document.addEventListener(
 
                     indicator.classList.toggle(
                         "active",
-                        index ===
-                        currentStep
+                        index === currentStep
                     );
 
 
                     indicator.classList.toggle(
                         "completed",
-                        index <
-                        currentStep
+                        index < currentStep
                     );
 
 
                     indicator.setAttribute(
                         "aria-current",
-                        index ===
-                        currentStep
+                        index === currentStep
                             ? "step"
                             : "false"
                     );
@@ -1540,9 +1299,7 @@ document.addEventListener(
 
 
                     if (!panel) {
-
                         return;
-
                     }
 
 
@@ -1578,9 +1335,7 @@ document.addEventListener(
 
 
                     if (!panel) {
-
                         return;
-
                     }
 
 
@@ -1606,9 +1361,7 @@ document.addEventListener(
                COMPLETE BUTTON
             ---------------------------------------------- */
 
-            if (
-                completeButton
-            ) {
+            if (completeButton) {
 
                 const finalPanel =
                     completeButton.closest(
@@ -1638,7 +1391,7 @@ document.addEventListener(
 
 
             /* ----------------------------------------------
-               STEP 6 — ALWAYS REFRESH REVIEW
+               STEP 6 — REFRESH REVIEW
             ---------------------------------------------- */
 
             if (
@@ -1646,15 +1399,12 @@ document.addEventListener(
                 totalSteps - 1
             ) {
 
-                if (
-                    reviewContainer
-                ) {
+                if (reviewContainer) {
 
                     reviewContainer.hidden =
                         false;
 
                 }
-
 
                 buildRegistrationReview();
 
@@ -1688,8 +1438,7 @@ document.addEventListener(
                 );
 
 
-            let valid =
-                true;
+            let valid = true;
 
 
             fields.forEach(
@@ -1731,8 +1480,7 @@ document.addEventListener(
 
                     if (!value) {
 
-                        valid =
-                            false;
+                        valid = false;
 
 
                         if (wrapper) {
@@ -1839,7 +1587,7 @@ document.addEventListener(
                             if (
                                 heading &&
                                 typeof heading.focus ===
-                                "function"
+                                    "function"
                             ) {
 
                                 heading.setAttribute(
@@ -1876,12 +1624,10 @@ document.addEventListener(
 
 
                         if (
-                            currentStep >
-                            0
+                            currentStep > 0
                         ) {
 
                             currentStep--;
-
 
                             updateStep();
 
@@ -1909,11 +1655,6 @@ document.addEventListener(
 
                         event.preventDefault();
 
-
-                        /*
-                         * Don't allow jumping forward
-                         * without completing current step.
-                         */
 
                         if (
                             index >
@@ -1976,12 +1717,8 @@ document.addEventListener(
 
 
                 if (
-                    (
-                        field.hasAttribute(
-                            "required"
-                        ) ||
-                        field.dataset.required ===
-                            "true"
+                    field.hasAttribute(
+                        "required"
                     ) &&
                     field.value.trim()
                 ) {
@@ -2001,11 +1738,6 @@ document.addEventListener(
 
                 }
 
-
-                /*
-                 * If user is currently on Step 6,
-                 * rebuild the review immediately.
-                 */
 
                 if (
                     currentStep ===
@@ -2062,8 +1794,7 @@ document.addEventListener(
             }
 
 
-            let completed =
-                0;
+            let completed = 0;
 
 
             fields.forEach(
@@ -2083,7 +1814,6 @@ document.addEventListener(
 
                         }
 
-
                         return;
 
                     }
@@ -2091,8 +1821,7 @@ document.addEventListener(
 
                     if (
                         field.value &&
-                        field.value.trim() !==
-                            ""
+                        field.value.trim() !== ""
                     ) {
 
                         completed++;
@@ -2107,8 +1836,7 @@ document.addEventListener(
                 (
                     completed /
                     fields.length
-                ) *
-                100
+                ) * 100
             );
 
         }
@@ -2122,30 +1850,21 @@ document.addEventListener(
             percent
         ) {
 
-            if (
-                percent <=
-                50
-            ) {
+            if (percent <= 50) {
 
                 return "#dc2626";
 
             }
 
 
-            if (
-                percent <=
-                80
-            ) {
+            if (percent <= 80) {
 
                 return "#eab308";
 
             }
 
 
-            if (
-                percent <=
-                95
-            ) {
+            if (percent <= 95) {
 
                 return "#84cc16";
 
@@ -2167,9 +1886,7 @@ document.addEventListener(
                 calculateCompletion();
 
 
-            if (
-                progressBar
-            ) {
+            if (progressBar) {
 
                 progressBar.style.width =
                     `${percent}%`;
@@ -2183,9 +1900,7 @@ document.addEventListener(
             }
 
 
-            if (
-                progressPercent
-            ) {
+            if (progressPercent) {
 
                 progressPercent.textContent =
                     `${percent}%`;
@@ -2202,13 +1917,10 @@ document.addEventListener(
         function saveRegistration() {
 
             const formData =
-                new FormData(
-                    form
-                );
+                new FormData(form);
 
 
-            const studentData =
-                {};
+            const studentData = {};
 
 
             formData.forEach(
@@ -2218,9 +1930,7 @@ document.addEventListener(
                         value instanceof File
                     ) {
 
-                        if (
-                            value.name
-                        ) {
+                        if (value.name) {
 
                             studentData[key] =
                                 value.name;
@@ -2330,18 +2040,14 @@ document.addEventListener(
             try {
 
                 const data =
-                    JSON.parse(
-                        saved
-                    );
+                    JSON.parse(saved);
 
 
                 Object.keys(data).forEach(
                     key => {
 
                         const field =
-                            form.elements[
-                                key
-                            ];
+                            form.elements[key];
 
 
                         if (
@@ -2380,8 +2086,7 @@ document.addEventListener(
                     Number.isInteger(
                         data.currentStep
                     ) &&
-                    data.currentStep >=
-                        0 &&
+                    data.currentStep >= 0 &&
                     data.currentStep <
                         totalSteps
                 ) {
@@ -2395,6 +2100,7 @@ document.addEventListener(
                 updateStep();
 
                 updateProgress();
+
 
             } catch (error) {
 
@@ -2412,47 +2118,41 @@ document.addEventListener(
            STEP 6 — REVIEW ENGINE
            ====================================================== */
 
-        function escapeHtml(value) {
+        function escapeReviewHtml(
+            value
+        ) {
 
-            return String(
-                value ?? ""
-            )
-            .replace(
-                /&/g,
-                "&amp;"
-            )
-            .replace(
-                /</g,
-                "&lt;"
-            )
-            .replace(
-                />/g,
-                "&gt;"
-            )
-            .replace(
-                /"/g,
-                "&quot;"
-            )
-            .replace(
-                /'/g,
-                "&#039;"
-            );
+            return String(value ?? "")
+                .replace(
+                    /&/g,
+                    "&amp;"
+                )
+                .replace(
+                    /</g,
+                    "&lt;"
+                )
+                .replace(
+                    />/g,
+                    "&gt;"
+                )
+                .replace(
+                    /"/g,
+                    "&quot;"
+                )
+                .replace(
+                    /'/g,
+                    "&#039;"
+                );
 
         }
 
-
-        /* ======================================================
-           READ FIELD VALUE
-           ====================================================== */
 
         function getFieldValue(
             name
         ) {
 
             const field =
-                form.elements[
-                    name
-                ];
+                form.elements[name];
 
 
             if (!field) {
@@ -2479,9 +2179,7 @@ document.addEventListener(
                         file =>
                             file.name
                     )
-                    .join(
-                        ", "
-                    );
+                    .join(", ");
 
                 }
 
@@ -2497,13 +2195,11 @@ document.addEventListener(
             ) {
 
                 const checked =
-                    Array.from(
-                        field
-                    )
-                    .find(
-                        radio =>
-                            radio.checked
-                    );
+                    Array.from(field)
+                        .find(
+                            radio =>
+                                radio.checked
+                        );
 
 
                 return checked
@@ -2533,10 +2229,6 @@ document.addEventListener(
         }
 
 
-        /* ======================================================
-           DISPLAY VALUE
-           ====================================================== */
-
         function displayReviewValue(
             value
         ) {
@@ -2548,16 +2240,12 @@ document.addEventListener(
             }
 
 
-            return escapeHtml(
+            return escapeReviewHtml(
                 value
             );
 
         }
 
-
-        /* ======================================================
-           REVIEW ROW
-           ====================================================== */
 
         function createReviewRow(
             label,
@@ -2570,7 +2258,7 @@ document.addEventListener(
 
                     <span class="registration-review-label">
 
-                        ${escapeHtml(
+                        ${escapeReviewHtml(
                             label
                         )}
 
@@ -2591,10 +2279,6 @@ document.addEventListener(
         }
 
 
-        /* ======================================================
-           REVIEW SECTION
-           ====================================================== */
-
         function createReviewSection(
             title,
             icon,
@@ -2612,7 +2296,7 @@ document.addEventListener(
 
                             <span class="registration-review-section-icon">
 
-                                <i class="${escapeHtml(
+                                <i class="${escapeReviewHtml(
                                     icon
                                 )}"></i>
 
@@ -2628,7 +2312,7 @@ document.addEventListener(
 
                                 <h4>
 
-                                    ${escapeHtml(
+                                    ${escapeReviewHtml(
                                         title
                                     )}
 
@@ -3021,10 +2705,8 @@ document.addEventListener(
 
 
                             if (
-                                targetStep <
-                                    1 ||
-                                targetStep >
-                                    totalSteps
+                                targetStep < 1 ||
+                                targetStep > totalSteps
                             ) {
 
                                 return;
@@ -3033,8 +2715,7 @@ document.addEventListener(
 
 
                             currentStep =
-                                targetStep -
-                                1;
+                                targetStep - 1;
 
 
                             updateStep();
@@ -3048,9 +2729,7 @@ document.addEventListener(
                                 ];
 
 
-                            if (
-                                targetPanel
-                            ) {
+                            if (targetPanel) {
 
                                 const focusTarget =
                                     targetPanel.querySelector(
@@ -3058,9 +2737,7 @@ document.addEventListener(
                                     );
 
 
-                                if (
-                                    focusTarget
-                                ) {
+                                if (focusTarget) {
 
                                     if (
                                         focusTarget.matches(
@@ -3091,266 +2768,476 @@ document.addEventListener(
         }
 
 
-       /* ======================================================
+        /* ======================================================
            COLLECT COMPLETE STUDENT DATA
            ====================================================== */
 
-        function collectStudentData() {
+          
 
-            const formData =
-                new FormData(
-                    form
-                );
+function collectStudentData() {
+
+    const formData =
+        new FormData(form);
+
+    const studentData = {};
+
+    formData.forEach(
+        (value, key) => {
+
+            /*
+             * FILE INPUTS
+             * ------------------------------------------------
+             * Store the selected file as a Data URL so the
+             * actual passport image can be displayed later.
+             */
+
+            if (
+                value instanceof File
+            ) {
+
+                if (
+                    value &&
+                    value.name
+                ) {
+
+                    /*
+                     * Store the filename temporarily.
+                     * The actual image will be added below.
+                     */
+
+                    studentData[key] =
+                        value.name;
+
+                }
+
+                return;
+
+            }
 
 
-            const studentData =
-                {};
+            /*
+             * Preserve multiple fields
+             * with the same name.
+             */
+
+            if (
+                Object.prototype.hasOwnProperty.call(
+                    studentData,
+                    key
+                )
+            ) {
+
+                if (
+                    Array.isArray(
+                        studentData[key]
+                    )
+                ) {
+
+                    studentData[key].push(
+                        value
+                    );
+
+                } else {
+
+                    studentData[key] = [
+                        studentData[key],
+                        value
+                    ];
+
+                }
+
+            } else {
+
+                studentData[key] =
+                    value;
+
+            }
+
+        }
+    );
 
 
-            formData.forEach(
-                (value, key) => {
+    /*
+     * --------------------------------------------------------
+     * PASSPORT PHOTO
+     * --------------------------------------------------------
+     * Read the actual selected passport image.
+     *
+     * This allows student-profile.js to display the image
+     * after the student has been saved.
+     */
+
+    const passportPhoto =
+        form.elements[
+            "studentPassportPhoto"
+        ];
+
+
+    if (
+        passportPhoto &&
+        passportPhoto.files &&
+        passportPhoto.files.length > 0
+    ) {
+
+        const file =
+            passportPhoto.files[0];
+
+
+        /*
+         * Only process image files.
+         */
+
+        if (
+            file.type &&
+            file.type.startsWith("image/")
+        ) {
+
+            const reader =
+                new FileReader();
+
+
+            reader.onload = () => {
+
+                /*
+                 * Find the student record that was just saved.
+                 *
+                 * The actual record is updated after the FileReader
+                 * finishes reading the image.
+                 */
+
+                const saved =
+                    localStorage.getItem(
+                        "studentRecords"
+                    );
+
+
+                if (!saved) {
+                    return;
+                }
+
+
+                try {
+
+                    const records =
+                        JSON.parse(saved);
+
 
                     if (
-                        value instanceof File
+                        !Array.isArray(records) ||
+                        !records.length
                     ) {
-
-                        if (
-                            value.name
-                        ) {
-
-                            studentData[key] =
-                                value.name;
-
-                        }
-
 
                         return;
 
                     }
 
 
-                    if (
-                        Object.prototype.hasOwnProperty.call(
-                            studentData,
-                            key
-                        )
-                    ) {
-
-                        if (
-                            Array.isArray(
-                                studentData[
-                                    key
-                                ]
-                            )
-                        ) {
-
-                            studentData[
-                                key
-                            ].push(
-                                value
-                            );
-
-                        } else {
-
-                            studentData[
-                                key
-                            ] = [
-
-                                studentData[
-                                    key
-                                ],
-
-                                value
-
-                            ];
-
-                        }
-
-                    } else {
-
-                        studentData[
-                            key
-                        ] =
-                            value;
-
-                    }
-
-                }
-            );
+                    const lastStudent =
+                        records[
+                            records.length - 1
+                        ];
 
 
-            studentData.registrationProgress =
-                calculateCompletion();
+                    /*
+                     * Store the actual image Data URL.
+                     */
+
+                    lastStudent.studentPassportPhotoData =
+                        reader.result;
 
 
-            studentData.savedAt =
-                new Date().toISOString();
+                    /*
+                     * Keep the original filename too.
+                     */
+
+                    lastStudent.studentPassportPhoto =
+                        file.name;
 
 
-            return studentData;
-
-        }
-
-
-        /* ======================================================
-           GENERATE UNIQUE STUDENT ID
-           ====================================================== */
-
-        function generateStudentId() {
-
-            /*
-             * Read ALL existing records, including demo
-             * students, so we never create a duplicate ID.
-             */
-
-            const allStudents =
-                loadStudents();
-
-
-            const usedNumbers =
-                allStudents
-                    .map(
-                        student => {
-
-                            const match =
-                                String(
-                                    student.id ||
-                                    ""
-                                ).match(
-                                    /SMP-\d{4}-(\d+)$/
-                                );
-
-
-                            return match
-                                ? Number(
-                                    match[1]
-                                )
-                                : 0;
-
-                        }
-                    )
-                    .filter(
-                        number =>
-                            Number.isFinite(
-                                number
-                            )
+                    localStorage.setItem(
+                        "studentRecords",
+                        JSON.stringify(records)
                     );
 
 
-            const highestNumber =
-                usedNumbers.length
-                    ? Math.max(
-                        ...usedNumbers
-                    )
-                    : 0;
+                } catch (error) {
+
+                    console.error(
+                        "Unable to save passport photo.",
+                        error
+                    );
+
+                }
+
+            };
 
 
-            return `SMP-${new Date().getFullYear()}-${String(
-                highestNumber + 1
-            ).padStart(
-                4,
-                "0"
-            )}`;
+            reader.readAsDataURL(file);
+
+        }
+
+    }
+
+
+    studentData.registrationProgress =
+        calculateCompletion();
+
+
+    studentData.savedAt =
+        new Date().toISOString();
+
+
+    return studentData;
+
+}
+
+   
+
+
+        /* ======================================================
+           READ FILE AS DATA URL
+           ====================================================== */
+
+        function readFileAsDataURL(
+            file
+        ) {
+
+            return new Promise(
+                (
+                    resolve,
+                    reject
+                ) => {
+
+                    if (!file) {
+
+                        resolve("");
+
+                        return;
+
+                    }
+
+
+                    const reader =
+                        new FileReader();
+
+
+                    reader.onload =
+                        () => {
+
+                            resolve(
+                                reader.result
+                            );
+
+                        };
+
+
+                    reader.onerror =
+                        () => {
+
+                            reject(
+                                reader.error
+                            );
+
+                        };
+
+
+                    reader.readAsDataURL(
+                        file
+                    );
+
+                }
+            );
 
         }
 
 
         /* ======================================================
            SAVE COMPLETED STUDENT
+           WITH PASSPORT PHOTO
            ====================================================== */
 
-        function saveCompletedStudent() {
+       
 
-            const studentData =
-                collectStudentData();
+async function saveCompletedStudent() {
 
-
-            let savedStudents =
-                [];
+    const studentData =
+        collectStudentData();
 
 
-            const existing =
-                localStorage.getItem(
-                    "studentRecords"
-                );
+    /*
+     * --------------------------------------------------------
+     * READ PASSPORT PHOTO BEFORE SAVING THE STUDENT
+     * --------------------------------------------------------
+     */
+
+    const passportPhoto =
+        form.elements[
+            "studentPassportPhoto"
+        ];
 
 
-            if (existing) {
+    if (
+        passportPhoto &&
+        passportPhoto.files &&
+        passportPhoto.files.length > 0
+    ) {
 
-                try {
-
-                    const parsed =
-                        JSON.parse(
-                            existing
-                        );
+        const file =
+            passportPhoto.files[0];
 
 
-                    if (
-                        Array.isArray(
-                            parsed
-                        )
-                    ) {
+        if (
+            file.type &&
+            file.type.startsWith("image/")
+        ) {
 
-                        savedStudents =
-                            parsed;
+            try {
 
-                    }
+                studentData.studentPassportPhoto =
+                    file.name;
 
-                } catch (error) {
 
-                    console.warn(
-                        "Unable to read existing student records. Starting a new list.",
-                        error
+                studentData.studentPassportPhotoData =
+                    await new Promise(
+                        (resolve, reject) => {
+
+                            const reader =
+                                new FileReader();
+
+
+                            reader.onload = () => {
+
+                                resolve(
+                                    reader.result
+                                );
+
+                            };
+
+
+                            reader.onerror = () => {
+
+                                reject(
+                                    reader.error
+                                );
+
+                            };
+
+
+                            reader.readAsDataURL(
+                                file
+                            );
+
+                        }
                     );
 
-                }
+            } catch (error) {
+
+                console.error(
+                    "Unable to read passport photo.",
+                    error
+                );
 
             }
 
+        }
 
-            /*
-             * Generate an ID that cannot collide with
-             * the demo records or previously registered
-             * students.
-             */
-
-            const studentId =
-                generateStudentId();
+    }
 
 
-            studentData.id =
-                studentId;
+    /*
+     * --------------------------------------------------------
+     * LOAD EXISTING STUDENTS
+     * --------------------------------------------------------
+     */
+
+    let savedStudents = [];
 
 
-            studentData.status =
-                "Active";
+    const existing =
+        localStorage.getItem(
+            "studentRecords"
+        );
 
 
-            savedStudents.push(
-                studentData
+    if (existing) {
+
+        try {
+
+            const parsed =
+                JSON.parse(existing);
+
+
+            if (
+                Array.isArray(parsed)
+            ) {
+
+                savedStudents =
+                    parsed;
+
+            }
+
+        } catch (error) {
+
+            console.warn(
+                "Unable to read existing student records. Starting a new list.",
+                error
             );
-
-
-            localStorage.setItem(
-                "studentRecords",
-                JSON.stringify(
-                    savedStudents
-                )
-            );
-
-
-            return studentData;
 
         }
+
+    }
+
+
+    /*
+     * --------------------------------------------------------
+     * CREATE STUDENT ID
+     * --------------------------------------------------------
+     */
+
+    const studentId =
+        `SMP-${new Date().getFullYear()}-${String(
+            savedStudents.length + 1
+        ).padStart(4, "0")}`;
+
+
+    studentData.id =
+        studentId;
+
+
+    studentData.status =
+        "Active";
+
+
+    /*
+     * --------------------------------------------------------
+     * SAVE STUDENT
+     * --------------------------------------------------------
+     */
+
+    savedStudents.push(
+        studentData
+    );
+
+
+    localStorage.setItem(
+        "studentRecords",
+        JSON.stringify(
+            savedStudents
+        )
+    );
+
+
+    return studentData;
+
+}
+
 
 
         /* ======================================================
            COMPLETE REGISTRATION
            ====================================================== */
 
-        if (
-            completeButton
-        ) {
+        if (completeButton) {
 
             completeButton.addEventListener(
                 "click",
@@ -3366,19 +3253,18 @@ document.addEventListener(
         }
 
 
-        function finishRegistration() {
+        /* ======================================================
+           FINISH REGISTRATION
+           ====================================================== */
 
-            /*
-             * Step 6 is a review step.
-             */
+        async function finishRegistration() {
 
             const completion =
                 calculateCompletion();
 
 
             if (
-                completion <
-                100
+                completion < 100
             ) {
 
                 const proceed =
@@ -3396,74 +3282,40 @@ document.addEventListener(
             }
 
 
-            /* ==================================================
-               SAVE STUDENT
-               ================================================== */
+            /* ----------------------------------------------
+               SAVE COMPLETE STUDENT
+            ---------------------------------------------- */
 
             const savedStudent =
-                saveCompletedStudent();
+                await saveCompletedStudent();
 
 
-            /* ==================================================
-               IMPORTANT:
-               REFRESH TABLE DATA IMMEDIATELY
-               ================================================== */
-
-            refreshStudentData();
-
-
-            /*
-             * The new student has been appended to the
-             * registered records.
-             *
-             * We now move the table to the LAST PAGE so
-             * the newly saved student is immediately visible.
-             */
-
-            const totalPages =
-                Math.max(
-                    1,
-                    Math.ceil(
-                        filteredStudents.length /
-                        recordsPerPage
-                    )
-                );
-
-
-            currentPage =
-                totalPages;
-
-
-            renderStudents();
-
-
-            /*
-             * Remove temporary draft.
-             */
+            /* ----------------------------------------------
+               REMOVE DRAFT
+            ---------------------------------------------- */
 
             localStorage.removeItem(
                 "studentRegistrationDraft"
             );
 
 
-            /* ==================================================
-               SUCCESS MESSAGE
-               ================================================== */
+            /* ----------------------------------------------
+               SUCCESS
+            ---------------------------------------------- */
 
             alert(
                 `Student registration completed successfully.\n\nStudent ID: ${savedStudent.id}`
             );
 
 
-            /* ==================================================
+            /* ----------------------------------------------
                RESET FORM
-               ================================================== */
+            ---------------------------------------------- */
 
             form.reset();
 
 
-            currentStep =
-                0;
+            currentStep = 0;
 
 
             updateStep();
@@ -3471,33 +3323,7 @@ document.addEventListener(
             updateProgress();
 
 
-            /*
-             * Close registration modal.
-             */
-
             closeModal();
-
-
-            /*
-             * Final refresh after modal closes.
-             * This guarantees the cards and table are
-             * synchronized with localStorage.
-             */
-
-            refreshStudentData();
-
-
-            currentPage =
-                Math.max(
-                    1,
-                    Math.ceil(
-                        filteredStudents.length /
-                        recordsPerPage
-                    )
-                );
-
-
-            renderStudents();
 
         }
 
