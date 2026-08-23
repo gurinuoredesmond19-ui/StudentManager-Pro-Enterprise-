@@ -119,7 +119,58 @@ function loadStudents() {
             if (Array.isArray(parsed)) {
 
                 registeredStudents =
-                    parsed;
+                    parsed.map(
+                        student => {
+
+                            const firstName =
+                                student.studentFirstName || "";
+
+                            const middleName =
+                                student.studentMiddleName || "";
+
+                            const lastName =
+                                student.studentLastName || "";
+
+
+                            const fullName =
+                                [
+                                    firstName,
+                                    middleName,
+                                    lastName
+                                ]
+                                .filter(Boolean)
+                                .join(" ");
+
+
+                            return {
+
+                                id:
+                                    student.id || "",
+
+                                name:
+                                    fullName ||
+                                    "Unnamed Student",
+
+                                gender:
+                                    student.studentGender || "",
+
+                                level:
+                                    student.studentLevel || "",
+
+                                programme:
+                                    student.studentProgramme || "",
+
+                                house:
+                                    student.studentHouse || "",
+
+                                status:
+                                    student.status ||
+                                    "Active"
+
+                            };
+
+                        }
+                    );
 
             }
 
