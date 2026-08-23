@@ -1,0 +1,1675 @@
+<!-- ==========================================================
+     STUDENT REGISTRATION MODAL
+=========================================================== -->
+
+<div
+    class="student-registration-modal"
+    id="studentRegistrationModal"
+    hidden>
+
+
+    <!-- ======================================================
+         MODAL BACKDROP
+    ======================================================= -->
+
+    <div
+        class="student-registration-backdrop"
+        id="studentRegistrationBackdrop">
+    </div>
+
+
+    <!-- ======================================================
+         MODAL WINDOW
+    ======================================================= -->
+
+    <section
+        class="student-registration-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="studentRegistrationTitle">
+
+
+        <!-- ==================================================
+             MODAL HEADER
+        =================================================== -->
+
+        <header class="student-registration-header">
+
+
+            <div>
+
+                <span>
+                    NEW STUDENT
+                </span>
+
+
+                <h2 id="studentRegistrationTitle">
+                    Student Registration
+                </h2>
+
+
+                <p>
+                    Create a student record step by step.
+                    You can save and continue later.
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="student-registration-close"
+                id="closeStudentRegistration"
+                aria-label="Close registration">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </header>
+
+
+        <!-- ==================================================
+             REGISTRATION PROGRESS
+        =================================================== -->
+
+        <div class="student-registration-progress">
+
+
+            <div class="registration-progress-top">
+
+
+                <div>
+
+                    <span>
+                        Registration Completion
+                    </span>
+
+                    <strong id="registrationPercentage">
+                        0%
+                    </strong>
+
+                </div>
+
+
+                <span id="registrationStatus">
+                    Draft
+                </span>
+
+            </div>
+
+
+            <div class="registration-progress-track">
+
+                <div
+                    id="registrationProgressBar"
+                    class="registration-progress-bar"
+                    style="width: 0%;">
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==================================================
+             STEP NAVIGATION
+        =================================================== -->
+
+        <nav
+            class="student-registration-steps"
+            aria-label="Registration steps">
+
+
+            <button
+                type="button"
+                class="registration-step active"
+                data-registration-step="1">
+
+                <span>
+                    1
+                </span>
+
+                <strong>
+                    Personal
+                </strong>
+
+            </button>
+
+
+            <button
+                type="button"
+                class="registration-step"
+                data-registration-step="2">
+
+                <span>
+                    2
+                </span>
+
+                <strong>
+                    Contact
+                </strong>
+
+            </button>
+
+
+            <button
+                type="button"
+                class="registration-step"
+                data-registration-step="3">
+
+                <span>
+                    3
+                </span>
+
+                <strong>
+                    Guardian
+                </strong>
+
+            </button>
+
+
+            <button
+                type="button"
+                class="registration-step"
+                data-registration-step="4">
+
+                <span>
+                    4
+                </span>
+
+                <strong>
+                    Academic
+                </strong>
+
+            </button>
+
+
+            <button
+                type="button"
+                class="registration-step"
+                data-registration-step="5">
+
+                <span>
+                    5
+                </span>
+
+                <strong>
+                    Documents
+                </strong>
+
+            </button>
+
+
+            <button
+                type="button"
+                class="registration-step"
+                data-registration-step="6">
+
+                <span>
+                    6
+                </span>
+
+                <strong>
+                    Review
+                </strong>
+
+            </button>
+
+        </nav>
+
+
+        <!-- ==================================================
+             REGISTRATION FORM
+        =================================================== -->
+
+        <form
+            id="studentRegistrationForm"
+            novalidate>
+
+
+            <!-- =================================================
+                 STEP 1 — PERSONAL INFORMATION
+            ================================================== -->
+
+            <section
+                class="registration-form-step active"
+                data-form-step="1">
+
+
+                <div class="registration-step-heading">
+
+                    <span>
+                        STEP 1 OF 6
+                    </span>
+
+                    <h3>
+                        Personal Information
+                    </h3>
+
+                    <p>
+                        Enter the student's basic identity information.
+                    </p>
+
+                </div>
+
+
+                <div class="registration-fields">
+
+
+                    <div class="registration-field">
+
+                        <label for="studentFirstName">
+
+                            First Name
+
+                            <span class="required">
+                                *
+                            </span>
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="studentFirstName"
+                            name="studentFirstName"
+                            autocomplete="given-name"
+                            data-required="true">
+
+                        <small
+                            class="registration-error"
+                            data-error-for="studentFirstName">
+                        </small>
+
+                    </div>
+
+
+                    <div class="registration-field">
+
+                        <label for="studentMiddleName">
+
+                            Middle Name
+
+                            <span class="optional">
+                                Optional
+                            </span>
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="studentMiddleName"
+                            name="studentMiddleName"
+                            autocomplete="additional-name">
+
+                    </div>
+
+
+                    <div class="registration-field">
+
+                        <label for="studentLastName">
+
+                            Last Name
+
+                            <span class="required">
+                                *
+                            </span>
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="studentLastName"
+                            name="studentLastName"
+                            autocomplete="family-name"
+                            data-required="true">
+
+                        <small
+                            class="registration-error"
+                            data-error-for="studentLastName">
+                        </small>
+
+                    </div>
+
+
+                    <div class="registration-field">
+
+                        <label for="studentDateOfBirth">
+
+                            Date of Birth
+
+                            <span class="required">
+                                *
+                            </span>
+
+                        </label>
+
+                        <input
+                            type="date"
+                            id="studentDateOfBirth"
+                            name="studentDateOfBirth"
+                            data-required="true">
+
+                        <small
+                            class="registration-error"
+                            data-error-for="studentDateOfBirth">
+                        </small>
+
+                    </div>
+
+
+                    <div class="registration-field">
+
+                        <label for="studentGender">
+
+                            Gender
+
+                            <span class="required">
+                                *
+                            </span>
+
+                        </label>
+
+                        <select
+                            id="studentGender"
+                            name="studentGender"
+                            data-required="true">
+
+                            <option value="">
+                                Select gender
+                            </option>
+
+                            <option value="Male">
+                                Male
+                            </option>
+
+                            <option value="Female">
+                                Female
+                            </option>
+
+                        </select>
+
+                        <small
+                            class="registration-error"
+                            data-error-for="studentGender">
+                        </small>
+
+                    </div>
+
+
+                    <div class="registration-field">
+
+                        <label for="studentNationality">
+
+                            Nationality
+
+                            <span class="optional">
+                                Optional
+                            </span>
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="studentNationality"
+                            name="studentNationality"
+                            value="Ghanaian">
+
+                    </div>
+
+
+                    <div class="registration-field">
+
+                        <label for="studentBirthPlace">
+
+                            Place of Birth
+
+                            <span class="optional">
+                                Optional
+                            </span>
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="studentBirthPlace"
+                            name="studentBirthPlace">
+
+                    </div>
+
+
+                    <div class="registration-field">
+
+                        <label for="studentPreviousSchool">
+
+                            Previous School
+
+                            <span class="optional">
+                                Optional
+                            </span>
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="studentPreviousSchool"
+                            name="studentPreviousSchool">
+
+                    </div>
+
+                </div>
+
+
+                <div class="registration-form-actions">
+
+
+                    <button
+                        type="button"
+                        class="app-btn app-btn-light"
+                        data-save-draft>
+
+                        <i class="fa-solid fa-floppy-disk"></i>
+
+                        Save Draft
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="app-btn app-btn-primary"
+                        data-next-step>
+
+                        Next
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 STEP 2 — CONTACT INFORMATION
+            ================================================== -->
+
+            <section
+                class="registration-form-step"
+                data-form-step="2"
+                hidden>
+
+
+                <div class="registration-step-heading">
+
+                    <span>
+                        STEP 2 OF 6
+                    </span>
+
+                    <h3>
+                        Contact Information
+                    </h3>
+
+                    <p>
+                        Enter the student's contact and residential details.
+                    </p>
+
+                </div>
+
+
+                <div class="registration-fields">
+
+
+                    <div class="registration-field">
+
+                        <label for="studentPhone">
+
+                            Primary Phone
+
+                            <span class="required">
+                                *
+                            </span>
+
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="studentPhone"
+                            name="studentPhone"
+                            autocomplete="tel"
+                            data-required="true">
+
+                        <small
+                            class="registration-error"
+                            data-error-for="studentPhone">
+                        </small>
+
+                    </div>
+
+
+                    <div class="registration-field">
+
+                        <label for="studentAlternativePhone">
+
+                            Alternative Phone
+
+                            <span class="optional">
+                                Optional
+                            </span>
+
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="studentAlternativePhone"
+                            name="studentAlternativePhone">
+
+                    </div>
+
+
+                    <div class="registration-field">
+
+                        <label for="studentEmail">
+
+                            Email Address
+
+                            <span class="optional">
+                                Optional
+                            </span>
+
+                        </label>
+
+                        <input
+                            type="email"
+                            id="studentEmail"
+                            name="studentEmail"
+                            autocomplete="email">
+
+                    </div>
+
+
+                    <div class="registration-field">
+
+                        <label for="studentEmergencyPhone">
+
+                            Emergency Phone
+
+                            <span class="required">
+                                *
+                            </span>
+
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="studentEmergencyPhone"
+                            name="studentEmergencyPhone"
+                            data-required="true">
+
+                        <small
+                            class="registration-error"
+                            data-error-for="studentEmergencyPhone">
+                        </small>
+
+                    </div>
+
+
+                    <div class="registration-field full">
+
+                        <label for="studentAddress">
+
+                            Residential Address
+
+                            <span class="required">
+                                *
+                            </span>
+
+                        </label>
+
+                        <textarea
+                            id="studentAddress"
+                            name="studentAddress"
+                            rows="3"
+                            data-required="true"></textarea>
+
+                        <small
+                            class="registration-error"
+                            data-error-for="studentAddress">
+                        </small>
+
+                    </div>
+
+
+                    <div class="registration-field">
+
+                        <label for="studentCity">
+
+                            City / Town
+
+                            <span class="required">
+                                *
+                            </span>
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="studentCity"
+                            name="studentCity"
+                            data-required="true">
+
+                        <small
+                            class="registration-error"
+                            data-error-for="studentCity">
+                        </small>
+
+                    </div>
+
+
+                    <div class="registration-field">
+
+                        <label for="studentRegion">
+
+                            Region
+
+                            <span class="required">
+                                *
+                            </span>
+
+                        </label>
+
+                        <select
+                            id="studentRegion"
+                            name="studentRegion"
+                            data-required="true">
+
+                            <option value="">
+                                Select region
+                            </option>
+
+                            <option value="Ahafo">
+                                Ahafo
+                            </option>
+
+                            <option value="Ashanti">
+                                Ashanti
+                            </option>
+
+                            <option value="Bono">
+                                Bono
+                            </option>
+
+                            <option value="Bono East">
+                                Bono East
+                            </option>
+
+                            <option value="Central">
+                                Central
+                            </option>
+
+                            <option value="Eastern">
+                                Eastern
+                            </option>
+
+                            <option value="Greater Accra">
+                                Greater Accra
+                            </option>
+
+                            <option value="North East">
+                                North East
+                            </option>
+
+                            <option value="Northern">
+                                Northern
+                            </option>
+
+                            <option value="Oti">
+                                Oti
+                            </option>
+
+                            <option value="Savannah">
+                                Savannah
+                            </option>
+
+                            <option value="Upper East">
+                                Upper East
+                            </option>
+
+                            <option value="Upper West">
+                                Upper West
+                            </option>
+
+                            <option value="Volta">
+                                Volta
+                            </option>
+
+                            <option value="Western">
+                                Western
+                            </option>
+
+                            <option value="Western North">
+                                Western North
+                            </option>
+
+                        </select>
+
+                        <small
+                            class="registration-error"
+                            data-error-for="studentRegion">
+                        </small>
+
+                    </div>
+
+
+                    <div class="registration-field">
+
+                        <label for="studentDigitalAddress">
+
+                            Digital Address
+
+                            <span class="optional">
+                                Optional
+                            </span>
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="studentDigitalAddress"
+                            name="studentDigitalAddress">
+
+                    </div>
+
+                </div>
+
+
+                <div class="registration-form-actions">
+
+
+                    <button
+                        type="button"
+                        class="app-btn app-btn-light"
+                        data-previous-step>
+
+                        <i class="fa-solid fa-arrow-left"></i>
+
+                        Back
+
+                    </button>
+
+
+                    <div>
+
+
+                        <button
+                            type="button"
+                            class="app-btn app-btn-secondary"
+                            data-save-draft>
+
+                            <i class="fa-solid fa-floppy-disk"></i>
+
+                            Save Draft
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="app-btn app-btn-primary"
+                            data-next-step>
+
+                            Next
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 STEP 3 — GUARDIAN INFORMATION
+            ================================================== -->
+
+            <section
+                class="registration-form-step"
+                data-form-step="3"
+                hidden>
+
+
+                <div class="registration-step-heading">
+
+                    <span>
+                        STEP 3 OF 6
+                    </span>
+
+                    <h3>
+                        Guardian / Parent Information
+                    </h3>
+
+                    <p>
+                        Record the primary responsible parent or guardian.
+                    </p>
+
+                </div>
+
+
+                <div class="registration-fields">
+
+
+                    <div class="registration-field">
+
+                        <label for="guardianName">
+
+                            Guardian Full Name
+
+                            <span class="required">
+                                *
+                            </span>
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="guardianName"
+                            name="guardianName"
+                            data-required="true">
+
+                        <small
+                            class="registration-error"
+                            data-error-for="guardianName">
+                        </small>
+
+                    </div>
+
+
+                    <div class="registration-field">
+
+                        <label for="guardianRelationship">
+
+                            Relationship
+
+                            <span class="required">
+                                *
+                            </span>
+
+                        </label>
+
+                        <select
+                            id="guardianRelationship"
+                            name="guardianRelationship"
+                            data-required="true">
+
+                            <option value="">
+                                Select relationship
+                            </option>
+
+                            <option value="Father">
+                                Father
+                            </option>
+
+                            <option value="Mother">
+                                Mother
+                            </option>
+
+                            <option value="Guardian">
+                                Guardian
+                            </option>
+
+                            <option value="Uncle">
+                                Uncle
+                            </option>
+
+                            <option value="Aunt">
+                                Aunt
+                            </option>
+
+                            <option value="Grandfather">
+                                Grandfather
+                            </option>
+
+                            <option value="Grandmother">
+                                Grandmother
+                            </option>
+
+                            <option value="Other">
+                                Other
+                            </option>
+
+                        </select>
+
+                        <small
+                            class="registration-error"
+                            data-error-for="guardianRelationship">
+                        </small>
+
+                    </div>
+
+
+                    <div class="registration-field">
+
+                        <label for="guardianPhone">
+
+                            Guardian Phone
+
+                            <span class="required">
+                                *
+                            </span>
+
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="guardianPhone"
+                            name="guardianPhone"
+                            data-required="true">
+
+                        <small
+                            class="registration-error"
+                            data-error-for="guardianPhone">
+                        </small>
+
+                    </div>
+
+
+                    <div class="registration-field">
+
+                        <label for="guardianAlternativePhone">
+
+                            Alternative Phone
+
+                            <span class="optional">
+                                Optional
+                            </span>
+
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="guardianAlternativePhone"
+                            name="guardianAlternativePhone">
+
+                    </div>
+
+
+                    <div class="registration-field">
+
+                        <label for="guardianEmail">
+
+                            Email Address
+
+                            <span class="optional">
+                                Optional
+                            </span>
+
+                        </label>
+
+                        <input
+                            type="email"
+                            id="guardianEmail"
+                            name="guardianEmail">
+
+                    </div>
+
+
+                    <div class="registration-field">
+
+                        <label for="guardianOccupation">
+
+                            Occupation
+
+                            <span class="optional">
+                                Optional
+                            </span>
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="guardianOccupation"
+                            name="guardianOccupation">
+
+                    </div>
+
+
+                    <div class="registration-field full">
+
+                        <label for="guardianAddress">
+
+                            Guardian Address
+
+                            <span class="optional">
+                                Optional
+                            </span>
+
+                        </label>
+
+                        <textarea
+                            id="guardianAddress"
+                            name="guardianAddress"
+                            rows="3"></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <div class="registration-form-actions">
+
+
+                    <button
+                        type="button"
+                        class="app-btn app-btn-light"
+                        data-previous-step>
+
+                        <i class="fa-solid fa-arrow-left"></i>
+
+                        Back
+
+                    </button>
+
+
+                    <div>
+
+                        <button
+                            type="button"
+                            class="app-btn app-btn-secondary"
+                            data-save-draft>
+
+                            <i class="fa-solid fa-floppy-disk"></i>
+
+                            Save Draft
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="app-btn app-btn-primary"
+                            data-next-step>
+
+                            Next
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 STEP 4 — ACADEMIC INFORMATION
+            ================================================== -->
+
+            <section
+                class="registration-form-step"
+                data-form-step="4"
+                hidden>
+
+
+                <div class="registration-step-heading">
+
+                    <span>
+                        STEP 4 OF 6
+                    </span>
+
+                    <h3>
+                        Academic Information
+                    </h3>
+
+                    <p>
+                        Record the student's academic placement.
+                    </p>
+
+                </div>
+
+
+                <div class="registration-fields">
+
+
+                    <div class="registration-field">
+
+                        <label for="studentLevel">
+
+                            Level
+
+                            <span class="required">
+                                *
+                            </span>
+
+                        </label>
+
+                        <select
+                            id="studentLevel"
+                            name="studentLevel"
+                            data-required="true">
+
+                            <option value="">
+                                Select level
+                            </option>
+
+                            <option value="SHS 1">
+                                SHS 1
+                            </option>
+
+                            <option value="SHS 2">
+                                SHS 2
+                            </option>
+
+                            <option value="SHS 3">
+                                SHS 3
+                            </option>
+
+                        </select>
+
+                        <small
+                            class="registration-error"
+                            data-error-for="studentLevel">
+                        </small>
+
+                    </div>
+
+
+                    <div class="registration-field">
+
+                        <label for="studentProgramme">
+
+                            Programme
+
+                            <span class="required">
+                                *
+                            </span>
+
+                        </label>
+
+                        <select
+                            id="studentProgramme"
+                            name="studentProgramme"
+                            data-required="true">
+
+                            <option value="">
+                                Select programme
+                            </option>
+
+                            <option value="General Arts">
+                                General Arts
+                            </option>
+
+                            <option value="General Science">
+                                General Science
+                            </option>
+
+                            <option value="Business">
+                                Business
+                            </option>
+
+                            <option value="Visual Arts">
+                                Visual Arts
+                            </option>
+
+                            <option value="Home Economics">
+                                Home Economics
+                            </option>
+
+                            <option value="Agricultural Science">
+                                Agricultural Science
+                            </option>
+
+                        </select>
+
+                        <small
+                            class="registration-error"
+                            data-error-for="studentProgramme">
+                        </small>
+
+                    </div>
+
+
+                    <div class="registration-field">
+
+                        <label for="studentHouse">
+
+                            House
+
+                            <span class="optional">
+                                Optional
+                            </span>
+
+                        </label>
+
+                        <select
+                            id="studentHouse"
+                            name="studentHouse">
+
+                            <option value="">
+                                Select house
+                            </option>
+
+                            <option value="House 1">
+                                House 1
+                            </option>
+
+                            <option value="House 2">
+                                House 2
+                            </option>
+
+                            <option value="House 3">
+                                House 3
+                            </option>
+
+                            <option value="House 4">
+                                House 4
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="registration-field">
+
+                        <label for="studentAcademicYear">
+
+                            Academic Year
+
+                            <span class="required">
+                                *
+                            </span>
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="studentAcademicYear"
+                            name="studentAcademicYear"
+                            value="2026 / 2027"
+                            data-required="true">
+
+                        <small
+                            class="registration-error"
+                            data-error-for="studentAcademicYear">
+                        </small>
+
+                    </div>
+
+
+                    <div class="registration-field">
+
+                        <label for="studentIndexNumber">
+
+                            Index Number
+
+                            <span class="optional">
+                                Optional
+                            </span>
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="studentIndexNumber"
+                            name="studentIndexNumber">
+
+                    </div>
+
+                </div>
+
+
+                <div class="registration-form-actions">
+
+
+                    <button
+                        type="button"
+                        class="app-btn app-btn-light"
+                        data-previous-step>
+
+                        <i class="fa-solid fa-arrow-left"></i>
+
+                        Back
+
+                    </button>
+
+
+                    <div>
+
+                        <button
+                            type="button"
+                            class="app-btn app-btn-secondary"
+                            data-save-draft>
+
+                            <i class="fa-solid fa-floppy-disk"></i>
+
+                            Save Draft
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="app-btn app-btn-primary"
+                            data-next-step>
+
+                            Next
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 STEP 5 — DOCUMENTS
+            ================================================== -->
+
+            <section
+                class="registration-form-step"
+                data-form-step="5"
+                hidden>
+
+
+                <div class="registration-step-heading">
+
+                    <span>
+                        STEP 5 OF 6
+                    </span>
+
+                    <h3>
+                        Documents
+                    </h3>
+
+                    <p>
+                        Upload supporting documents. Optional documents
+                        can be added later.
+                    </p>
+
+                </div>
+
+
+                <div class="registration-fields">
+
+
+                    <div class="registration-field">
+
+                        <label for="studentPassportPhoto">
+
+                            Passport Photograph
+
+                            <span class="optional">
+                                Optional
+                            </span>
+
+                        </label>
+
+                        <input
+                            type="file"
+                            id="studentPassportPhoto"
+                            name="studentPassportPhoto"
+                            accept="image/*">
+
+                    </div>
+
+
+                    <div class="registration-field">
+
+                        <label for="studentBirthCertificate">
+
+                            Birth Certificate
+
+                            <span class="optional">
+                                Optional
+                            </span>
+
+                        </label>
+
+                        <input
+                            type="file"
+                            id="studentBirthCertificate"
+                            name="studentBirthCertificate"
+                            accept=".pdf,image/*">
+
+                    </div>
+
+
+                    <div class="registration-field">
+
+                        <label for="studentPlacementDocument">
+
+                            Placement Document
+
+                            <span class="optional">
+                                Optional
+                            </span>
+
+                        </label>
+
+                        <input
+                            type="file"
+                            id="studentPlacementDocument"
+                            name="studentPlacementDocument"
+                            accept=".pdf,image/*">
+
+                    </div>
+
+
+                    <div class="registration-field">
+
+                        <label for="studentOtherDocument">
+
+                            Other Document
+
+                            <span class="optional">
+                                Optional
+                            </span>
+
+                        </label>
+
+                        <input
+                            type="file"
+                            id="studentOtherDocument"
+                            name="studentOtherDocument"
+                            accept=".pdf,image/*">
+
+                    </div>
+
+                </div>
+
+
+                <div class="registration-form-actions">
+
+
+                    <button
+                        type="button"
+                        class="app-btn app-btn-light"
+                        data-previous-step>
+
+                        <i class="fa-solid fa-arrow-left"></i>
+
+                        Back
+
+                    </button>
+
+
+                    <div>
+
+                        <button
+                            type="button"
+                            class="app-btn app-btn-secondary"
+                            data-save-draft>
+
+                            <i class="fa-solid fa-floppy-disk"></i>
+
+                            Save Draft
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="app-btn app-btn-primary"
+                            data-next-step>
+
+                            Next
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 STEP 6 — REVIEW
+            ================================================== -->
+
+            <section
+                class="registration-form-step"
+                data-form-step="6"
+                hidden>
+
+
+                <div class="registration-step-heading">
+
+                    <span>
+                        STEP 6 OF 6
+                    </span>
+
+                    <h3>
+                        Review & Save
+                    </h3>
+
+                    <p>
+                        Review the registration before saving the student.
+                    </p>
+
+                </div>
+
+
+                <!-- REVIEW SUMMARY -->
+
+                <div
+                    id="studentRegistrationReview"
+                    class="student-registration-review">
+
+                    <!-- JavaScript will populate this area -->
+
+                </div>
+
+
+                <!-- REQUIRED FIELD WARNING -->
+
+                <div
+                    id="studentRegistrationValidationSummary"
+                    class="student-registration-validation-summary"
+                    hidden>
+
+                    <strong>
+                        Registration cannot be completed yet.
+                    </strong>
+
+                    <p>
+                        Please complete the mandatory fields highlighted
+                        in the registration steps.
+                    </p>
+
+                </div>
+
+
+                <div class="registration-form-actions">
+
+
+                    <button
+                        type="button"
+                        class="app-btn app-btn-light"
+                        data-previous-step>
+
+                        <i class="fa-solid fa-arrow-left"></i>
+
+                        Back
+
+                    </button>
+
+
+                    <div>
+
+                        <button
+                            type="button"
+                            class="app-btn app-btn-secondary"
+                            data-save-draft>
+
+                            <i class="fa-solid fa-floppy-disk"></i>
+
+                            Save Draft
+
+                        </button>
+
+
+                        <button
+                            type="submit"
+                            class="app-btn app-btn-primary"
+                            id="completeStudentRegistration">
+
+                            <i class="fa-solid fa-circle-check"></i>
+
+                            Complete Registration
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </form>
+
+
+        <!-- ==================================================
+             MODAL FOOTER
+        =================================================== -->
+
+        <footer class="student-registration-footer">
+
+            <span>
+                <i class="fa-solid fa-shield-halved"></i>
+
+                Student information is saved securely.
+            </span>
+
+
+            <button
+                type="button"
+                id="cancelStudentRegistration">
+
+                Cancel
+
+            </button>
+
+        </footer>
+
+    </section>
+
+</div>

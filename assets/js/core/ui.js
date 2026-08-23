@@ -206,3 +206,39 @@ document.addEventListener(
 
     }
 );
+
+
+document.addEventListener("DOMContentLoaded", async () => {
+
+    const modalContainer =
+        document.getElementById("studentRegistrationModalContainer");
+
+    if (!modalContainer) {
+        return;
+    }
+
+    try {
+
+        const response =
+            await fetch("components/student-registration-modal.html");
+
+        if (!response.ok) {
+            throw new Error(
+                `Failed to load student registration modal: ${response.status}`
+            );
+        }
+
+        const html = await response.text();
+
+        modalContainer.innerHTML = html;
+
+    } catch (error) {
+
+        console.error(
+            "Student Registration Modal Error:",
+            error
+        );
+
+    }
+
+});
