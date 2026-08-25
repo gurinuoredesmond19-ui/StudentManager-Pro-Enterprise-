@@ -852,6 +852,8 @@ document.addEventListener(
 
 
 
+
+
 /* ==========================================================
    STUDENT REGISTRATION MODAL
    Reusable Component
@@ -859,9 +861,11 @@ document.addEventListener(
 
 function connectStudentRegistrationModal() {
 
+    console.log("CONNECT MODAL FUNCTION RUNNING");
+
     const modal =
         document.querySelector(
-            ".student-registration-modal"
+            "#studentRegistrationModal"
         );
 
     if (!modal) {
@@ -875,7 +879,15 @@ function connectStudentRegistrationModal() {
     }
 
 
+    /* ======================================================
+       OPEN MODAL
+    ====================================================== */
+
     function openStudentRegistrationModal() {
+
+        console.log(
+            "OPENING STUDENT REGISTRATION MODAL"
+        );
 
         modal.hidden = false;
 
@@ -887,56 +899,82 @@ function connectStudentRegistrationModal() {
 
 
     /* ======================================================
-   HEADER ADD STUDENT
-====================================================== */
+       EVENT DELEGATION
+       Handles dynamically inserted/replaced buttons.
+    ====================================================== */
 
-const headerAddStudent =
-    document.querySelector(
-        ".student-header-actions .app-btn.app-btn-primary"
-    );
+    if (!document.body.dataset.studentRegistrationConnected) {
 
-
-if (headerAddStudent) {
-
-    headerAddStudent.addEventListener(
-        "click",
-        function (event) {
-
-            event.preventDefault();
-
-            openStudentRegistrationModal();
-
-        }
-    );
-
-}
+        document.body.dataset.studentRegistrationConnected = "true";
 
 
-    /* ======================================================
-       QUICK ACTION ADD STUDENT
-       ====================================================== */
-
-    const quickActionAddStudent =
-        [...document.querySelectorAll(
-            ".quick-action-card"
-        )].find(
-            button =>
-                button.textContent
-                    .trim()
-                    .toLowerCase()
-                    .includes("add student")
-        );
-
-
-    if (quickActionAddStudent) {
-
-        quickActionAddStudent.addEventListener(
+        document.addEventListener(
             "click",
             function (event) {
 
+                const headerButton =
+                    event.target.closest(
+                        "#openStudentRegistrationHeader"
+                    );
+
+
+                const quickButton =
+                    event.target.closest(
+                        "#openStudentRegistrationQuick"
+                    );
+
+
+                if (
+                    !headerButton &&
+                    !quickButton
+                ) {
+
+                    return;
+
+                }
+
+
                 event.preventDefault();
 
-                openStudentRegistrationModal();
+                console.log(
+                    "ADD STUDENT BUTTON CLICKED"
+                );
+
+
+                /*
+                 * Modal may have been replaced after
+                 * the original connection was created.
+                 *
+                 * Find the current modal again.
+                 */
+
+                const currentModal =
+                    document.querySelector(
+                        "#studentRegistrationModal"
+                    );
+
+
+                if (!currentModal) {
+
+                    console.error(
+                        "Student Registration Modal is not available."
+                    );
+
+                    return;
+
+                }
+
+
+                currentModal.hidden = false;
+
+                currentModal.classList.add("show");
+
+                document.body.style.overflow = "hidden";
+
+
+                console.log(
+                    "Student Registration Modal opened."
+                );
 
             }
         );
@@ -961,49 +999,17 @@ document.addEventListener(
 );
 
 
-/*
- * Fallback:
- * If the modal has already been loaded before
- * this controller reaches this point, connect immediately.
- */
+/* ==========================================================
+   FALLBACK
+   If modal already exists, connect immediately.
+   ========================================================== */
 
 if (
     document.querySelector(
-        ".student-registration-modal"
+        "#studentRegistrationModal"
     )
 ) {
 
     connectStudentRegistrationModal();
 
 }
-
-
-
-console.log("Students.js loaded");
-
-document.addEventListener("studentRegistrationModalLoaded", () => {
-    console.log("Registration modal loaded event received");
-
-    const modal = document.querySelector(
-        "#studentRegistrationModal"
-    );
-
-    console.log("Registration modal:", modal);
-
-    const headerButton = document.querySelector(
-        ".student-header-actions .app-btn.app-btn-primary"
-    );
-
-    console.log("Header Add Student:", headerButton);
-
-    const quickButton = [...document.querySelectorAll(
-        ".quick-action-card"
-    )].find(button =>
-        button.textContent
-            .trim()
-            .toLowerCase()
-            .includes("add student")
-    );
-
-    console.log("Quick Add Student:", quickButton);
-});
