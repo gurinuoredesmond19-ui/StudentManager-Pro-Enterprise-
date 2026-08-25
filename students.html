@@ -387,14 +387,10 @@
 
                     <button
                         type="button"
-                        class="app-btn app-btn-primary">
+                        class="app-btn app-btn-primary"
+                        id="openStudentRegistrationQuick">
 
-                        <i class="fa-solid fa-user-plus
-
-                       
-                        
-                        "
-                        id="addStudentBtn"></i>
+                        <i class="fa-solid fa-user-plus"></i>
 
                         Add Student
 
@@ -875,30 +871,30 @@
                 <div class="quick-action-grid">
 
 
-                    <button
-                        type="button"
-                        class="quick-action-card"
-                        >
+             <button
+    type="button"
+    class="quick-action-card"
+    id="openStudentRegistrationQuick">
 
-                        <span class="quick-action-icon blue">
+    <span class="quick-action-icon blue">
 
-                            <i class="fa-solid fa-user-plus"></i>
+        <i class="fa-solid fa-user-plus"></i>
 
-                        </span>
+    </span>
 
-                        <span>
+    <span>
 
-                            <strong>Add Student</strong>
+        <strong>Add Student</strong>
 
-                            <small>
-                                Register a student manually
-                            </small>
+        <small>
+            Register a student manually
+        </small>
 
-                        </span>
+    </span>
 
-                        <i class="fa-solid fa-chevron-right"></i>
+    <i class="fa-solid fa-chevron-right"></i>
 
-                    </button>
+</button>
 
 
                     <button
@@ -1042,13 +1038,19 @@
 
     </main>
 
-    <!-------------------Student Registration modal---------------------->
-
-<div id=
-"studentRegistrationModalContainer">
+  
 </div>
 
+
+
+
+<!-- ==================================================
+     STUDENT MODAL CONTAINER
+ =================================================== -->     
+<div 
+id="studentRegistrationModalContainer">
 </div>
+
 
 
 
@@ -1062,6 +1064,8 @@
 <script src="assets/js/core/app.js"></script>
 
 <script src="assets/js/core/ui.js"></script>
+
+<script src="assets/js/core/component-loader.js"></script>
 
 <script
     type="module"

@@ -1004,13 +1004,22 @@ tableBody?.addEventListener(
 renderStudents();
 
 
+
+
+
+
+
+
+
+
+
 /* ==========================================================
    STUDENT REGISTRATION CONTROLLER
    ========================================================== */
 
-document.addEventListener(
-    "DOMContentLoaded",
-    () => {
+function
+initializeStudentRegistration() {
+
 
 
         /* ======================================================
@@ -3406,6 +3415,16 @@ async function saveCompletedStudent() {
         updateProgress();
 
     }
-);
+
+
+    /* ==========================================================
+       INITIALIZE STUDENT REGISTRATION MODULE
+    ========================================================== */
+
+    document.addEventListener(
+        "studentRegistrationModalLoaded",
+        initializeStudentRegistration
+    );
+
 
 

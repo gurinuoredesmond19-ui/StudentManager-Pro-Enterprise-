@@ -14,11 +14,6 @@
         - initialize the sidebar
         - attach sidebar events
         - manage sidebar state
-        - load the student registration modal
-        - initialize the student registration modal
-
-    Component loading belongs to:
-        component-loader.js
 
     Sidebar responsibility belongs to:
         dashboard.js → loads sidebar.html
@@ -45,16 +40,12 @@ App.UI.init = function () {
     ======================================================*/
 
     if (App.UI.Modal?.init) {
-
         App.UI.Modal.init();
-
     }
 
 
     if (App.UI.Dropdown?.init) {
-
         App.UI.Dropdown.init();
-
     }
 
 
@@ -63,30 +54,22 @@ App.UI.init = function () {
     ======================================================*/
 
     if (App.UI.Loading?.init) {
-
         App.UI.Loading.init();
-
     }
 
 
     if (App.UI.Search?.init) {
-
         App.UI.Search.init();
-
     }
 
 
     if (App.UI.Table?.init) {
-
         App.UI.Table.init();
-
     }
 
 
     if (App.UI.Pagination?.init) {
-
         App.UI.Pagination.init();
-
     }
 
 
@@ -95,30 +78,22 @@ App.UI.init = function () {
     ======================================================*/
 
     if (App.UI.Print?.init) {
-
         App.UI.Print.init();
-
     }
 
 
     if (App.UI.Export?.init) {
-
         App.UI.Export.init();
-
     }
 
 
     if (App.UI.Password?.init) {
-
         App.UI.Password.init();
-
     }
 
 
     if (App.UI.Image?.init) {
-
         App.UI.Image.init();
-
     }
 
 
@@ -127,9 +102,7 @@ App.UI.init = function () {
     ======================================================*/
 
     if (App.UI.Confirm?.init) {
-
         App.UI.Confirm.init();
-
     }
 
 
@@ -138,28 +111,22 @@ App.UI.init = function () {
     ======================================================*/
 
     if (App.UI.Scroll?.init) {
-
         App.UI.Scroll.init();
-
     }
 
 
     if (App.UI.Shortcuts?.init) {
-
         App.UI.Shortcuts.init();
-
     }
 
 
     if (App.UI.Utils?.init) {
-
         App.UI.Utils.init();
-
     }
 
 
     /*======================================================
-        ARCHITECTURE RULES
+        IMPORTANT
 
         DO NOT ADD:
 
@@ -173,21 +140,9 @@ App.UI.init = function () {
 
             loadSidebar();
 
-        DO NOT ADD:
-
-            student registration modal loader
-
-        DO NOT ADD:
-
-            studentRegistrationModalLoaded
-
-        Sidebar loading belongs to the dashboard module.
-
-        Student registration component loading belongs to:
-
-            assets/js/core/component-loader.js
+        The dashboard module is responsible for loading
+        the sidebar after the HTML has been inserted.
     ======================================================*/
-
 
     console.log(
         "✓ General UI Engine Loaded Successfully"
@@ -222,3 +177,8 @@ document.addEventListener(
 
     }
 );
+
+
+
+
+
