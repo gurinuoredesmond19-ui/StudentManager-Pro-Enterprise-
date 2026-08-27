@@ -140,34 +140,34 @@ function loadStudents() {
                                 ]
                                 .filter(Boolean)
                                 .join(" ");
+                              return {
 
+    ...student,
 
-                            return {
+    id:
+        student.id || "",
 
-                                id:
-                                    student.id || "",
+    name:
+        fullName ||
+        "Unnamed Student",
 
-                                name:
-                                    fullName ||
-                                    "Unnamed Student",
+    gender:
+        student.studentGender || "",
 
-                                gender:
-                                    student.studentGender || "",
+    level:
+        student.studentLevel || "",
 
-                                level:
-                                    student.studentLevel || "",
+    programme:
+        student.studentProgramme || "",
 
-                                programme:
-                                    student.studentProgramme || "",
+    house:
+        student.studentHouse || "",
 
-                                house:
-                                    student.studentHouse || "",
+    status:
+        student.status ||
+        "Active"
 
-                                status:
-                                    student.status ||
-                                    "Active"
-
-                            };
+};
 
                         }
                     );
@@ -310,6 +310,9 @@ function renderStudents() {
         );
 
 
+        /*============== Empty State ==============*/
+
+
     if (pageStudents.length === 0) {
 
         if (emptyState) {
@@ -332,7 +335,7 @@ function renderStudents() {
             "none";
 
     }
-
+ /* ======== Render each student row ======== */
 
     pageStudents.forEach(
         student => {
@@ -976,13 +979,70 @@ tableBody?.addEventListener(
         }
 
 
-        if (action === "edit") {
+       if (action === "edit") {
 
-            alert(
-                `Edit student: ${student.name}`
+    const saved =
+        localStorage.getItem(
+            "studentRecords"
+        );
+
+    let fullStudent = null;
+
+    if (saved) {
+
+        try {
+
+            const records =
+                JSON.parse(saved);
+
+            if (Array.isArray(records)) {
+
+                fullStudent =
+                    records.find(
+                        record =>
+                            record.id ===
+                            studentId
+                    );
+
+            }
+
+        } catch (error) {
+
+            console.error(
+                "Unable to load student for editing.",
+                error
             );
 
         }
+
+    }
+
+
+    if (!fullStudent) {
+
+        alert(
+            "Unable to load this student's complete record."
+        );
+
+        return;
+
+    }
+
+
+    document.dispatchEvent(
+        new CustomEvent(
+            "editStudentRequested",
+            {
+                detail: {
+                    student: fullStudent
+                }
+            }
+        )
+    );
+
+
+
+}
 
 
         if (action === "more") {
@@ -1119,6 +1179,45 @@ initializeStudentRegistration() {
 
         let currentStep = 0;
 
+        let editingStudent = null;
+
+           document.addEventListener(
+    "editStudentRequested",
+    event => {
+
+        editingStudent =
+            event.detail.student;
+
+        console.log(
+            "Editing student:",
+            editingStudent
+        );
+
+        if (!editingStudent) {
+            return;
+        }
+
+        loadStudentIntoForm(
+            editingStudent
+        );
+
+        modal.hidden = false;
+
+        modal.classList.add("show");
+
+        document.body.style.overflow =
+            "hidden";
+
+        currentStep = 0;
+
+        updateStep();
+
+        updateProgress();
+
+        buildRegistrationReview();
+
+    }
+);
 
         const totalSteps =
             stepPanels.length;
@@ -2305,6 +2404,154 @@ initializeStudentRegistration() {
             );
 
         }
+
+
+
+
+
+function loadStudentIntoForm(student) {
+
+    if (!student || !form) {
+        console.warn(
+            "Cannot load student: student or form is missing.",
+            student
+        );
+        return;
+    }
+
+
+    console.log(
+        "Loading student into registration form:",
+        student
+    );
+
+
+    Object.keys(student).forEach(
+        key => {
+
+            const field =
+                form.elements[key];
+
+
+            if (!field) {
+                return;
+            }
+
+
+            /*
+             * FILE INPUTS
+             * ------------------------------------------------
+             * Browsers do not allow JavaScript to populate
+             * file inputs for security reasons.
+             */
+
+            if (
+                field.type === "file"
+            ) {
+
+                return;
+
+            }
+
+
+            /*
+             * RADIO GROUP
+             */
+
+            if (
+                field instanceof
+                RadioNodeList
+            ) {
+
+                Array.from(field).forEach(
+                    radio => {
+
+                        radio.checked =
+                            String(
+                                radio.value
+                            ) ===
+                            String(
+                                student[key] ?? ""
+                            );
+
+                    }
+                );
+
+                return;
+
+            }
+
+
+            /*
+             * CHECKBOX
+             */
+
+            if (
+                field.type === "checkbox"
+            ) {
+
+                field.checked =
+                    Boolean(
+                        student[key]
+                    );
+
+                return;
+
+            }
+
+
+            /*
+             * NORMAL INPUT / SELECT / TEXTAREA
+             */
+
+            field.value =
+                student[key] ?? "";
+
+
+            /*
+             * Remove old validation error
+             */
+
+            const wrapper =
+                field.closest(
+                    ".student-registration-field"
+                );
+
+
+            if (wrapper) {
+
+                wrapper.classList.remove(
+                    "has-error"
+                );
+
+            }
+
+
+            field.removeAttribute(
+                "aria-invalid"
+            );
+
+        }
+    );
+
+
+    /*
+     * Make sure the registration form opens
+     * on the first step.
+     */
+
+    currentStep = 0;
+
+
+    updateStep();
+
+    updateProgress();
+
+    buildRegistrationReview();
+
+}
+
+
 
 
         function createReviewRow(
