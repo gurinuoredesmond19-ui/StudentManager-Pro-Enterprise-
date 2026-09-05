@@ -3,12 +3,22 @@
    STUDENT REGISTER — DATA ENGINE
    STEP 4B
    ========================================================== */
+  import {
+    getStudents,
+    getStudentById,
+    createStudent,
+    updateStudent,
+    deleteStudent,
+    subscribeToStudents,
+    uploadStudentPassport,
+    uploadStudentDocument,
+    removeStudentPassport,
+    DEFAULT_AVATAR
+} from "../firebase/student-service.js";
 
-
-/* ==========================================================
+   /* ==========================================================
    STUDENT REGISTER — DATA SOURCE
    ========================================================== */
-
 const demoStudents = [
 
     {
@@ -98,185 +108,31 @@ const demoStudents = [
    LOAD STUDENTS FROM STORAGE
    ========================================================== */
 
-function loadStudents() {
+async function loadStudents() {
 
-    const saved =
-        localStorage.getItem(
-            "studentRecords"
+    try {
+
+        const students =
+            await getStudents();
+
+        console.log(
+            "Students loaded from Firebase:",
+            students
         );
 
-    let registeredStudents = [];
+        return students;
 
+    } catch (error) {
 
-    if (saved) {
+        console.error(
+            "Unable to load students from Firebase:",
+            error
+        );
 
-        try {
-
-            const parsed =
-                JSON.parse(saved);
-
-
-            if (Array.isArray(parsed)) {
-
-                registeredStudents =
-                    parsed.map(
-                        student => {
-
-                            const firstName =
-                                student.studentFirstName || "";
-
-                            const middleName =
-                                student.studentMiddleName || "";
-
-                            const lastName =
-                                student.studentLastName || "";
-
-
-                            const fullName =
-                                [
-                                    firstName,
-                                    middleName,
-                                    lastName
-                                ]
-                                .filter(Boolean)
-                                .join(" ");
-                              return {
-
-    ...student,
-
-    id:
-        student.id || "",
-
-    name:
-        fullName ||
-        "Unnamed Student",
-
-    gender:
-        student.studentGender || "",
-
-    level:
-        student.studentLevel || "",
-
-    programme:
-        student.studentProgramme || "",
-
-    house:
-        student.studentHouse || "",
-
-    status:
-        student.status ||
-        "Active"
-
-};
-
-                        }
-                    );
-
-            }
-
-        } catch (error) {
-
-            console.warn(
-                "Unable to load saved student records.",
-                error
-            );
-
-        }
+        return [];
 
     }
-
-
-    return [
-        ...demoStudents,
-        ...registeredStudents
-    ];
-
 }
-
-
-/* ==========================================================
-   STUDENT DATA
-   ========================================================== */
-
-const students =
-    loadStudents();
-
-
-/* ==========================================================
-   FILTERED DATA
-   ========================================================== */
-
-let filteredStudents =
-    [...students];
-
-let currentPage = 1;
-
-const recordsPerPage = 5;
-
-
-/* ==========================================================
-   DOM ELEMENTS
-   ========================================================== */
-
-const tableBody =
-    document.getElementById(
-        "studentRegisterTableBody"
-    );
-
-const emptyState =
-    document.getElementById(
-        "studentRegisterEmpty"
-    );
-
-const searchInput =
-    document.getElementById(
-        "registerSearch"
-    );
-
-const levelFilter =
-    document.getElementById(
-        "registerLevelFilter"
-    );
-
-const genderFilter =
-    document.getElementById(
-        "registerGenderFilter"
-    );
-
-const statusFilter =
-    document.getElementById(
-        "registerStatusFilter"
-    );
-
-const clearFiltersButton =
-    document.getElementById(
-        "clearRegisterFilters"
-    );
-
-const resultCount =
-    document.getElementById(
-        "registerResultCount"
-    );
-
-const paginationInfo =
-    document.getElementById(
-        "registerPaginationInfo"
-    );
-
-const currentPageElement =
-    document.getElementById(
-        "registerCurrentPage"
-    );
-
-const previousButton =
-    document.getElementById(
-        "registerPreviousPage"
-    );
-
-const nextButton =
-    document.getElementById(
-        "registerNextPage"
-    );
 
 
 /* ==========================================================
